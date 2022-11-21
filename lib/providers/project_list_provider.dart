@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive/hive.dart';
 
 import '../database/app_database.dart';
 import '../database/project.dart';
@@ -14,10 +13,10 @@ class ProjectListNotifier extends RepositoryListNotifier<Project> {
   ProjectListNotifier() : super([], AppDatabase.projects);
 
   void rename(int index, String name) {
-    execute((list) {
+    execute((list, repo) async {
       final project = list[index];
       project.name = name;
-      project.save();
+      await repo.update(project);
     });
   }
 
@@ -26,10 +25,9 @@ class ProjectListNotifier extends RepositoryListNotifier<Project> {
   }
 
   void addNew() {
-    execute((list) {
+    execute((list, repo) async {
       final project = Project(name: 'No Name');
-      final box = Hive.box<Project>(repoName);
-      box.add(project);
+      project.id = await repo.insert(project);
       list.add(project);
     });
   }

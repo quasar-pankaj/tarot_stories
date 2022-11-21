@@ -1,36 +1,37 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive/hive.dart';
+import 'package:tarot_stories/database/entity.dart';
+import 'package:tarot_stories/database/repository.dart';
 
-class RepositoryListNotifier<E extends HiveObject>
-    extends StateNotifier<List<E>> {
-  String repoName;
-  RepositoryListNotifier(List<E> list, this.repoName) : super(list);
+class RepositoryListNotifier<E extends Entity> extends StateNotifier<List<E>> {
+  Repository<E> _repo;
 
-  void execute(void Function(List<E> list) visit) {
-    final list = state;
-    visit(list);
+  RepositoryListNotifier(List<E> list, String repoName)
+      : _repo = Repository(storeName: repoName),
+        super(list);
+
+  void execute(void Function(List<E> list, Repository<E> repo) visit) {
+    final list = [...state];
+    visit(list, _repo);
     state = list;
   }
 
-  void add(E item) {
-    final list = state;
+  Future<void> add(E item) async {
+    final list = [...state];
     list.add(item);
-    if (!item.isInBox) {
-      final box = Hive.box<E>(repoName);
-      box.add(item);
-    } else {
-      item.save();
-    }
+    await _repo.insert(item);
     state = list;
   }
 
-  void delete(E item) {
-    final list = state;
+  Future<void> delete(E item) async {
+    final list = [...state];
     list.remove(item);
-    if (item.isInBox) {
-      final box = Hive.box<E>(repoName);
-      box.delete(item.key);
-    }
+    await _repo.delete(item);
+    state = list;
+  }
+
+  Future<void> update(E item) async {
+    final list = [...state];
+    await _repo.update(item);
     state = list;
   }
 }
