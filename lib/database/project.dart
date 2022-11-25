@@ -1,20 +1,33 @@
 import 'dart:convert';
 
+import 'package:sembast/timestamp.dart';
+
 import 'entity.dart';
 
 class Project extends Entity {
+  String synopsis;
+
   Project({
     super.id,
     required super.name,
+    required super.created,
+    required super.modified,
+    this.synopsis = '',
   });
 
   Project copyWith({
     String? name,
+    String? synopsis,
+    Timestamp? created,
+    Timestamp? modified,
     bool withId = false,
   }) {
     return Project(
       id: withId ? id : null,
       name: name ?? this.name,
+      synopsis: synopsis ?? this.synopsis,
+      created: created ?? this.created,
+      modified: modified ?? this.modified,
     );
   }
 
@@ -23,13 +36,19 @@ class Project extends Entity {
     return <String, dynamic>{
       'id': id,
       'name': name,
+      'synopsis': synopsis,
+      'created': created,
+      'modified': modified,
     };
   }
 
   factory Project.fromMap(Map<String, dynamic> map) {
     return Project(
-      id: map['id'] as int,
+      // id: map['id'] as int,
       name: map['name'] as String,
+      synopsis: map['synopsis'] as String,
+      created: map['created'] as Timestamp,
+      modified: map['modified'] as Timestamp,
     );
   }
 
@@ -46,9 +65,9 @@ class Project extends Entity {
   bool operator ==(covariant Project other) {
     if (identical(this, other)) return true;
 
-    return other.name == name;
+    return other.id == id && other.name == name;
   }
 
   @override
-  int get hashCode => name.hashCode;
+  int get hashCode => id.hashCode ^ name.hashCode;
 }

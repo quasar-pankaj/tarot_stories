@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tarot_stories/providers/projects_in_memory_notifier_provider.dart';
 
-import '../providers/project_list_provider.dart';
+import '../providers/misc_providers.dart';
 import '../widgets/in_place_editor.dart';
 
 class HomePage extends ConsumerWidget {
@@ -63,28 +64,42 @@ class HomePage extends ConsumerWidget {
         ),
         body: Consumer(
           builder: (context, ref, child) {
-            final list = ref.watch(projectListProvider);
-            return GridView.extent(
-              maxCrossAxisExtent: 100,
-              children: list
-                  .map(
-                    (e) => Card(
-                      child: GridTile(
-                        footer: Center(child: InPlaceEditor(text: e.name)),
-                        child: const Icon(
-                          Icons.analytics_outlined,
-                          size: 80.6,
-                          color: Colors.pinkAccent,
+            final result = ref.watch(projectsListProvider);
+
+            return result.when(
+              data: (data) => GridView.extent(
+                maxCrossAxisExtent: 100,
+                children: data
+                    .map(
+                      (e) => Dismissible(
+                        key: Key(e.toString()),
+                        child: Card(
+                          child: GridTile(
+                            footer: Center(child: InPlaceEditor(text: e.name)),
+                            child: const Icon(
+                              Icons.analytics_outlined,
+                              size: 80.6,
+                              color: Colors.pinkAccent,
+                            ),
+                          ),
                         ),
+                        onDismissed: (direction) => ref
+                            .read(inMemoryProjectsProvider.notifier)
+                            .remove(e),
                       ),
-                    ),
-                  )
-                  .toList(),
+                    )
+                    .toList(),
+              ),
+              error: (error, stackTrace) => Text(error.toString()),
+              loading: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
             );
           },
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: (() => ref.read(projectListProvider.notifier).addNew()),
+          onPressed: (() =>
+              ref.read(inMemoryProjectsProvider.notifier).addNew()),
           tooltip: 'Add new Project',
           child: const Icon(Icons.add),
         ),

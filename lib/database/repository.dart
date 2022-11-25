@@ -40,11 +40,15 @@ class Repository<E extends Entity> {
     );
   }
 
-  Future<List<Entity>> getAllSortedByName() async {
+  Future<List<Entity>> _getAllSortedByFields(List<String> fieldnames,
+      {String? filterText, bool asc = true}) async {
     // Finder object can also sort data.
-    final finder = Finder(sortOrders: [
-      SortOrder('name'),
-    ]);
+    Filter? filter =
+        filterText == null ? null : Filter.matches('name', filterText);
+    final finder = Finder(
+      filter: filter,
+      sortOrders: fieldnames.map((e) => SortOrder(e, asc)).toList(),
+    );
 
     final recordSnapshots = await _store.find(
       await _db,
@@ -58,5 +62,28 @@ class Repository<E extends Entity> {
       entity.id = snapshot.key;
       return entity;
     }).toList();
+  }
+
+  Future<List<Entity>> getAllSortedByName({
+    String? pattern,
+    bool ascending = true,
+  }) async {
+    return _getAllSortedByFields(['name'], filterText: pattern, asc: ascending);
+  }
+
+  Future<List<Entity>> getAllSortedByCreatedTimestamp({
+    String? pattern,
+    bool ascending = true,
+  }) async {
+    return _getAllSortedByFields(['created'],
+        filterText: pattern, asc: ascending);
+  }
+
+  Future<List<Entity>> getAllSortedByModifiedTimestamp({
+    String? pattern,
+    bool ascending = true,
+  }) async {
+    return _getAllSortedByFields(['modified'],
+        filterText: pattern, asc: ascending);
   }
 }

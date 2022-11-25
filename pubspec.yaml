@@ -34,18 +34,19 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_riverpod: ^2.0.2
+  freezed_annotation: ^2.2.0
+  json_annotation: ^4.7.0
   path_provider: ^2.0.11
   sembast: ^3.3.1
-  json_annotation: ^4.7.0
 
 dev_dependencies:
-  build_runner:
+  build_runner: null
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  riverpod_generator:
+  freezed: ^2.2.1
   json_serializable: ^6.5.4
-  
+  riverpod_generator: null
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -65,7 +66,7 @@ flutter:
     - assets/tarot/minor/pentacles/
     - assets/tarot/minor/swords/
     - assets/tarot/minor/wands/
-    - assets/text/deck.json
+    - assets/text/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

@@ -1,15 +1,21 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:tarot_stories/database/app_database.dart';
-import 'package:tarot_stories/database/project.dart';
-import 'package:tarot_stories/database/spread.dart';
+import 'package:sembast/timestamp.dart';
+
+import 'app_database.dart';
+import 'project.dart';
+import 'spread.dart';
 
 abstract class Entity {
   int? id;
   String name;
+  Timestamp created;
+  Timestamp modified;
 
   Entity({
     this.id,
     required this.name,
+    required this.created,
+    required this.modified,
   });
 
   Map<String, dynamic> toMap();
@@ -34,5 +40,25 @@ abstract class Entity {
         return Spread.fromJson(source);
     }
     throw NullThrownError();
+  }
+
+  @override
+  String toString() {
+    return 'Entity(id: $id, name: $name, created: $created, modified: $modified)';
+  }
+
+  @override
+  bool operator ==(covariant Entity other) {
+    if (identical(this, other)) return true;
+
+    return other.id == id &&
+        other.name == name &&
+        other.created == created &&
+        other.modified == modified;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^ name.hashCode ^ created.hashCode ^ modified.hashCode;
   }
 }
