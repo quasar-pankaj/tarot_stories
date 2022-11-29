@@ -1,11 +1,9 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:sembast/timestamp.dart';
 
 import 'entity.dart';
 
-@immutable
 class Project extends Entity {
   final String synopsis;
 

@@ -40,6 +40,10 @@ class Repository<E extends Entity> {
     );
   }
 
+  Future<void> deleteAll() async {
+    return await _store.drop(await _db);
+  }
+
   Future<List<Entity>> _getAllSortedByFields(List<String> fieldnames,
       {String? filterText, bool asc = true}) async {
     // Finder object can also sort data.

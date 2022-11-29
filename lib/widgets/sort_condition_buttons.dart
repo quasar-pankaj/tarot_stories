@@ -9,7 +9,7 @@ class SortConditionButtons extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ToggleButtons(
-      isSelected: ref.watch(sortOrderProvider),
+      isSelected: ref.watch(sortConditionProvider),
       onPressed: (index) =>
           ref.read(sortConditionProvider.notifier).onSelected(index),
       direction: Axis.horizontal,
