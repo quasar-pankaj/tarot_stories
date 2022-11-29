@@ -1,15 +1,17 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/foundation.dart';
 import 'package:sembast/timestamp.dart';
 
 import 'app_database.dart';
 import 'project.dart';
 import 'spread.dart';
 
+@immutable
 abstract class Entity {
-  int? id;
-  String name;
-  Timestamp created;
-  Timestamp modified;
+  late final int? id;
+  final String name;
+  final Timestamp created;
+  final Timestamp modified;
 
   Entity({
     this.id,

@@ -79,8 +79,3 @@ final sortDescendingByModifiedDateProjectsProvider =
     );
 });
 
-final projectNameFilterProvider =
-    Provider.family<List<Project>, String>((ref, pattern) {
-  final projects = ref.watch(inMemoryProjectsProvider);
-  return projects.where((element) => element.name.contains(pattern)).toList();
-});

@@ -7,10 +7,11 @@ import 'package:sembast/timestamp.dart';
 
 import 'entity.dart';
 
+@immutable
 class Spread extends Entity {
-  List<String> cards;
-  List<String> readings;
-  int projectId;
+  final List<String> cards;
+  final List<String> readings;
+  final int projectId;
 
   Spread({
     super.id,

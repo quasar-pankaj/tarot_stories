@@ -1,8 +1,12 @@
+import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tarot_stories/providers/projects_in_memory_notifier_provider.dart';
+import 'package:sembast/timestamp.dart';
 
+import '../database/project.dart';
 import '../providers/misc_providers.dart';
+import '../providers/project_filter_provider.dart';
+import '../providers/projects_in_memory_notifier_provider.dart';
 import '../widgets/in_place_editor.dart';
 
 class HomePage extends ConsumerWidget {
@@ -13,11 +17,20 @@ class HomePage extends ConsumerWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Tarot Stories'),
+          title: EasySearchBar(
+            title: const Text('Tarot Stories'),
+            onSearch: (value) => ref.read(
+              projectFilterProvider.notifier,
+            ).filter(value),
+          ),
           actions: [
             IconButton(
               onPressed: () {},
-              icon: const Icon(Icons.delete_forever),
+              icon: const Icon(Icons.sort),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.sort_by_alpha),
             ),
           ],
         ),
@@ -68,18 +81,34 @@ class HomePage extends ConsumerWidget {
 
             return result.when(
               data: (data) => GridView.extent(
-                maxCrossAxisExtent: 100,
+                maxCrossAxisExtent: 150,
+                childAspectRatio: 0.75,
                 children: data
                     .map(
                       (e) => Dismissible(
                         key: Key(e.toString()),
                         child: Card(
+                          color: Colors.green,
                           child: GridTile(
-                            footer: Center(child: InPlaceEditor(text: e.name)),
+                            footer: Center(
+                              child: InPlaceEditor(
+                                text: e.name,
+                                onTextChanged: (newText) {
+                                  final Project project = e.copyWith(
+                                    name: newText,
+                                    modified: Timestamp.now(),
+                                    withId: true,
+                                  );
+                                  ref
+                                      .read(inMemoryProjectsProvider.notifier)
+                                      .update(project);
+                                },
+                              ),
+                            ),
                             child: const Icon(
                               Icons.analytics_outlined,
                               size: 80.6,
-                              color: Colors.pinkAccent,
+                              color: Colors.yellowAccent,
                             ),
                           ),
                         ),

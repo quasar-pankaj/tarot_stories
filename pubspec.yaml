@@ -30,6 +30,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.2
+  easy_search_bar: ^2.4.2
   flip_card: ^0.6.0
   flutter:
     sdk: flutter

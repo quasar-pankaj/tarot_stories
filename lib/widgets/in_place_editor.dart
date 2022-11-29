@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class InPlaceEditor extends StatefulWidget {
-  String text;
+  String _text;
+  final void Function(String newText)? _onTextChanged;
   InPlaceEditor({
     Key? key,
-    required this.text,
-  }) : super(key: key);
+    required String text,
+    void Function(String newText)? onTextChanged,
+  })  : _text = text,
+        _onTextChanged = onTextChanged,
+        super(key: key);
 
   @override
   State<InPlaceEditor> createState() => _InPlaceEditorState();
@@ -19,7 +23,7 @@ class _InPlaceEditorState extends State<InPlaceEditor> {
 
   @override
   void initState() {
-    _controller = TextEditingController(text: widget.text);
+    _controller = TextEditingController(text: widget._text);
     super.initState();
   }
 
@@ -31,7 +35,8 @@ class _InPlaceEditorState extends State<InPlaceEditor> {
         onSubmitted: (value) {
           setState(() {
             _editable = false;
-            widget.text = _controller.text;
+            widget._text = _controller.text;
+            widget._onTextChanged?.call(_controller.text);
           });
         },
       );
@@ -42,7 +47,7 @@ class _InPlaceEditorState extends State<InPlaceEditor> {
             _editable = true;
           });
         },
-        child: Text(widget.text),
+        child: Text(widget._text),
       );
     }
   }
