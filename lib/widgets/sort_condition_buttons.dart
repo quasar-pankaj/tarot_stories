@@ -23,8 +23,8 @@ class SortConditionButtons extends ConsumerWidget {
       fillColor: Colors.green[200],
       color: Colors.green[400],
       constraints: const BoxConstraints(
-        minHeight: 40.0,
-        minWidth: 80.0,
+        minHeight: 30.0,
+        minWidth: 50.0,
       ),
       children: const [
         Icon(Icons.abc),

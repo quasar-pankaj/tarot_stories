@@ -1,4 +1,3 @@
-import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sembast/timestamp.dart';
@@ -11,18 +10,15 @@ import '../widgets/sort_condition_buttons.dart';
 import '../widgets/sort_order_buttons.dart';
 
 class HomePage extends ConsumerWidget {
-  const HomePage({super.key});
+  final TextEditingController _controller = TextEditingController(text: '');
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: EasySearchBar(
-            title: const Text('Tarot Stories'),
-            onSearch: (value) =>
-                ref.read(filterTextProvider.notifier).update((state) => value),
-          ),
+          title: const Text('Tarot Stories'),
           actions: [
             IconButton(
               onPressed: () {},
@@ -78,58 +74,66 @@ class HomePage extends ConsumerWidget {
         body: Column(
           children: [
             Row(
-              children: const [
-                SortOrderButtons(),
-                VerticalDivider(
-                  color: Colors.amber,
-                  width: 30.0,
-                  thickness: 25.5,
+              children: [
+                // const Spacer(),
+                TextField(
+                  controller: _controller,
                 ),
-                SortConditionButtons(),
+                const SortOrderButtons(),
+                const VerticalDivider(
+                  color: Colors.amber,
+                  width: 10.0,
+                  thickness: 5.5,
+                ),
+                const SortConditionButtons(),
               ],
             ),
             Consumer(
               builder: (context, ref, child) {
                 final result = ref.watch(sortedFilteredListProvider);
 
-                return GridView.extent(
-                  maxCrossAxisExtent: 150,
-                  childAspectRatio: 0.75,
-                  children: result
-                      .map(
-                        (e) => Dismissible(
-                          key: Key(e.toString()),
-                          child: Card(
-                            color: Colors.green,
-                            child: GridTile(
-                              footer: Center(
-                                child: InPlaceEditor(
-                                  text: e.name,
-                                  onTextChanged: (newText) {
-                                    final Project project = e.copyWith(
-                                      name: newText,
-                                      modified: Timestamp.now(),
-                                      withId: true,
-                                    );
-                                    ref
-                                        .read(inMemoryProjectsProvider.notifier)
-                                        .update(project);
-                                  },
+                return Expanded(
+                  child: GridView.extent(
+                    shrinkWrap: true,
+                    maxCrossAxisExtent: 150,
+                    childAspectRatio: 0.75,
+                    children: result
+                        .map(
+                          (e) => Dismissible(
+                            key: Key(e.toString()),
+                            child: Card(
+                              color: Colors.green,
+                              child: GridTile(
+                                footer: Center(
+                                  child: InPlaceEditor(
+                                    text: e.name,
+                                    onTextChanged: (newText) {
+                                      final Project project = e.copyWith(
+                                        name: newText,
+                                        modified: Timestamp.now(),
+                                        withId: true,
+                                      );
+                                      ref
+                                          .read(
+                                              inMemoryProjectsProvider.notifier)
+                                          .update(project);
+                                    },
+                                  ),
+                                ),
+                                child: const Icon(
+                                  Icons.analytics_outlined,
+                                  size: 80.6,
+                                  color: Colors.yellowAccent,
                                 ),
                               ),
-                              child: const Icon(
-                                Icons.analytics_outlined,
-                                size: 80.6,
-                                color: Colors.yellowAccent,
-                              ),
                             ),
+                            onDismissed: (direction) => ref
+                                .read(inMemoryProjectsProvider.notifier)
+                                .remove(e),
                           ),
-                          onDismissed: (direction) => ref
-                              .read(inMemoryProjectsProvider.notifier)
-                              .remove(e),
-                        ),
-                      )
-                      .toList(),
+                        )
+                        .toList(),
+                  ),
                 );
               },
             ),

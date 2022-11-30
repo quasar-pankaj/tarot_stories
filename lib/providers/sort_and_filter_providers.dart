@@ -11,7 +11,7 @@ class SortOrderButtonsNotifier extends StateNotifier<List<bool>> {
   SortOrderButtonsNotifier() : super(<bool>[true, false]);
 
   void onSelected(int index) {
-    List<bool> selected = state;
+    List<bool> selected = [...state];
 
     for (int i = 0; i < state.length; i++) {
       selected[i] = i == index;
@@ -29,7 +29,7 @@ class SortConditionButtonsNotifier extends StateNotifier<List<bool>> {
   SortConditionButtonsNotifier() : super(<bool>[true, false, false]);
 
   void onSelected(int index) {
-    List<bool> selected = state;
+    List<bool> selected = [...state];
 
     for (int i = 0; i < state.length; i++) {
       selected[i] = i == index;

@@ -23,8 +23,8 @@ class SortOrderButtons extends ConsumerWidget {
       fillColor: Colors.red[200],
       color: Colors.red[400],
       constraints: const BoxConstraints(
-        minHeight: 40.0,
-        minWidth: 80.0,
+        minHeight: 30.0,
+        minWidth: 50.0,
       ),
       children: const [
         Icon(Icons.arrow_circle_down),
