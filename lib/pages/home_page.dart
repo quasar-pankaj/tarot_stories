@@ -4,9 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sembast/timestamp.dart';
 
 import '../database/project.dart';
-import '../providers/misc_providers.dart';
-import '../providers/project_filter_provider.dart';
 import '../providers/projects_in_memory_notifier_provider.dart';
+import '../providers/sort_and_filter_providers.dart';
 import '../widgets/in_place_editor.dart';
 import '../widgets/sort_condition_buttons.dart';
 import '../widgets/sort_order_buttons.dart';
@@ -21,11 +20,8 @@ class HomePage extends ConsumerWidget {
         appBar: AppBar(
           title: EasySearchBar(
             title: const Text('Tarot Stories'),
-            onSearch: (value) => ref
-                .read(
-                  projectFilterProvider.notifier,
-                )
-                .filter(value),
+            onSearch: (value) =>
+                ref.read(filterTextProvider.notifier).update((state) => value),
           ),
           actions: [
             IconButton(
@@ -94,53 +90,46 @@ class HomePage extends ConsumerWidget {
             ),
             Consumer(
               builder: (context, ref, child) {
-                final result = ref.watch(projectsListProvider);
+                final result = ref.watch(sortedFilteredListProvider);
 
-                return result.when(
-                  data: (data) => GridView.extent(
-                    maxCrossAxisExtent: 150,
-                    childAspectRatio: 0.75,
-                    children: data
-                        .map(
-                          (e) => Dismissible(
-                            key: Key(e.toString()),
-                            child: Card(
-                              color: Colors.green,
-                              child: GridTile(
-                                footer: Center(
-                                  child: InPlaceEditor(
-                                    text: e.name,
-                                    onTextChanged: (newText) {
-                                      final Project project = e.copyWith(
-                                        name: newText,
-                                        modified: Timestamp.now(),
-                                        withId: true,
-                                      );
-                                      ref
-                                          .read(
-                                              inMemoryProjectsProvider.notifier)
-                                          .update(project);
-                                    },
-                                  ),
-                                ),
-                                child: const Icon(
-                                  Icons.analytics_outlined,
-                                  size: 80.6,
-                                  color: Colors.yellowAccent,
+                return GridView.extent(
+                  maxCrossAxisExtent: 150,
+                  childAspectRatio: 0.75,
+                  children: result
+                      .map(
+                        (e) => Dismissible(
+                          key: Key(e.toString()),
+                          child: Card(
+                            color: Colors.green,
+                            child: GridTile(
+                              footer: Center(
+                                child: InPlaceEditor(
+                                  text: e.name,
+                                  onTextChanged: (newText) {
+                                    final Project project = e.copyWith(
+                                      name: newText,
+                                      modified: Timestamp.now(),
+                                      withId: true,
+                                    );
+                                    ref
+                                        .read(inMemoryProjectsProvider.notifier)
+                                        .update(project);
+                                  },
                                 ),
                               ),
+                              child: const Icon(
+                                Icons.analytics_outlined,
+                                size: 80.6,
+                                color: Colors.yellowAccent,
+                              ),
                             ),
-                            onDismissed: (direction) => ref
-                                .read(inMemoryProjectsProvider.notifier)
-                                .remove(e),
                           ),
-                        )
-                        .toList(),
-                  ),
-                  error: (error, stackTrace) => Text(error.toString()),
-                  loading: () => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                          onDismissed: (direction) => ref
+                              .read(inMemoryProjectsProvider.notifier)
+                              .remove(e),
+                        ),
+                      )
+                      .toList(),
                 );
               },
             ),

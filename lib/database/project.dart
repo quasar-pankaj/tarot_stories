@@ -34,7 +34,6 @@ class Project extends Entity {
   @override
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
       'name': name,
       'synopsis': synopsis,
       'created': created,
@@ -44,7 +43,6 @@ class Project extends Entity {
 
   factory Project.fromMap(Map<String, dynamic> map) {
     return Project(
-      // id: map['id'] as int,
       name: map['name'] as String,
       synopsis: map['synopsis'] as String,
       created: map['created'] as Timestamp,

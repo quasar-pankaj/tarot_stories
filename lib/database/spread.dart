@@ -7,7 +7,6 @@ import 'package:sembast/timestamp.dart';
 
 import 'entity.dart';
 
-@immutable
 class Spread extends Entity {
   final List<String> cards;
   final List<String> readings;
@@ -46,7 +45,6 @@ class Spread extends Entity {
   @override
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
       'name': name,
       'created': created,
       'modified': modified,
@@ -58,7 +56,6 @@ class Spread extends Entity {
 
   factory Spread.fromMap(Map<String, dynamic> map) {
     return Spread(
-      // id: map['id'] as int,
       name: map['name'] as String,
       created: map['created'] as Timestamp,
       modified: map['modified'] as Timestamp,
