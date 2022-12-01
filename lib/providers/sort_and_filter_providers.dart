@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tarot_stories/providers/project_repository_provider.dart';
 
 import '../database/project.dart';
 import 'projects_in_memory_notifier_provider.dart';
@@ -62,9 +63,14 @@ final sortConditionProvider = StateProvider<SortCondition>((ref) {
   return SortCondition.dateModified;
 });
 
-final sortedFilteredListProvider = Provider<List<Project>>((ref) {
+final sortedFilteredListProvider = FutureProvider<List<Project>>((ref) async {
   final condition = ref.watch(sortConditionProvider);
   final order = ref.watch(sortOrderProvider);
+  final notifier = ref.watch(inMemoryProjectsProvider.notifier);
+  if (!notifier.isInitialized) {
+    final repo = ref.watch(projectRepositoryProvider);
+    notifier.initialize(List.from(await repo.getAllSortedByName()));
+  }
   final projects = ref.watch(inMemoryProjectsProvider);
   final filterPattern = ref.watch(filterTextProvider);
 
