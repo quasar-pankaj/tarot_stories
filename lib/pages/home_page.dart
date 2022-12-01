@@ -4,7 +4,7 @@ import 'package:sembast/timestamp.dart';
 
 import '../database/project.dart';
 import '../providers/projects_in_memory_notifier_provider.dart';
-import '../providers/sort_and_filter_providers.dart';
+import '../providers/project_sort_and_filter_providers.dart';
 import '../widgets/in_place_editor.dart';
 import '../widgets/sort_condition_buttons.dart';
 import '../widgets/sort_order_buttons.dart';
@@ -91,7 +91,7 @@ class HomePage extends ConsumerWidget {
                       ),
                       controller: _controller,
                       onChanged: (value) => ref
-                          .read(filterTextProvider.notifier)
+                          .read(projectFilterTextProvider.notifier)
                           .update((state) => value),
                     ),
                   ),
@@ -107,7 +107,7 @@ class HomePage extends ConsumerWidget {
             ),
             Consumer(
               builder: (context, ref, child) {
-                final result = ref.watch(sortedFilteredListProvider);
+                final result = ref.watch(sortedFilteredProjectListProvider);
 
                 return result.when(
                     data: (data) => GridView.extent(

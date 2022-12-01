@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../providers/sort_and_filter_providers.dart';
+import '../providers/project_sort_and_filter_providers.dart';
 
 class SortOrderButtons extends ConsumerWidget {
   const SortOrderButtons({super.key});
@@ -9,12 +9,12 @@ class SortOrderButtons extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ToggleButtons(
-      isSelected: ref.watch(sortOrderButtonsProvider),
+      isSelected: ref.watch(projectSortOrderButtonsProvider),
       onPressed: (index) {
-        ref.read(sortOrderButtonsProvider.notifier).onSelected(index);
+        ref.read(projectSortOrderButtonsProvider.notifier).onSelected(index);
         ref
-            .read(sortOrderProvider.notifier)
-            .update((state) => SortOrder.values[index]);
+            .read(projectSortOrderProvider.notifier)
+            .update((state) => ProjectSortOrder.values[index]);
       },
       direction: Axis.horizontal,
       borderRadius: const BorderRadius.all(Radius.circular(8)),
