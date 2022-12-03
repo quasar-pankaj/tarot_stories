@@ -1,5 +1,4 @@
 import 'package:sembast/sembast.dart';
-import 'package:tarot_stories/database/entities/entity.dart';
 
 import 'app_database.dart';
 
