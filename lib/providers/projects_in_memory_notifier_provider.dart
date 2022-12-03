@@ -1,10 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tarot_stories/providers/project_repository_provider.dart';
 
 import '../database/entities/project.dart';
 import '../database/repository.dart';
 
-final inMemoryProjectsProvider = StateNotifierProvider.family<
-    InMemoryProjectsNotifier, List<Project>, Repository<Project>>((ref, repo) {
+final inMemoryProjectsProvider =
+    StateNotifierProvider<InMemoryProjectsNotifier, List<Project>>((ref) {
+  final repo = ref.watch(projectRepositoryProvider);
   return InMemoryProjectsNotifier(repo);
 });
 

@@ -68,11 +68,11 @@ final sortedFilteredProjectListProvider =
   final condition = ref.watch(projectSortConditionProvider);
   final order = ref.watch(projectSortOrderProvider);
   final repo = ref.watch(projectRepositoryProvider);
-  final notifier = ref.watch(inMemoryProjectsProvider(repo).notifier);
+  final notifier = ref.watch(inMemoryProjectsProvider.notifier);
   if (!notifier.isInitialized) {
     notifier.initialize(List.from(await repo.getAllSortedByName()));
   }
-  final projects = ref.watch(inMemoryProjectsProvider(repo));
+  final projects = ref.watch(inMemoryProjectsProvider);
   final filterPattern = ref.watch(projectFilterTextProvider);
 
   late final List<Project> sortedProjects;

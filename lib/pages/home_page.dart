@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sembast/timestamp.dart';
 
 import '../database/entities/project.dart';
 import '../providers/project_repository_provider.dart';
@@ -140,14 +139,12 @@ class HomePage extends ConsumerWidget {
                                         onTextChanged: (newText) {
                                           final Project project = e.copyWith(
                                             name: newText,
-                                            modifiedTimestamp: Timestamp.now()
+                                            modifiedTimestamp: DateTime.now()
                                                 .millisecondsSinceEpoch,
                                           );
                                           ref
-                                              .read(inMemoryProjectsProvider(
-                                                ref.read(
-                                                    projectRepositoryProvider),
-                                              ).notifier)
+                                              .read(inMemoryProjectsProvider
+                                                  .notifier)
                                               .update(project);
                                         },
                                       ),
@@ -162,9 +159,7 @@ class HomePage extends ConsumerWidget {
                               ),
                             ),
                             onDismissed: (direction) => ref
-                                .read(inMemoryProjectsProvider(
-                                  ref.read(projectRepositoryProvider),
-                                ).notifier)
+                                .read(inMemoryProjectsProvider.notifier)
                                 .remove(e),
                           ),
                         )
@@ -180,11 +175,8 @@ class HomePage extends ConsumerWidget {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: (() => ref
-              .read(inMemoryProjectsProvider(
-                ref.read(projectRepositoryProvider),
-              ).notifier)
-              .addNew()),
+          onPressed: (() =>
+              ref.read(inMemoryProjectsProvider.notifier).addNew()),
           tooltip: 'Add new Project',
           child: const Icon(Icons.add),
         ),
