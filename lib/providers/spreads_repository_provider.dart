@@ -1,9 +1,18 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../database/app_database.dart';
+import '../database/entities/spread.dart';
 import '../database/repository.dart';
-import '../database/spread.dart';
 
 final spreadsRepositoryProvider = Provider<Repository<Spread>>((ref) {
-  return Repository<Spread>(storeName: AppDatabase.spreads) ;
+  return Repository<Spread>(
+    storeName: AppDatabase.spreads,
+    getEntity: (map) => Spread.fromJson(map),
+    getId: (entity) => entity.id!,
+    getMap: (entity) => entity.toJson(),
+    setId: (entity, id) {
+      final spread = entity.copyWith(id: id);
+      return spread;
+    },
+  );
 });

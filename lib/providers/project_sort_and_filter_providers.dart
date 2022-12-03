@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tarot_stories/providers/project_repository_provider.dart';
 
-import '../database/project.dart';
+import '../database/entities/project.dart';
 import 'projects_in_memory_notifier_provider.dart';
 
 final projectSortOrderButtonsProvider =
@@ -67,12 +67,12 @@ final sortedFilteredProjectListProvider =
     FutureProvider<List<Project>>((ref) async {
   final condition = ref.watch(projectSortConditionProvider);
   final order = ref.watch(projectSortOrderProvider);
-  final notifier = ref.watch(inMemoryProjectsProvider.notifier);
+  final repo = ref.watch(projectRepositoryProvider);
+  final notifier = ref.watch(inMemoryProjectsProvider(repo).notifier);
   if (!notifier.isInitialized) {
-    final repo = ref.watch(projectRepositoryProvider);
     notifier.initialize(List.from(await repo.getAllSortedByName()));
   }
-  final projects = ref.watch(inMemoryProjectsProvider);
+  final projects = ref.watch(inMemoryProjectsProvider(repo));
   final filterPattern = ref.watch(projectFilterTextProvider);
 
   late final List<Project> sortedProjects;
@@ -95,12 +95,12 @@ final sortedFilteredProjectListProvider =
       if (order == ProjectSortOrder.ascending) {
         sortedProjects = projects
           ..sort(
-            (a, b) => a.created.compareTo(b.created),
+            (a, b) => a.createdTimestamp.compareTo(b.createdTimestamp),
           );
       } else {
         sortedProjects = projects
           ..sort(
-            (b, a) => a.created.compareTo(b.created),
+            (b, a) => a.createdTimestamp.compareTo(b.createdTimestamp),
           );
       }
       break;
@@ -108,12 +108,12 @@ final sortedFilteredProjectListProvider =
       if (order == ProjectSortOrder.ascending) {
         sortedProjects = projects
           ..sort(
-            (a, b) => a.modified.compareTo(b.modified),
+            (a, b) => a.modifiedTimestamp.compareTo(b.modifiedTimestamp),
           );
       } else {
         sortedProjects = projects
           ..sort(
-            (b, a) => a.modified.compareTo(b.modified),
+            (b, a) => a.modifiedTimestamp.compareTo(b.modifiedTimestamp),
           );
       }
       break;

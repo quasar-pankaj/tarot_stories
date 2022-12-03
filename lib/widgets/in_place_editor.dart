@@ -47,7 +47,12 @@ class _InPlaceEditorState extends State<InPlaceEditor> {
             _editable = true;
           });
         },
-        child: Text(widget._text),
+        child: Text(
+          widget._text,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       );
     }
   }

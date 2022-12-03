@@ -1,22 +1,21 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sembast/timestamp.dart';
 
-import '../database/app_database.dart';
-import '../database/project.dart';
+import '../database/entities/project.dart';
 import '../database/repository.dart';
 
-final inMemoryProjectsProvider =
-    StateNotifierProvider<InMemoryProjectsNotifier, List<Project>>((ref) {
-  return InMemoryProjectsNotifier();
+final inMemoryProjectsProvider = StateNotifierProvider.family<
+    InMemoryProjectsNotifier, List<Project>, Repository<Project>>((ref, repo) {
+  return InMemoryProjectsNotifier(repo);
 });
 
 class InMemoryProjectsNotifier extends StateNotifier<List<Project>> {
-  final Repository<Project> _repository =
-      Repository(storeName: AppDatabase.projects);
+  final Repository<Project> _repository;
 
   bool _initialized = false;
 
-  InMemoryProjectsNotifier() : super([]);
+  InMemoryProjectsNotifier(Repository<Project> repo)
+      : _repository = repo,
+        super([]);
 
   bool get isInitialized => _initialized;
 
@@ -28,8 +27,9 @@ class InMemoryProjectsNotifier extends StateNotifier<List<Project>> {
   Future<void> addNew() async {
     final Project project = Project(
       name: 'No Name',
-      created:Timestamp.now(),
-      modified:Timestamp.now(),
+      synopsis: '',
+      createdTimestamp: DateTime.now().millisecondsSinceEpoch,
+      modifiedTimestamp: DateTime.now().millisecondsSinceEpoch,
     );
 
     await add(project);
