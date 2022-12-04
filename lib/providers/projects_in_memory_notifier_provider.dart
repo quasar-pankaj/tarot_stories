@@ -38,12 +38,12 @@ class InMemoryProjectsNotifier extends StateNotifier<List<Project>> {
   }
 
   Future<void> add(Project project) async {
+    final projectCopy = await _repository.insert(project);
+
     final projects = [
       ...state,
-      project,
+      projectCopy,
     ];
-
-    await _repository.insert(project);
 
     state = projects;
   }

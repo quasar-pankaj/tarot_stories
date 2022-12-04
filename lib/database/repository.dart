@@ -28,8 +28,9 @@ class Repository<E> {
         _setId = setId,
         _store = intMapStoreFactory.store(storeName);
 
-  Future<int> insert(E entity) async {
-    return await _store.add(await _db, _getMap(entity));
+  Future<E> insert(E entity) async {
+    final id = await _store.add(await _db, _getMap(entity));
+    return _setId(entity, id);
     // return await _store.add(await _db, entity.toMap());
   }
 

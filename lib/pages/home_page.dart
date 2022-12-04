@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../database/entities/project.dart';
-import '../providers/project_repository_provider.dart';
 import '../providers/projects_in_memory_notifier_provider.dart';
 import '../providers/project_sort_and_filter_providers.dart';
 import '../widgets/in_place_editor.dart';
