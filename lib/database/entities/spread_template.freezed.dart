@@ -26,6 +26,7 @@ mixin _$SpreadTemplate {
   SpreadShape get shape => throw _privateConstructorUsedError;
   List<PositionTemplate> get positions => throw _privateConstructorUsedError;
   List<Reading> get readings => throw _privateConstructorUsedError;
+  List<int> get cardOrdering => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +46,8 @@ abstract class $SpreadTemplateCopyWith<$Res> {
       int numCards,
       SpreadShape shape,
       List<PositionTemplate> positions,
-      List<Reading> readings});
+      List<Reading> readings,
+      List<int> cardOrdering});
 }
 
 /// @nodoc
@@ -67,6 +69,7 @@ class _$SpreadTemplateCopyWithImpl<$Res, $Val extends SpreadTemplate>
     Object? shape = null,
     Object? positions = null,
     Object? readings = null,
+    Object? cardOrdering = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -93,6 +96,10 @@ class _$SpreadTemplateCopyWithImpl<$Res, $Val extends SpreadTemplate>
           ? _value.readings
           : readings // ignore: cast_nullable_to_non_nullable
               as List<Reading>,
+      cardOrdering: null == cardOrdering
+          ? _value.cardOrdering
+          : cardOrdering // ignore: cast_nullable_to_non_nullable
+              as List<int>,
     ) as $Val);
   }
 }
@@ -111,7 +118,8 @@ abstract class _$$$SpreadTemplateCopyWith<$Res>
       int numCards,
       SpreadShape shape,
       List<PositionTemplate> positions,
-      List<Reading> readings});
+      List<Reading> readings,
+      List<int> cardOrdering});
 }
 
 /// @nodoc
@@ -131,6 +139,7 @@ class __$$$SpreadTemplateCopyWithImpl<$Res>
     Object? shape = null,
     Object? positions = null,
     Object? readings = null,
+    Object? cardOrdering = null,
   }) {
     return _then(_$$SpreadTemplate(
       id: freezed == id
@@ -157,6 +166,10 @@ class __$$$SpreadTemplateCopyWithImpl<$Res>
           ? _value._readings
           : readings // ignore: cast_nullable_to_non_nullable
               as List<Reading>,
+      cardOrdering: null == cardOrdering
+          ? _value._cardOrdering
+          : cardOrdering // ignore: cast_nullable_to_non_nullable
+              as List<int>,
     ));
   }
 }
@@ -170,9 +183,11 @@ class _$$SpreadTemplate implements $SpreadTemplate {
       required this.numCards,
       required this.shape,
       required final List<PositionTemplate> positions,
-      required final List<Reading> readings})
+      required final List<Reading> readings,
+      required final List<int> cardOrdering})
       : _positions = positions,
-        _readings = readings;
+        _readings = readings,
+        _cardOrdering = cardOrdering;
 
   factory _$$SpreadTemplate.fromJson(Map<String, dynamic> json) =>
       _$$$SpreadTemplateFromJson(json);
@@ -199,9 +214,16 @@ class _$$SpreadTemplate implements $SpreadTemplate {
     return EqualUnmodifiableListView(_readings);
   }
 
+  final List<int> _cardOrdering;
+  @override
+  List<int> get cardOrdering {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_cardOrdering);
+  }
+
   @override
   String toString() {
-    return 'SpreadTemplate(id: $id, name: $name, numCards: $numCards, shape: $shape, positions: $positions, readings: $readings)';
+    return 'SpreadTemplate(id: $id, name: $name, numCards: $numCards, shape: $shape, positions: $positions, readings: $readings, cardOrdering: $cardOrdering)';
   }
 
   @override
@@ -216,7 +238,9 @@ class _$$SpreadTemplate implements $SpreadTemplate {
             (identical(other.shape, shape) || other.shape == shape) &&
             const DeepCollectionEquality()
                 .equals(other._positions, _positions) &&
-            const DeepCollectionEquality().equals(other._readings, _readings));
+            const DeepCollectionEquality().equals(other._readings, _readings) &&
+            const DeepCollectionEquality()
+                .equals(other._cardOrdering, _cardOrdering));
   }
 
   @JsonKey(ignore: true)
@@ -228,7 +252,8 @@ class _$$SpreadTemplate implements $SpreadTemplate {
       numCards,
       shape,
       const DeepCollectionEquality().hash(_positions),
-      const DeepCollectionEquality().hash(_readings));
+      const DeepCollectionEquality().hash(_readings),
+      const DeepCollectionEquality().hash(_cardOrdering));
 
   @JsonKey(ignore: true)
   @override
@@ -251,7 +276,8 @@ abstract class $SpreadTemplate implements SpreadTemplate {
       required final int numCards,
       required final SpreadShape shape,
       required final List<PositionTemplate> positions,
-      required final List<Reading> readings}) = _$$SpreadTemplate;
+      required final List<Reading> readings,
+      required final List<int> cardOrdering}) = _$$SpreadTemplate;
 
   factory $SpreadTemplate.fromJson(Map<String, dynamic> json) =
       _$$SpreadTemplate.fromJson;
@@ -268,6 +294,8 @@ abstract class $SpreadTemplate implements SpreadTemplate {
   List<PositionTemplate> get positions;
   @override
   List<Reading> get readings;
+  @override
+  List<int> get cardOrdering;
   @override
   @JsonKey(ignore: true)
   _$$$SpreadTemplateCopyWith<_$$SpreadTemplate> get copyWith =>

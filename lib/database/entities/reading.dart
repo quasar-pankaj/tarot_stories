@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:tarot_stories/database/entities/position_template.dart';
+
+import 'position_template.dart';
 
 part 'reading.freezed.dart';
 part 'reading.g.dart';

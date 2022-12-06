@@ -18,6 +18,8 @@ _$$SpreadTemplate _$$$SpreadTemplateFromJson(Map<String, dynamic> json) =>
       readings: (json['readings'] as List<dynamic>)
           .map((e) => Reading.fromJson(e as Map<String, dynamic>))
           .toList(),
+      cardOrdering:
+          (json['cardOrdering'] as List<dynamic>).map((e) => e as int).toList(),
     );
 
 Map<String, dynamic> _$$$SpreadTemplateToJson(_$$SpreadTemplate instance) =>
@@ -28,6 +30,7 @@ Map<String, dynamic> _$$$SpreadTemplateToJson(_$$SpreadTemplate instance) =>
       'shape': _$SpreadShapeEnumMap[instance.shape]!,
       'positions': instance.positions,
       'readings': instance.readings,
+      'cardOrdering': instance.cardOrdering,
     };
 
 const _$SpreadShapeEnumMap = {
