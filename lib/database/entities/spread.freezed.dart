@@ -24,6 +24,9 @@ mixin _$Spread {
   String get name => throw _privateConstructorUsedError;
   int get createdTimestamp => throw _privateConstructorUsedError;
   int get modifiedTimestamp => throw _privateConstructorUsedError;
+  int get projectId => throw _privateConstructorUsedError;
+  LayoutType get layoutType => throw _privateConstructorUsedError;
+  List<Reading> get readings => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +39,13 @@ abstract class $SpreadCopyWith<$Res> {
       _$SpreadCopyWithImpl<$Res, Spread>;
   @useResult
   $Res call(
-      {int? id, String name, int createdTimestamp, int modifiedTimestamp});
+      {int? id,
+      String name,
+      int createdTimestamp,
+      int modifiedTimestamp,
+      int projectId,
+      LayoutType layoutType,
+      List<Reading> readings});
 }
 
 /// @nodoc
@@ -56,6 +65,9 @@ class _$SpreadCopyWithImpl<$Res, $Val extends Spread>
     Object? name = null,
     Object? createdTimestamp = null,
     Object? modifiedTimestamp = null,
+    Object? projectId = null,
+    Object? layoutType = null,
+    Object? readings = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -74,6 +86,18 @@ class _$SpreadCopyWithImpl<$Res, $Val extends Spread>
           ? _value.modifiedTimestamp
           : modifiedTimestamp // ignore: cast_nullable_to_non_nullable
               as int,
+      projectId: null == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int,
+      layoutType: null == layoutType
+          ? _value.layoutType
+          : layoutType // ignore: cast_nullable_to_non_nullable
+              as LayoutType,
+      readings: null == readings
+          ? _value.readings
+          : readings // ignore: cast_nullable_to_non_nullable
+              as List<Reading>,
     ) as $Val);
   }
 }
@@ -85,7 +109,13 @@ abstract class _$$$SpreadCopyWith<$Res> implements $SpreadCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int? id, String name, int createdTimestamp, int modifiedTimestamp});
+      {int? id,
+      String name,
+      int createdTimestamp,
+      int modifiedTimestamp,
+      int projectId,
+      LayoutType layoutType,
+      List<Reading> readings});
 }
 
 /// @nodoc
@@ -102,6 +132,9 @@ class __$$$SpreadCopyWithImpl<$Res>
     Object? name = null,
     Object? createdTimestamp = null,
     Object? modifiedTimestamp = null,
+    Object? projectId = null,
+    Object? layoutType = null,
+    Object? readings = null,
   }) {
     return _then(_$$Spread(
       id: freezed == id
@@ -120,6 +153,18 @@ class __$$$SpreadCopyWithImpl<$Res>
           ? _value.modifiedTimestamp
           : modifiedTimestamp // ignore: cast_nullable_to_non_nullable
               as int,
+      projectId: null == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
+              as int,
+      layoutType: null == layoutType
+          ? _value.layoutType
+          : layoutType // ignore: cast_nullable_to_non_nullable
+              as LayoutType,
+      readings: null == readings
+          ? _value._readings
+          : readings // ignore: cast_nullable_to_non_nullable
+              as List<Reading>,
     ));
   }
 }
@@ -131,7 +176,11 @@ class _$$Spread implements $Spread {
       {this.id,
       required this.name,
       required this.createdTimestamp,
-      required this.modifiedTimestamp});
+      required this.modifiedTimestamp,
+      required this.projectId,
+      required this.layoutType,
+      required final List<Reading> readings})
+      : _readings = readings;
 
   factory _$$Spread.fromJson(Map<String, dynamic> json) =>
       _$$$SpreadFromJson(json);
@@ -144,10 +193,20 @@ class _$$Spread implements $Spread {
   final int createdTimestamp;
   @override
   final int modifiedTimestamp;
+  @override
+  final int projectId;
+  @override
+  final LayoutType layoutType;
+  final List<Reading> _readings;
+  @override
+  List<Reading> get readings {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_readings);
+  }
 
   @override
   String toString() {
-    return 'Spread(id: $id, name: $name, createdTimestamp: $createdTimestamp, modifiedTimestamp: $modifiedTimestamp)';
+    return 'Spread(id: $id, name: $name, createdTimestamp: $createdTimestamp, modifiedTimestamp: $modifiedTimestamp, projectId: $projectId, layoutType: $layoutType, readings: $readings)';
   }
 
   @override
@@ -160,13 +219,25 @@ class _$$Spread implements $Spread {
             (identical(other.createdTimestamp, createdTimestamp) ||
                 other.createdTimestamp == createdTimestamp) &&
             (identical(other.modifiedTimestamp, modifiedTimestamp) ||
-                other.modifiedTimestamp == modifiedTimestamp));
+                other.modifiedTimestamp == modifiedTimestamp) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.layoutType, layoutType) ||
+                other.layoutType == layoutType) &&
+            const DeepCollectionEquality().equals(other._readings, _readings));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, createdTimestamp, modifiedTimestamp);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      createdTimestamp,
+      modifiedTimestamp,
+      projectId,
+      layoutType,
+      const DeepCollectionEquality().hash(_readings));
 
   @JsonKey(ignore: true)
   @override
@@ -187,7 +258,10 @@ abstract class $Spread implements Spread {
       {final int? id,
       required final String name,
       required final int createdTimestamp,
-      required final int modifiedTimestamp}) = _$$Spread;
+      required final int modifiedTimestamp,
+      required final int projectId,
+      required final LayoutType layoutType,
+      required final List<Reading> readings}) = _$$Spread;
 
   factory $Spread.fromJson(Map<String, dynamic> json) = _$$Spread.fromJson;
 
@@ -199,6 +273,12 @@ abstract class $Spread implements Spread {
   int get createdTimestamp;
   @override
   int get modifiedTimestamp;
+  @override
+  int get projectId;
+  @override
+  LayoutType get layoutType;
+  @override
+  List<Reading> get readings;
   @override
   @JsonKey(ignore: true)
   _$$$SpreadCopyWith<_$$Spread> get copyWith =>
