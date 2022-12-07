@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers/project_sort_and_filter_providers.dart';
+import '../providers/sort_order_buttons_notifier.dart';
 
-class SortOrderButtons extends ConsumerWidget {
-  const SortOrderButtons({super.key});
+class ProjectSortOrderButtons extends ConsumerWidget {
+  const ProjectSortOrderButtons({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -14,7 +15,7 @@ class SortOrderButtons extends ConsumerWidget {
         ref.read(projectSortOrderButtonsProvider.notifier).onSelected(index);
         ref
             .read(projectSortOrderProvider.notifier)
-            .update((state) => ProjectSortOrder.values[index]);
+            .update((state) => SortOrder.values[index]);
       },
       direction: Axis.horizontal,
       borderRadius: const BorderRadius.all(Radius.circular(8)),

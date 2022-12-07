@@ -2,6 +2,7 @@ import 'dart:core';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'enum_spread_category.dart';
 import 'enum_spread_shape.dart';
 import 'position_template.dart';
 import 'reading.dart';
@@ -19,6 +20,7 @@ class SpreadTemplate with _$SpreadTemplate {
     required List<PositionTemplate> positions,
     required List<Reading> readings,
     required List<int> cardOrdering,
+    required List<SpreadCategory> categories,
   }) = $SpreadTemplate;
 
   factory SpreadTemplate.fromJson(Map<String, Object?> json) =>

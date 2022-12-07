@@ -3,64 +3,29 @@ import 'package:tarot_stories/providers/project_repository_provider.dart';
 
 import '../database/entities/project.dart';
 import 'projects_in_memory_notifier_provider.dart';
+import 'sort_condition_buttons_notifier.dart';
+import 'sort_order_buttons_notifier.dart';
 
 final projectSortOrderButtonsProvider =
-    StateNotifierProvider<ProjectSortOrderButtonsNotifier, List<bool>>(
-        (ref) => ProjectSortOrderButtonsNotifier());
-
-class ProjectSortOrderButtonsNotifier extends StateNotifier<List<bool>> {
-  ProjectSortOrderButtonsNotifier() : super(<bool>[true, false]);
-
-  void onSelected(int index) {
-    List<bool> selected = [...state];
-
-    for (int i = 0; i < state.length; i++) {
-      selected[i] = i == index;
-    }
-
-    state = selected;
-  }
-}
+    StateNotifierProvider<SortOrderButtonsNotifier, List<bool>>(
+  (ref) => SortOrderButtonsNotifier(),
+);
 
 final projectSortConditionButtonsProvider =
-    StateNotifierProvider<ProjectSortConditionButtonsNotifier, List<bool>>(
-        (ref) => ProjectSortConditionButtonsNotifier());
-
-class ProjectSortConditionButtonsNotifier extends StateNotifier<List<bool>> {
-  ProjectSortConditionButtonsNotifier() : super(<bool>[false, false, true]);
-
-  void onSelected(int index) {
-    List<bool> selected = [...state];
-
-    for (int i = 0; i < state.length; i++) {
-      selected[i] = i == index;
-    }
-
-    state = selected;
-  }
-}
+    StateNotifierProvider<SortConditionButtonsNotifier, List<bool>>(
+  (ref) => SortConditionButtonsNotifier(),
+);
 
 final projectFilterTextProvider = StateProvider<String>((ref) {
   return "";
 });
 
-enum ProjectSortOrder {
-  descending,
-  ascending,
-}
-
-enum ProjectSortCondition {
-  name,
-  dateCreated,
-  dateModified,
-}
-
-final projectSortOrderProvider = StateProvider<ProjectSortOrder>((ref) {
-  return ProjectSortOrder.descending;
+final projectSortOrderProvider = StateProvider<SortOrder>((ref) {
+  return SortOrder.descending;
 });
 
-final projectSortConditionProvider = StateProvider<ProjectSortCondition>((ref) {
-  return ProjectSortCondition.dateModified;
+final projectSortConditionProvider = StateProvider<SortCondition>((ref) {
+  return SortCondition.dateModified;
 });
 
 final sortedFilteredProjectListProvider =
@@ -78,8 +43,8 @@ final sortedFilteredProjectListProvider =
   late final List<Project> sortedProjects;
 
   switch (condition) {
-    case ProjectSortCondition.name:
-      if (order == ProjectSortOrder.ascending) {
+    case SortCondition.name:
+      if (order == SortOrder.ascending) {
         sortedProjects = projects
           ..sort(
             (a, b) => a.name.compareTo(b.name),
@@ -91,8 +56,8 @@ final sortedFilteredProjectListProvider =
           );
       }
       break;
-    case ProjectSortCondition.dateCreated:
-      if (order == ProjectSortOrder.ascending) {
+    case SortCondition.dateCreated:
+      if (order == SortOrder.ascending) {
         sortedProjects = projects
           ..sort(
             (a, b) => a.createdTimestamp.compareTo(b.createdTimestamp),
@@ -104,8 +69,8 @@ final sortedFilteredProjectListProvider =
           );
       }
       break;
-    case ProjectSortCondition.dateModified:
-      if (order == ProjectSortOrder.ascending) {
+    case SortCondition.dateModified:
+      if (order == SortOrder.ascending) {
         sortedProjects = projects
           ..sort(
             (a, b) => a.modifiedTimestamp.compareTo(b.modifiedTimestamp),

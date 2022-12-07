@@ -25,7 +25,7 @@ mixin _$Spread {
   int get createdTimestamp => throw _privateConstructorUsedError;
   int get modifiedTimestamp => throw _privateConstructorUsedError;
   int get projectId => throw _privateConstructorUsedError;
-  LayoutType get layoutType => throw _privateConstructorUsedError;
+  SpreadShape get layoutType => throw _privateConstructorUsedError;
   List<Reading> get readings => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ abstract class $SpreadCopyWith<$Res> {
       int createdTimestamp,
       int modifiedTimestamp,
       int projectId,
-      LayoutType layoutType,
+      SpreadShape layoutType,
       List<Reading> readings});
 }
 
@@ -93,7 +93,7 @@ class _$SpreadCopyWithImpl<$Res, $Val extends Spread>
       layoutType: null == layoutType
           ? _value.layoutType
           : layoutType // ignore: cast_nullable_to_non_nullable
-              as LayoutType,
+              as SpreadShape,
       readings: null == readings
           ? _value.readings
           : readings // ignore: cast_nullable_to_non_nullable
@@ -114,7 +114,7 @@ abstract class _$$$SpreadCopyWith<$Res> implements $SpreadCopyWith<$Res> {
       int createdTimestamp,
       int modifiedTimestamp,
       int projectId,
-      LayoutType layoutType,
+      SpreadShape layoutType,
       List<Reading> readings});
 }
 
@@ -160,7 +160,7 @@ class __$$$SpreadCopyWithImpl<$Res>
       layoutType: null == layoutType
           ? _value.layoutType
           : layoutType // ignore: cast_nullable_to_non_nullable
-              as LayoutType,
+              as SpreadShape,
       readings: null == readings
           ? _value._readings
           : readings // ignore: cast_nullable_to_non_nullable
@@ -196,7 +196,7 @@ class _$$Spread implements $Spread {
   @override
   final int projectId;
   @override
-  final LayoutType layoutType;
+  final SpreadShape layoutType;
   final List<Reading> _readings;
   @override
   List<Reading> get readings {
@@ -260,7 +260,7 @@ abstract class $Spread implements Spread {
       required final int createdTimestamp,
       required final int modifiedTimestamp,
       required final int projectId,
-      required final LayoutType layoutType,
+      required final SpreadShape layoutType,
       required final List<Reading> readings}) = _$$Spread;
 
   factory $Spread.fromJson(Map<String, dynamic> json) = _$$Spread.fromJson;
@@ -276,7 +276,7 @@ abstract class $Spread implements Spread {
   @override
   int get projectId;
   @override
-  LayoutType get layoutType;
+  SpreadShape get layoutType;
   @override
   List<Reading> get readings;
   @override

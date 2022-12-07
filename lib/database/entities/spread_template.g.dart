@@ -20,6 +20,9 @@ _$$SpreadTemplate _$$$SpreadTemplateFromJson(Map<String, dynamic> json) =>
           .toList(),
       cardOrdering:
           (json['cardOrdering'] as List<dynamic>).map((e) => e as int).toList(),
+      categories: (json['categories'] as List<dynamic>)
+          .map((e) => $enumDecode(_$SpreadCategoryEnumMap, e))
+          .toList(),
     );
 
 Map<String, dynamic> _$$$SpreadTemplateToJson(_$$SpreadTemplate instance) =>
@@ -31,6 +34,8 @@ Map<String, dynamic> _$$$SpreadTemplateToJson(_$$SpreadTemplate instance) =>
       'positions': instance.positions,
       'readings': instance.readings,
       'cardOrdering': instance.cardOrdering,
+      'categories':
+          instance.categories.map((e) => _$SpreadCategoryEnumMap[e]!).toList(),
     };
 
 const _$SpreadShapeEnumMap = {
@@ -60,4 +65,15 @@ const _$SpreadShapeEnumMap = {
   SpreadShape.circularN: 'circularN',
   SpreadShape.triangle: 'triangle',
   SpreadShape.square: 'square',
+};
+
+const _$SpreadCategoryEnumMap = {
+  SpreadCategory.character: 'character',
+  SpreadCategory.plot: 'plot',
+  SpreadCategory.scene: 'scene',
+  SpreadCategory.sequel: 'sequel',
+  SpreadCategory.theme: 'theme',
+  SpreadCategory.arc: 'arc',
+  SpreadCategory.structure: 'structure',
+  SpreadCategory.relationship: 'relationship',
 };

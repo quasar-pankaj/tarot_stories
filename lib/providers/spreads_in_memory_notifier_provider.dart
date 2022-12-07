@@ -1,68 +1,87 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../database/entities/enum_spread_shape.dart';
 import '../database/entities/spread.dart';
 import '../database/repository.dart';
 import 'open_project_provider.dart';
 import 'spreads_repository_provider.dart';
 
-final spreadInMemoryProvider = StateNotifierProvider.autoDispose<
-    Future<SpreadInMemoryNotifier>, Iterable<Spread>>((ref) async {
+final spreadInMemoryProvider =
+    StateNotifierProvider.autoDispose<SpreadInMemoryNotifier, AsyncValue<Iterable<Spread>>>(
+        (ref) {
   final openProject = ref.watch(openProjectProvider);
   final repo = ref.watch(spreadsRepositoryProvider);
-  final Iterable<Spread> spreads = await repo.getAllUnsorted();
-  final int? projectId = openProject?.id;
-  return SpreadInMemoryNotifier(repo, openProject?.id,
-      spreads.where((element) => element.projectId == projectId));
+
+  return SpreadInMemoryNotifier(
+    repo,
+    openProject?.id,
+  );
 });
 
-class SpreadInMemoryNotifier extends StateNotifier<Iterable<Spread>> {
+class SpreadInMemoryNotifier
+    extends StateNotifier<AsyncValue<Iterable<Spread>>> {
   final Repository<Spread> _repository;
   final int _projectId;
   SpreadInMemoryNotifier(
     Repository<Spread> repository,
     int? projectId,
-    Iterable<Spread> spreads,
   )   : _repository = repository,
         _projectId = projectId!,
-        super(spreads);
+        super(const AsyncValue.loading()) {
+    _init();
+  }
+
+  Future<void> _init() async {
+    try {
+      final spreads = await _repository.getAllUnsorted();
+      state = AsyncValue.data(
+        spreads.where((element) => element.projectId == _projectId),
+      );
+    } on Exception catch (e) {
+      state = AsyncValue.error(e, StackTrace.current);
+    }
+  }
 
   Future<void> addNew() async {
+    state = const AsyncValue.loading();
     final Spread spread = Spread(
       name: 'no name',
       createdTimestamp: DateTime.now().millisecondsSinceEpoch,
       modifiedTimestamp: DateTime.now().millisecondsSinceEpoch,
       projectId: _projectId,
-      layoutType: LayoutType.none,
+      layoutType: SpreadShape.horiz1,
       readings: [],
     );
 
     final spreads = [
-      ...state,
+      ...state.value!,
       spread,
     ];
     await add(spread);
 
-    state = spreads;
+    state = AsyncValue.data(spreads);
   }
 
   Future<void> add(Spread spread) async {
     final newSpread = await _repository.insert(spread);
-    final spreads = [...state, newSpread];
-    state = spreads;
+    final spreads = [...state.value!, newSpread];
+    state = AsyncValue.data(spreads);
   }
 
   Future<void> remove(Spread spread) async {
-    final spreads = [...state.where((element) => element.id != spread.id)];
+    final spreads = [
+      ...state.value!.where((element) => element.id != spread.id)
+    ];
     await _repository.delete(spread);
-    state = spreads;
+    state = AsyncValue.data(spreads);
   }
 
   Future<void> update(Spread spread) async {
     final spreads = [
-      for (Spread item in state)
+      for (Spread item in state.value!)
         if (item.id == spread.id) spread else item
     ];
     await _repository.update(spread);
-    state = spreads;
+    state = AsyncValue.data(spreads);
   }
 }
