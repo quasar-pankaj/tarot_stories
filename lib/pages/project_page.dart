@@ -1,35 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProjectPage extends StatelessWidget {
+import '../providers/open_project_provider.dart';
+import 'page_base.dart';
+
+class ProjectPage extends ConsumerWidget {
   const ProjectPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Project Spreads'),
-        ),
-        body: Column(
-          children: [
-            Row(
-              children: [
-                const Spacer(),
-                ListTile(
-                  title: const TextField(),
-                  leading: const Icon(
-                    Icons.search,
-                  ),
-                  trailing: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.close),
-                  ),
-                )
-              ],
-            )
-          ],
-        ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final openProject = ref.watch(openProjectProvider);
+
+    return PageBase(
+      title: openProject!.name,
+      body: Column(
+        children: [
+          Row(),
+          Consumer(
+            builder: (context, ref, child) {
+              return const Spacer();
+            },
+          ),
+        ],
       ),
+      fabIcon: Icons.add,
+      fabToolTip: 'Add New Spread',
+      onFABPressed: () {},
     );
   }
 }

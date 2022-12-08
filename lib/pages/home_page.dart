@@ -5,14 +5,12 @@ import '../database/entities/project.dart';
 import '../providers/projects_in_memory_notifier_provider.dart';
 import '../providers/project_sort_and_filter_providers.dart';
 import '../widgets/in_place_editor.dart';
-import '../widgets/project_sort_condition_buttons.dart';
-import '../widgets/project_sort_order_buttons.dart';
+import '../widgets/toolbar.dart';
 import 'page_base.dart';
 import 'project_page.dart';
 
 class HomePage extends ConsumerWidget {
-  final TextEditingController _controller = TextEditingController(text: '');
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,41 +18,12 @@ class HomePage extends ConsumerWidget {
       title: 'Tarot Stories',
       body: Column(
         children: [
-          Row(
-            children: [
-              const Spacer(),
-              Expanded(
-                child: ListTile(
-                  leading: const Icon(Icons.search),
-                  trailing: IconButton(
-                    onPressed: _controller.clear,
-                    icon: const Icon(
-                      Icons.close,
-                    ),
-                  ),
-                  title: TextField(
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Enter text to search',
-                      hintText: 'Search',
-                    ),
-                    controller: _controller,
-                    onChanged: (value) =>
-                        ref.read(projectFilterTextProvider.notifier).update(
-                              (state) => value,
-                            ),
-                  ),
-                ),
-              ),
-              const ProjectSortOrderButtons(),
-              const VerticalDivider(
-                color: Colors.amber,
-                width: 10.0,
-                thickness: 5.5,
-              ),
-              const ProjectSortConditionButtons(),
-            ],
-          ),
+          Toolbar(
+              sortOrderButtonsProvider: projectSortOrderButtonsProvider,
+              sortOrderProvider: projectSortOrderProvider,
+              sortConditionButtonsProvider: projectSortConditionButtonsProvider,
+              sortConditionProvider: projectSortConditionProvider,
+              filterTextProvider: projectFilterTextProvider),
           Consumer(
             builder: (context, ref, child) {
               final result = ref.watch(sortedFilteredProjectListProvider);
