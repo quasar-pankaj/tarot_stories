@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../database/entities/spread.dart';
 import '../providers/open_project_provider.dart';
+import '../providers/open_spread_provider.dart';
+import '../providers/spread_sort_and_filter_providers.dart';
+import '../providers/spreads_in_memory_notifier_provider.dart';
+import '../widgets/in_place_editor.dart';
+import '../widgets/toolbar.dart';
 import 'page_base.dart';
 
 class ProjectPage extends ConsumerWidget {
@@ -15,10 +21,108 @@ class ProjectPage extends ConsumerWidget {
       title: openProject!.name,
       body: Column(
         children: [
-          Row(),
+          Consumer(
+            builder: (BuildContext context, WidgetRef ref, Widget? child) {
+              return Toolbar(
+                sortOrderButtonsProvider: spreadSortOrderButtonsProvider,
+                sortOrderProvider: spreadSortOrderProvider,
+                sortConditionButtonsProvider:
+                    spreadSortConditionButtonsProvider,
+                sortConditionProvider: spreadSortConditionProvider,
+                filterTextProvider: spreadFilterTextProvider,
+                optionalWidget: DropdownButton<SpreadCategoryFilter>(
+                  items: SpreadCategoryFilter.values
+                      .map(
+                        (filter) => DropdownMenuItem<SpreadCategoryFilter>(
+                          value: filter,
+                          child: Text(
+                            filter.toString(),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (value) {
+                    ref
+                        .read(spreadCategoryProvider.notifier)
+                        .update((state) => value!);
+                  },
+                  value: ref.watch(spreadCategoryProvider),
+                ),
+              );
+            },
+          ),
           Consumer(
             builder: (context, ref, child) {
-              return const Spacer();
+              final result = ref.watch(sortedFilteredSpreadListProvider);
+
+              return result.when(
+                data: (data) {
+                  return GridView.extent(
+                    maxCrossAxisExtent: 150,
+                    childAspectRatio: 0.75,
+                    shrinkWrap: true,
+                    children: data
+                        .map(
+                          (spread) => Dismissible(
+                            key: Key(spread.toString()),
+                            child: Card(
+                              color: Colors.green,
+                              child: InkWell(
+                                onTap: () {
+                                  ref
+                                      .read(openSpreadProvider.notifier)
+                                      .update((state) => spread);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return const ProjectPage();
+                                      },
+                                    ),
+                                  );
+                                },
+                                child: GridTile(
+                                  header: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: InPlaceEditor(
+                                        text: spread.name,
+                                        onTextChanged: (newText) {
+                                          final Spread renamedProject =
+                                              spread.copyWith(
+                                            name: newText,
+                                            modifiedTimestamp: DateTime.now()
+                                                .millisecondsSinceEpoch,
+                                          );
+                                          ref
+                                              .read(spreadInMemoryProvider
+                                                  .notifier)
+                                              .update(renamedProject);
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                  child: const Icon(
+                                    Icons.analytics_outlined,
+                                    size: 80.6,
+                                    color: Colors.yellowAccent,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            onDismissed: (direction) => ref
+                                .read(spreadInMemoryProvider.notifier)
+                                .remove(spread),
+                          ),
+                        )
+                        .toList(),
+                  );
+                },
+                error: (error, stackTrace) => Text(
+                  error.toString(),
+                ),
+                loading: () => const CircularProgressIndicator(),
+              );
             },
           ),
         ],

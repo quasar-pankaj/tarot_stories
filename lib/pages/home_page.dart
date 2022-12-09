@@ -43,13 +43,13 @@ class HomePage extends ConsumerWidget {
                             color: Colors.green,
                             child: InkWell(
                               onTap: () {
+                                ref
+                                    .read(openProjectProvider.notifier)
+                                    .update((state) => project);
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      ref
-                                          .read(openProjectProvider.notifier)
-                                          .update((state) => project);
                                       return const ProjectPage();
                                     },
                                   ),

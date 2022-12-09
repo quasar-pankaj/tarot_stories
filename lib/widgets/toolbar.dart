@@ -7,6 +7,7 @@ import 'sort_condition_buttons.dart';
 import 'sort_order_buttons.dart';
 
 class Toolbar extends ConsumerWidget {
+  final Widget? _optionalWidget;
   final TextEditingController _controller = TextEditingController(text: '');
   final StateNotifierProvider<SortOrderButtonsNotifier, List<bool>>
       _sortOrderButtonsProvider;
@@ -17,6 +18,7 @@ class Toolbar extends ConsumerWidget {
   final StateProvider<String> _filterTextProvider;
   Toolbar({
     super.key,
+    Widget? optionalWidget,
     required StateNotifierProvider<SortOrderButtonsNotifier, List<bool>>
         sortOrderButtonsProvider,
     required StateProvider<SortOrder> sortOrderProvider,
@@ -24,7 +26,8 @@ class Toolbar extends ConsumerWidget {
         sortConditionButtonsProvider,
     required StateProvider<SortCondition> sortConditionProvider,
     required StateProvider<String> filterTextProvider,
-  })  : _sortConditionButtonsProvider = sortConditionButtonsProvider,
+  })  : _optionalWidget = optionalWidget,
+        _sortConditionButtonsProvider = sortConditionButtonsProvider,
         _sortConditionProvider = sortConditionProvider,
         _sortOrderButtonsProvider = sortOrderButtonsProvider,
         _sortOrderProvider = sortOrderProvider,
@@ -32,23 +35,37 @@ class Toolbar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Row(
-      children: [
-        const Spacer(),
-        Expanded(
-          child: ListTile(
-            leading: const Icon(Icons.search),
-            trailing: IconButton(
-              onPressed: _controller.clear,
-              icon: const Icon(
-                Icons.close,
-              ),
-            ),
-            title: TextField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
+    return Padding(
+      padding: const EdgeInsets.all(2.0),
+      child: Row(
+        children: [
+          const Spacer(),
+          if (_optionalWidget != null) _optionalWidget!,
+          Expanded(
+            child: TextField(
+              decoration: InputDecoration(
+                isDense: true,
+                contentPadding: const EdgeInsets.all(0),
+                border: const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(5),
+                  ),
+                ),
                 labelText: 'Enter text to search',
                 hintText: 'Search',
+                prefixIcon: const Icon(Icons.search),
+                suffix: IconButton(
+                  padding: const EdgeInsets.all(0),
+                  onPressed: () {
+                    _controller.clear();
+                    ref
+                        .read(_filterTextProvider.notifier)
+                        .update((state) => '');
+                  },
+                  icon: const Icon(
+                    Icons.close,
+                  ),
+                ),
               ),
               controller: _controller,
               onChanged: (value) =>
@@ -57,19 +74,24 @@ class Toolbar extends ConsumerWidget {
                       ),
             ),
           ),
-        ),
-        SortOrderButtons(
-            sortOrderButtonsProvider: _sortOrderButtonsProvider,
-            sortOrderProvider: _sortOrderProvider),
-        const VerticalDivider(
-          color: Colors.amber,
-          width: 10.0,
-          thickness: 5.5,
-        ),
-        SortConditionButtons(
-            sortConditionButtonsProvider: _sortConditionButtonsProvider,
-            sortConditionProvider: _sortConditionProvider),
-      ],
+          const VerticalDivider(
+            color: Colors.amber,
+            width: 10.0,
+            thickness: 5.5,
+          ),
+          SortOrderButtons(
+              sortOrderButtonsProvider: _sortOrderButtonsProvider,
+              sortOrderProvider: _sortOrderProvider),
+          const VerticalDivider(
+            color: Colors.amber,
+            width: 10.0,
+            thickness: 5.5,
+          ),
+          SortConditionButtons(
+              sortConditionButtonsProvider: _sortConditionButtonsProvider,
+              sortConditionProvider: _sortConditionProvider),
+        ],
+      ),
     );
   }
 }
