@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tarot_stories/widgets/spread_dialog.dart';
 
 import '../database/entities/spread.dart';
 import '../providers/open_project_provider.dart';
@@ -129,7 +130,14 @@ class ProjectPage extends ConsumerWidget {
       ),
       fabIcon: Icons.add,
       fabToolTip: 'Add New Spread',
-      onFABPressed: () {},
+      onFABPressed: () {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return const SpreadDialog();
+          },
+        );
+      },
     );
   }
 }
