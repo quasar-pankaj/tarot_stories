@@ -1,15 +1,47 @@
+import 'enum_spread_shape.dart';
+
 enum SpreadCategory {
-  character('Character'),
-  plot('Plot'),
-  scene('Scene'),
-  sequel('Sequel'),
-  theme('Theme'),
-  arc('Arc'),
-  structure('Structure'),
-  relationship('Relationship');
+  character('Character', [
+    SpreadShape.horiz1,
+    SpreadShape.goalMotivationConflict,
+    SpreadShape.characterCross,
+    SpreadShape.backstory,
+  ]),
+  sceneSequel('Scene/Sequel', [
+    SpreadShape.horiz1,
+    SpreadShape.goalConflictDisaster,
+    SpreadShape.reactionDilemmaDecision,
+  ]),
+  location('Location', [
+    SpreadShape.horiz1,
+    SpreadShape.backstory,
+  ]),
+  prop('Prop', [
+    SpreadShape.horiz1,
+    SpreadShape.backstory,
+  ]),
+  structure('Structure', [
+    SpreadShape.freytagPyramid,
+    SpreadShape.blakeSnyderBeatSheet,
+    SpreadShape.fourteenPointStructure,
+    SpreadShape.herosJourney12Circular,
+    SpreadShape.herosJourney16Circular,
+    SpreadShape.herosJourney12MByN,
+    SpreadShape.herosJourney16MByN,
+  ]),
+  relationship('Relationship', [
+    SpreadShape.horiz1,
+    SpreadShape.relationship3Way,
+    SpreadShape.relationship5Way,
+  ]);
 
   final String _name;
-  const SpreadCategory(String name) : _name = name;
+  const SpreadCategory(
+    String name,
+    this.spreads,
+  ) : _name = name;
+
+  final List<SpreadShape> spreads;
 
   @override
   String toString() => _name;
