@@ -34,6 +34,7 @@ class _SpreadDialogState extends State<SpreadDialog>
           Container(
             color: Colors.purple,
             child: TabBar(
+              labelPadding: const EdgeInsets.all(5),
               labelStyle: const TextStyle(
                 color: Colors.white,
                 fontSize: 20,
@@ -59,13 +60,37 @@ class _SpreadDialogState extends State<SpreadDialog>
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: const [
-                Text('Character'),
-                Text('Structure'),
-                Text('Scene/Sequel'),
-                Text('Location'),
-                Text('Prop'),
-                Text('Relationship'),
+              children: [
+                GridView.extent(
+                  maxCrossAxisExtent: 200,
+                  childAspectRatio: 3 / 4,
+                  shrinkWrap: true,
+                ),
+                GridView.extent(
+                  maxCrossAxisExtent: 200,
+                  childAspectRatio: 3 / 4,
+                  shrinkWrap: true,
+                ),
+                GridView.extent(
+                  maxCrossAxisExtent: 200,
+                  childAspectRatio: 3 / 4,
+                  shrinkWrap: true,
+                ),
+                GridView.extent(
+                  maxCrossAxisExtent: 200,
+                  childAspectRatio: 3 / 4,
+                  shrinkWrap: true,
+                ),
+                GridView.extent(
+                  maxCrossAxisExtent: 200,
+                  childAspectRatio: 3 / 4,
+                  shrinkWrap: true,
+                ),
+                GridView.extent(
+                  maxCrossAxisExtent: 200,
+                  childAspectRatio: 3 / 4,
+                  shrinkWrap: true,
+                ),
               ],
             ),
           ),
@@ -87,7 +112,7 @@ class _SpreadDialogState extends State<SpreadDialog>
                   width: 10,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.pop(context),
                   child: const SizedBox(
                     width: 50,
                     child: Center(
@@ -97,7 +122,7 @@ class _SpreadDialogState extends State<SpreadDialog>
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
