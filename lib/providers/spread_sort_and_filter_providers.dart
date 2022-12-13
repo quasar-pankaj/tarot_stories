@@ -1,27 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tarot_stories/database/entities/spread.dart';
 
+import '../database/entities/enum_spread_category.dart';
 import 'sort_condition_buttons_notifier.dart';
 import 'sort_order_buttons_notifier.dart';
 import 'spreads_in_memory_notifier_provider.dart';
-
-enum SpreadCategoryFilter {
-  all('All'),
-  character('Character'),
-  plot('Plot'),
-  scene('Scene'),
-  sequel('Sequel'),
-  theme('Theme'),
-  arc('Arc'),
-  structure('Structure'),
-  relationship('Relationship');
-
-  final String _name;
-  const SpreadCategoryFilter(String name) : _name = name;
-
-  @override
-  String toString() => _name;
-}
 
 final spreadSortOrderButtonsProvider =
     StateNotifierProvider<SortOrderButtonsNotifier, List<bool>>(
@@ -35,8 +18,8 @@ final spreadFilterTextProvider = StateProvider<String>((ref) {
   return "";
 });
 
-final spreadCategoryProvider = StateProvider<SpreadCategoryFilter>((ref) {
-  return SpreadCategoryFilter.all;
+final spreadCategoryProvider = StateProvider<SpreadCategory>((ref) {
+  return SpreadCategory.all;
 });
 
 final spreadSortOrderProvider = StateProvider<SortOrder>((ref) {
@@ -103,50 +86,37 @@ final sortedFilteredSpreadListProvider =
   late final List<Spread> filteredSpreads;
 
   switch (filterCondition) {
-    case SpreadCategoryFilter.all:
+    case SpreadCategory.all:
       filteredSpreads = sortedSpreads;
       break;
-    case SpreadCategoryFilter.character:
+    case SpreadCategory.character:
       filteredSpreads = sortedSpreads
-          .where(
-              (element) => element.layoutType == SpreadCategoryFilter.character)
+          .where((element) => element.layoutType == SpreadCategory.character)
           .toList();
       break;
-    case SpreadCategoryFilter.plot:
+    case SpreadCategory.structure:
       filteredSpreads = sortedSpreads
-          .where((element) => element.layoutType == SpreadCategoryFilter.plot)
+          .where((element) => element.layoutType == SpreadCategory.structure)
           .toList();
       break;
-    case SpreadCategoryFilter.scene:
+    case SpreadCategory.relationship:
       filteredSpreads = sortedSpreads
-          .where((element) => element.layoutType == SpreadCategoryFilter.scene)
+          .where((element) => element.layoutType == SpreadCategory.relationship)
           .toList();
       break;
-    case SpreadCategoryFilter.sequel:
+    case SpreadCategory.sceneSequel:
       filteredSpreads = sortedSpreads
-          .where((element) => element.layoutType == SpreadCategoryFilter.sequel)
+          .where((element) => element.layoutType == SpreadCategory.sceneSequel)
           .toList();
       break;
-    case SpreadCategoryFilter.theme:
+    case SpreadCategory.location:
       filteredSpreads = sortedSpreads
-          .where((element) => element.layoutType == SpreadCategoryFilter.theme)
+          .where((element) => element.layoutType == SpreadCategory.location)
           .toList();
       break;
-    case SpreadCategoryFilter.arc:
+    case SpreadCategory.prop:
       filteredSpreads = sortedSpreads
-          .where((element) => element.layoutType == SpreadCategoryFilter.arc)
-          .toList();
-      break;
-    case SpreadCategoryFilter.structure:
-      filteredSpreads = sortedSpreads
-          .where(
-              (element) => element.layoutType == SpreadCategoryFilter.structure)
-          .toList();
-      break;
-    case SpreadCategoryFilter.relationship:
-      filteredSpreads = sortedSpreads
-          .where((element) =>
-              element.layoutType == SpreadCategoryFilter.relationship)
+          .where((element) => element.layoutType == SpreadCategory.prop)
           .toList();
       break;
   }

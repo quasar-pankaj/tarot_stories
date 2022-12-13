@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tarot_stories/widgets/spread_dialog.dart';
 
+import '../database/entities/enum_spread_category.dart';
 import '../database/entities/spread.dart';
 import '../providers/open_project_provider.dart';
 import '../providers/open_spread_provider.dart';
@@ -31,10 +32,10 @@ class ProjectPage extends ConsumerWidget {
                     spreadSortConditionButtonsProvider,
                 sortConditionProvider: spreadSortConditionProvider,
                 filterTextProvider: spreadFilterTextProvider,
-                optionalWidget: DropdownButton<SpreadCategoryFilter>(
-                  items: SpreadCategoryFilter.values
+                optionalWidget: DropdownButton<SpreadCategory>(
+                  items: SpreadCategory.values
                       .map(
-                        (filter) => DropdownMenuItem<SpreadCategoryFilter>(
+                        (filter) => DropdownMenuItem<SpreadCategory>(
                           value: filter,
                           child: Text(
                             filter.toString(),
