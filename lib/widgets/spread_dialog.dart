@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../database/entities/enum_spread_category.dart';
+
 class SpreadDialog extends StatefulWidget {
   const SpreadDialog({super.key});
 
@@ -14,7 +16,8 @@ class _SpreadDialogState extends State<SpreadDialog>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 6, vsync: this);
+    _tabController =
+        TabController(length: SpreadCategory.values.length, vsync: this);
   }
 
   @override
@@ -32,66 +35,65 @@ class _SpreadDialogState extends State<SpreadDialog>
       child: Column(
         children: [
           Container(
-            color: Colors.purple,
+            color: Colors.amber[700],
             child: TabBar(
               labelPadding: const EdgeInsets.all(5),
               labelStyle: const TextStyle(
-                color: Colors.white,
+                color: Colors.black,
                 fontSize: 20,
               ),
-              unselectedLabelColor: const Color(0xffacb3bf),
-              indicatorColor: const Color(0xFFffac81),
-              labelColor: Colors.black,
+              unselectedLabelColor: Colors.black87,
+              indicatorColor: Colors.amber[900],
+              labelColor: Colors.grey[600],
               indicatorSize: TabBarIndicatorSize.tab,
               indicatorWeight: 3.0,
               indicatorPadding: const EdgeInsets.all(5),
               isScrollable: true,
               controller: _tabController,
-              tabs: const [
-                Text('Character'),
-                Text('Structure'),
-                Text('Scene/Sequel'),
-                Text('Location'),
-                Text('Prop'),
-                Text('Relationship'),
-              ],
+              tabs: SpreadCategory.values
+                  .map(
+                    (category) => Text(
+                      category.toString(),
+                    ),
+                  )
+                  .toList(),
             ),
           ),
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: [
-                GridView.extent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 3 / 4,
-                  shrinkWrap: true,
-                ),
-                GridView.extent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 3 / 4,
-                  shrinkWrap: true,
-                ),
-                GridView.extent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 3 / 4,
-                  shrinkWrap: true,
-                ),
-                GridView.extent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 3 / 4,
-                  shrinkWrap: true,
-                ),
-                GridView.extent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 3 / 4,
-                  shrinkWrap: true,
-                ),
-                GridView.extent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 3 / 4,
-                  shrinkWrap: true,
-                ),
-              ],
+              children: SpreadCategory.values
+                  .map(
+                    (category) => GridView.extent(
+                      maxCrossAxisExtent: 250,
+                      childAspectRatio: 4 / 3,
+                      shrinkWrap: true,
+                      children: category.spreads
+                          .map(
+                            (shape) => Card(
+                              elevation: 5.0,
+                              color: Colors.amberAccent[100],
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: GridTile(
+                                footer: Center(
+                                  child: Text(
+                                    shape.toString(),
+                                  ),
+                                ),
+                                child: Icon(
+                                  Icons.book,
+                                  size: 60.0,
+                                  color: Colors.amber[900],
+                                ),
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  )
+                  .toList(),
             ),
           ),
           Padding(
@@ -100,6 +102,10 @@ class _SpreadDialogState extends State<SpreadDialog>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.orange[900]!),
+                  ),
                   onPressed: () {},
                   child: const SizedBox(
                     width: 50,
@@ -112,6 +118,10 @@ class _SpreadDialogState extends State<SpreadDialog>
                   width: 10,
                 ),
                 ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.amber[900]!),
+                  ),
                   onPressed: () => Navigator.pop(context),
                   child: const SizedBox(
                     width: 50,

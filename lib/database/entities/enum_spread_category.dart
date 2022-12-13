@@ -33,15 +33,19 @@ enum SpreadCategory {
     SpreadShape.horiz1,
     SpreadShape.relationship3Way,
     SpreadShape.relationship5Way,
-  ]);
+  ]),
+  all('All', SpreadShape.values);
 
   final String _name;
+  final List<SpreadShape> _spreads;
+
   const SpreadCategory(
     String name,
-    this.spreads,
-  ) : _name = name;
+    final List<SpreadShape> spreads,
+  )   : _name = name,
+        _spreads = spreads;
 
-  final List<SpreadShape> spreads;
+  List<SpreadShape> get spreads => _spreads;
 
   @override
   String toString() => _name;
