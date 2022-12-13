@@ -29,6 +29,7 @@ class _SpreadDialogState extends State<SpreadDialog>
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      backgroundColor: Colors.amber[50],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
