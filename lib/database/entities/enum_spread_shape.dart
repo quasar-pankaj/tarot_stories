@@ -20,6 +20,7 @@ enum SpreadShape {
   ankh('Ankh'),
   cross4('Four Card Cross'),
   cross5('Five Card Cross'),
+  cross6('Six Card Cross'),
   pentagram('Pentagram'),
   hexagram('Hexagram'),
   heptagram('Heptagram'),

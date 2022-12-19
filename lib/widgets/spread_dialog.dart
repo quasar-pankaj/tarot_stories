@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../database/entities/enum_spread_category.dart';
+import '../database/entities/spread.dart';
+import '../providers/open_project_provider.dart';
+import '../providers/open_spread_provider.dart';
+import '../providers/spreads_in_memory_notifier_provider.dart';
+import '../spread_icons/five_card_horiz_layout.dart';
+import '../spread_icons/four_card_vert_layout.dart';
+import '../spread_icons/three_card_vert_layout.dart';
+import '../spread_icons/two_card_vert_layout.dart';
 
-class SpreadDialog extends StatefulWidget {
+class SpreadDialog extends ConsumerStatefulWidget {
   const SpreadDialog({super.key});
 
   @override
-  State<SpreadDialog> createState() => _SpreadDialogState();
+  ConsumerState<SpreadDialog> createState() => _SpreadDialogState();
 }
 
-class _SpreadDialogState extends State<SpreadDialog>
+class _SpreadDialogState extends ConsumerState<SpreadDialog>
     with TickerProviderStateMixin {
   late TabController _tabController;
 
@@ -71,22 +80,42 @@ class _SpreadDialogState extends State<SpreadDialog>
                       shrinkWrap: true,
                       children: category.spreads
                           .map(
-                            (shape) => Card(
-                              elevation: 5.0,
-                              color: Colors.amberAccent[100],
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: GridTile(
-                                footer: Center(
-                                  child: Text(
-                                    shape.toString(),
-                                  ),
+                            (shape) => InkWell(
+                              onTap: () async {
+                                final spread = ref
+                                    .read(openSpreadProvider.notifier)
+                                    .update(
+                                      (state) => Spread(
+                                        name: 'no name',
+                                        createdTimestamp: DateTime.now()
+                                            .millisecondsSinceEpoch,
+                                        modifiedTimestamp: DateTime.now()
+                                            .millisecondsSinceEpoch,
+                                        projectId:
+                                            ref.watch(openProjectProvider)!.id!,
+                                        layoutType: shape,
+                                        readings: [],
+                                      ),
+                                    );
+                                await ref
+                                    .watch(spreadInMemoryProvider.notifier)
+                                    .add(spread!);
+                                if (!mounted) return;
+                                Navigator.of(context).pop();
+                              },
+                              child: Card(
+                                elevation: 5.0,
+                                color: Colors.amberAccent[100],
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
-                                child: Icon(
-                                  Icons.book,
-                                  size: 60.0,
-                                  color: Colors.amber[900],
+                                child: GridTile(
+                                  footer: Center(
+                                    child: Text(
+                                      shape.toString(),
+                                    ),
+                                  ),
+                                  child: const FourCardVertLayout(),
                                 ),
                               ),
                             ),

@@ -30,47 +30,47 @@ class PageBase extends StatelessWidget {
           title: Text(_title),
           actions: _actions,
         ),
-        drawer: Drawer(
-          backgroundColor: const Color(0xffa2d2ff),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const UserAccountsDrawerHeader(
-                accountName: Text('Tarot for Writers'),
-                accountEmail: Text('quasar.pankaj@gmail.com'),
-                currentAccountPicture: CircleAvatar(
-                  child: Text('Tarot'),
-                ),
-              ),
-              Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: 10,
-                  itemBuilder: ((context, index) {
-                    return Card(
-                      color: const Color(0xffffc8dd),
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                      ),
-                      child: ListTile(
-                        title: Text('Hello World $index'),
-                      ),
-                    );
-                  }),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.all(12.0),
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: Text('An App for Writers © Pankaj Agarwal'),
-                ),
-              ),
-            ],
-          ),
-        ),
+        // drawer: Drawer(
+        //   backgroundColor: const Color(0xffa2d2ff),
+        //   child: Column(
+        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //     children: [
+        //       const UserAccountsDrawerHeader(
+        //         accountName: Text('Tarot for Writers'),
+        //         accountEmail: Text('quasar.pankaj@gmail.com'),
+        //         currentAccountPicture: CircleAvatar(
+        //           child: Text('Tarot'),
+        //         ),
+        //       ),
+        //       Expanded(
+        //         child: ListView.builder(
+        //           shrinkWrap: true,
+        //           itemCount: 10,
+        //           itemBuilder: ((context, index) {
+        //             return Card(
+        //               color: const Color(0xffffc8dd),
+        //               shape: const RoundedRectangleBorder(
+        //                 borderRadius: BorderRadius.all(
+        //                   Radius.circular(10),
+        //                 ),
+        //               ),
+        //               child: ListTile(
+        //                 title: Text('Hello World $index'),
+        //               ),
+        //             );
+        //           }),
+        //         ),
+        //       ),
+        //       const Padding(
+        //         padding: EdgeInsets.all(12.0),
+        //         child: Align(
+        //           alignment: Alignment.bottomRight,
+        //           child: Text('An App for Writers © Pankaj Agarwal'),
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // ),
         body: _body,
         floatingActionButton: FloatingActionButton(
           onPressed: _onFABPressed,

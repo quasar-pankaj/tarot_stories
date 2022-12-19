@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tarot_stories/widgets/spread_dialog.dart';
 
 import '../database/entities/enum_spread_category.dart';
 import '../database/entities/spread.dart';
@@ -9,6 +8,7 @@ import '../providers/open_spread_provider.dart';
 import '../providers/spread_sort_and_filter_providers.dart';
 import '../providers/spreads_in_memory_notifier_provider.dart';
 import '../widgets/in_place_editor.dart';
+import '../widgets/spread_dialog.dart';
 import '../widgets/toolbar.dart';
 import 'page_base.dart';
 
@@ -90,7 +90,7 @@ class ProjectPage extends ConsumerWidget {
                                       child: InPlaceEditor(
                                         text: spread.name,
                                         onTextChanged: (newText) {
-                                          final Spread renamedProject =
+                                          final Spread renamedSpread =
                                               spread.copyWith(
                                             name: newText,
                                             modifiedTimestamp: DateTime.now()
@@ -99,7 +99,7 @@ class ProjectPage extends ConsumerWidget {
                                           ref
                                               .read(spreadInMemoryProvider
                                                   .notifier)
-                                              .update(renamedProject);
+                                              .update(renamedSpread);
                                         },
                                       ),
                                     ),
