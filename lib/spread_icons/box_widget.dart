@@ -11,13 +11,13 @@ class BoxWidget extends StatelessWidget {
   const BoxWidget({
     super.key,
     required double width,
-    required double height,
+    double? height,
     required String label,
-    required double fontSize,
-  })  : _height = height,
+    double? fontSize,
+  })  : _height = height ?? width * 3 / 2,
         _width = width,
         _label = label,
-        _fontSize = fontSize;
+        _fontSize = fontSize ?? width * 2 / 5;
 
   @override
   Widget build(BuildContext context) {

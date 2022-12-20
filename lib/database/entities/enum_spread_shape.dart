@@ -7,7 +7,6 @@ enum SpreadShape {
   vert2('Vertical Two Card'),
   vert3('Vertical Three Card'),
   vert4('Vertical Four Card'),
-  vert5('Vertical Five Card'),
   goalMotivationConflict('Goal-Motivation-Conflict'),
   goalConflictDisaster('Goal-Conflict-Disaster'),
   reactionDilemmaDecision('Reaction-Dilemma-Decision'),

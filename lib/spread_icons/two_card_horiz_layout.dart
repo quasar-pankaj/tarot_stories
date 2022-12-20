@@ -4,7 +4,14 @@ import 'package:tarot_stories/spread_icons/box_widget.dart';
 class TwoCardHorizLayout extends StatelessWidget {
   static const _width = 40.0;
 
-  const TwoCardHorizLayout({super.key});
+  final String _label1, _label2;
+
+  const TwoCardHorizLayout({
+    super.key,
+    required String label1,
+    required String label2,
+  })  : _label1 = label1,
+        _label2 = label2;
 
   @override
   Widget build(BuildContext context) {
@@ -12,24 +19,20 @@ class TwoCardHorizLayout extends StatelessWidget {
       children: [
         const Spacer(),
         Row(
-          children: const [
-            Spacer(),
+          children: [
+            const Spacer(),
             BoxWidget(
               width: _width,
-              height: _width * 2,
-              label: '1',
-              fontSize: _width * 2 / 5,
+              label: _label1,
             ),
-            VerticalDivider(
+            const VerticalDivider(
               width: 10,
             ),
             BoxWidget(
               width: _width,
-              height: _width * 2,
-              label: '2',
-              fontSize: _width * 2 / 5,
+              label: _label2,
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
         const Spacer(),

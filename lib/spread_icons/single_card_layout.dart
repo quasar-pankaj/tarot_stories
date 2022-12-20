@@ -4,8 +4,15 @@ import 'box_widget.dart';
 
 class SingleCardLayout extends StatelessWidget {
   static const _width = 50.0;
+  static const _height = _width * 3 / 2;
+  static const _fontsize = _width * 2 / 5;
 
-  const SingleCardLayout({super.key});
+  final String _label1;
+
+  const SingleCardLayout({
+    super.key,
+    required String label1,
+  }) : _label1 = label1;
 
   @override
   Widget build(BuildContext context) {
@@ -13,15 +20,15 @@ class SingleCardLayout extends StatelessWidget {
       children: [
         const Spacer(),
         Row(
-          children: const [
-            Spacer(),
+          children: [
+            const Spacer(),
             BoxWidget(
               width: _width,
-              height: 2 * _width,
-              label: '1',
-              fontSize: _width * 2 / 5,
+              height: _height,
+              label: _label1,
+              fontSize: _fontsize,
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
         const Spacer(),

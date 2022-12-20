@@ -47,7 +47,6 @@ const _$SpreadShapeEnumMap = {
   SpreadShape.vert2: 'vert2',
   SpreadShape.vert3: 'vert3',
   SpreadShape.vert4: 'vert4',
-  SpreadShape.vert5: 'vert5',
   SpreadShape.goalMotivationConflict: 'goalMotivationConflict',
   SpreadShape.goalConflictDisaster: 'goalConflictDisaster',
   SpreadShape.reactionDilemmaDecision: 'reactionDilemmaDecision',
@@ -60,6 +59,7 @@ const _$SpreadShapeEnumMap = {
   SpreadShape.ankh: 'ankh',
   SpreadShape.cross4: 'cross4',
   SpreadShape.cross5: 'cross5',
+  SpreadShape.cross6: 'cross6',
   SpreadShape.pentagram: 'pentagram',
   SpreadShape.hexagram: 'hexagram',
   SpreadShape.heptagram: 'heptagram',
@@ -87,4 +87,5 @@ const _$SpreadCategoryEnumMap = {
   SpreadCategory.prop: 'prop',
   SpreadCategory.structure: 'structure',
   SpreadCategory.relationship: 'relationship',
+  SpreadCategory.all: 'all',
 };

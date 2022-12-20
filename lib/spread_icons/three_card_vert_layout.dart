@@ -4,7 +4,16 @@ import 'package:tarot_stories/spread_icons/box_widget.dart';
 class ThreeCardVertLayout extends StatelessWidget {
   static const _width = 20.0;
 
-  const ThreeCardVertLayout({super.key});
+  final String _label1, _label2, _label3;
+
+  const ThreeCardVertLayout({
+    super.key,
+    required String label1,
+    required String label2,
+    required String label3,
+  })  : _label1 = label1,
+        _label2 = label2,
+        _label3 = label3;
 
   @override
   Widget build(BuildContext context) {
@@ -12,33 +21,27 @@ class ThreeCardVertLayout extends StatelessWidget {
       children: [
         const Spacer(),
         Column(
-          children: const [
-            Spacer(),
+          children: [
+            const Spacer(),
             BoxWidget(
               width: _width,
-              height: _width * 2,
-              label: '1',
-              fontSize: _width * 2 / 5,
+              label: _label1,
             ),
-            Divider(
+            const Divider(
               height: 5,
             ),
             BoxWidget(
               width: _width,
-              height: _width * 2,
-              label: '2',
-              fontSize: _width * 2 / 5,
+              label: _label2,
             ),
-            Divider(
+            const Divider(
               height: 5,
             ),
             BoxWidget(
               width: _width,
-              height: _width * 2,
-              label: '2',
-              fontSize: _width * 2 / 5,
+              label: _label3,
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
         const Spacer(),

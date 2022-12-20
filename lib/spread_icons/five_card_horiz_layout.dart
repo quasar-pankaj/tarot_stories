@@ -29,45 +29,35 @@ class FiveCardHorizLayout extends StatelessWidget {
             const Spacer(),
             BoxWidget(
               width: _width,
-              height: _width * 2,
               label: _card1,
-              fontSize: _width * 2 / 5,
             ),
             const VerticalDivider(
               width: 10,
             ),
             BoxWidget(
               width: _width,
-              height: _width * 2,
               label: _card2,
-              fontSize: _width * 2 / 5,
             ),
             const VerticalDivider(
               width: 10,
             ),
             BoxWidget(
               width: _width,
-              height: _width * 2,
               label: _card3,
-              fontSize: _width * 2 / 5,
             ),
             const VerticalDivider(
               width: 10,
             ),
             BoxWidget(
               width: _width,
-              height: _width * 2,
               label: _card4,
-              fontSize: _width * 2 / 5,
             ),
             const VerticalDivider(
               width: 10,
             ),
             BoxWidget(
               width: _width,
-              height: _width * 2,
               label: _card5,
-              fontSize: _width * 2 / 5,
             ),
             const Spacer(),
           ],

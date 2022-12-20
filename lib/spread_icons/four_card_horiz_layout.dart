@@ -4,18 +4,18 @@ import 'package:tarot_stories/spread_icons/box_widget.dart';
 class FourCardHorizLayout extends StatelessWidget {
   static const _width = 40.0;
 
-  final String _card1, _card2, _card3, _card4;
+  final String _label1, _label2, _label3, _label4;
 
   const FourCardHorizLayout({
     super.key,
-    required String card1,
-    required String card2,
-    required String card3,
-    required String card4,
-  })  : _card1 = card1,
-        _card2 = card2,
-        _card3 = card3,
-        _card4 = card4;
+    required String label1,
+    required String label2,
+    required String label3,
+    required String label4,
+  })  : _label1 = label1,
+        _label2 = label2,
+        _label3 = label3,
+        _label4 = label4;
 
   @override
   Widget build(BuildContext context) {
@@ -27,36 +27,28 @@ class FourCardHorizLayout extends StatelessWidget {
             const Spacer(),
             BoxWidget(
               width: _width,
-              height: _width * 2,
-              label: _card1,
-              fontSize: _width * 2 / 5,
+              label: _label1,
             ),
             const VerticalDivider(
               width: 10,
             ),
             BoxWidget(
               width: _width,
-              height: _width * 2,
-              label: _card2,
-              fontSize: _width * 2 / 5,
+              label: _label2,
             ),
             const VerticalDivider(
               width: 10,
             ),
             BoxWidget(
               width: _width,
-              height: _width * 2,
-              label: _card3,
-              fontSize: _width * 2 / 5,
+              label: _label3,
             ),
             const VerticalDivider(
               width: 10,
             ),
             BoxWidget(
               width: _width,
-              height: _width * 2,
-              label: _card4,
-              fontSize: _width * 2 / 5,
+              label: _label4,
             ),
             const Spacer(),
           ],

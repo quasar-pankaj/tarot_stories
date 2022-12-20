@@ -6,10 +6,7 @@ import '../database/entities/spread.dart';
 import '../providers/open_project_provider.dart';
 import '../providers/open_spread_provider.dart';
 import '../providers/spreads_in_memory_notifier_provider.dart';
-import '../spread_icons/five_card_horiz_layout.dart';
 import '../spread_icons/four_card_vert_layout.dart';
-import '../spread_icons/three_card_vert_layout.dart';
-import '../spread_icons/two_card_vert_layout.dart';
 
 class SpreadDialog extends ConsumerStatefulWidget {
   const SpreadDialog({super.key});
@@ -115,7 +112,12 @@ class _SpreadDialogState extends ConsumerState<SpreadDialog>
                                       shape.toString(),
                                     ),
                                   ),
-                                  child: const FourCardVertLayout(),
+                                  child: const FourCardVertLayout(
+                                    label1: '1',
+                                    label2: '2',
+                                    label3: '3',
+                                    label4: '4',
+                                  ),
                                 ),
                               ),
                             ),
