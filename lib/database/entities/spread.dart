@@ -11,9 +11,10 @@ class Spread with _$Spread {
   factory Spread({
     int? id,
     required String name,
+    String? query,
     required int createdTimestamp,
     required int modifiedTimestamp,
-    required int projectId,
+    required int elementId,
     required SpreadShape layoutType,
     required List<Reading> readings,
   }) = $Spread;

@@ -22,9 +22,10 @@ Spread _$SpreadFromJson(Map<String, dynamic> json) {
 mixin _$Spread {
   int? get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String? get query => throw _privateConstructorUsedError;
   int get createdTimestamp => throw _privateConstructorUsedError;
   int get modifiedTimestamp => throw _privateConstructorUsedError;
-  int get projectId => throw _privateConstructorUsedError;
+  int get elementId => throw _privateConstructorUsedError;
   SpreadShape get layoutType => throw _privateConstructorUsedError;
   List<Reading> get readings => throw _privateConstructorUsedError;
 
@@ -41,9 +42,10 @@ abstract class $SpreadCopyWith<$Res> {
   $Res call(
       {int? id,
       String name,
+      String? query,
       int createdTimestamp,
       int modifiedTimestamp,
-      int projectId,
+      int elementId,
       SpreadShape layoutType,
       List<Reading> readings});
 }
@@ -63,9 +65,10 @@ class _$SpreadCopyWithImpl<$Res, $Val extends Spread>
   $Res call({
     Object? id = freezed,
     Object? name = null,
+    Object? query = freezed,
     Object? createdTimestamp = null,
     Object? modifiedTimestamp = null,
-    Object? projectId = null,
+    Object? elementId = null,
     Object? layoutType = null,
     Object? readings = null,
   }) {
@@ -78,6 +81,10 @@ class _$SpreadCopyWithImpl<$Res, $Val extends Spread>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      query: freezed == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdTimestamp: null == createdTimestamp
           ? _value.createdTimestamp
           : createdTimestamp // ignore: cast_nullable_to_non_nullable
@@ -86,9 +93,9 @@ class _$SpreadCopyWithImpl<$Res, $Val extends Spread>
           ? _value.modifiedTimestamp
           : modifiedTimestamp // ignore: cast_nullable_to_non_nullable
               as int,
-      projectId: null == projectId
-          ? _value.projectId
-          : projectId // ignore: cast_nullable_to_non_nullable
+      elementId: null == elementId
+          ? _value.elementId
+          : elementId // ignore: cast_nullable_to_non_nullable
               as int,
       layoutType: null == layoutType
           ? _value.layoutType
@@ -111,9 +118,10 @@ abstract class _$$$SpreadCopyWith<$Res> implements $SpreadCopyWith<$Res> {
   $Res call(
       {int? id,
       String name,
+      String? query,
       int createdTimestamp,
       int modifiedTimestamp,
-      int projectId,
+      int elementId,
       SpreadShape layoutType,
       List<Reading> readings});
 }
@@ -130,9 +138,10 @@ class __$$$SpreadCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = null,
+    Object? query = freezed,
     Object? createdTimestamp = null,
     Object? modifiedTimestamp = null,
-    Object? projectId = null,
+    Object? elementId = null,
     Object? layoutType = null,
     Object? readings = null,
   }) {
@@ -145,6 +154,10 @@ class __$$$SpreadCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      query: freezed == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdTimestamp: null == createdTimestamp
           ? _value.createdTimestamp
           : createdTimestamp // ignore: cast_nullable_to_non_nullable
@@ -153,9 +166,9 @@ class __$$$SpreadCopyWithImpl<$Res>
           ? _value.modifiedTimestamp
           : modifiedTimestamp // ignore: cast_nullable_to_non_nullable
               as int,
-      projectId: null == projectId
-          ? _value.projectId
-          : projectId // ignore: cast_nullable_to_non_nullable
+      elementId: null == elementId
+          ? _value.elementId
+          : elementId // ignore: cast_nullable_to_non_nullable
               as int,
       layoutType: null == layoutType
           ? _value.layoutType
@@ -175,9 +188,10 @@ class _$$Spread implements $Spread {
   _$$Spread(
       {this.id,
       required this.name,
+      this.query,
       required this.createdTimestamp,
       required this.modifiedTimestamp,
-      required this.projectId,
+      required this.elementId,
       required this.layoutType,
       required final List<Reading> readings})
       : _readings = readings;
@@ -190,11 +204,13 @@ class _$$Spread implements $Spread {
   @override
   final String name;
   @override
+  final String? query;
+  @override
   final int createdTimestamp;
   @override
   final int modifiedTimestamp;
   @override
-  final int projectId;
+  final int elementId;
   @override
   final SpreadShape layoutType;
   final List<Reading> _readings;
@@ -206,7 +222,7 @@ class _$$Spread implements $Spread {
 
   @override
   String toString() {
-    return 'Spread(id: $id, name: $name, createdTimestamp: $createdTimestamp, modifiedTimestamp: $modifiedTimestamp, projectId: $projectId, layoutType: $layoutType, readings: $readings)';
+    return 'Spread(id: $id, name: $name, query: $query, createdTimestamp: $createdTimestamp, modifiedTimestamp: $modifiedTimestamp, elementId: $elementId, layoutType: $layoutType, readings: $readings)';
   }
 
   @override
@@ -216,12 +232,13 @@ class _$$Spread implements $Spread {
             other is _$$Spread &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.query, query) || other.query == query) &&
             (identical(other.createdTimestamp, createdTimestamp) ||
                 other.createdTimestamp == createdTimestamp) &&
             (identical(other.modifiedTimestamp, modifiedTimestamp) ||
                 other.modifiedTimestamp == modifiedTimestamp) &&
-            (identical(other.projectId, projectId) ||
-                other.projectId == projectId) &&
+            (identical(other.elementId, elementId) ||
+                other.elementId == elementId) &&
             (identical(other.layoutType, layoutType) ||
                 other.layoutType == layoutType) &&
             const DeepCollectionEquality().equals(other._readings, _readings));
@@ -233,9 +250,10 @@ class _$$Spread implements $Spread {
       runtimeType,
       id,
       name,
+      query,
       createdTimestamp,
       modifiedTimestamp,
-      projectId,
+      elementId,
       layoutType,
       const DeepCollectionEquality().hash(_readings));
 
@@ -257,9 +275,10 @@ abstract class $Spread implements Spread {
   factory $Spread(
       {final int? id,
       required final String name,
+      final String? query,
       required final int createdTimestamp,
       required final int modifiedTimestamp,
-      required final int projectId,
+      required final int elementId,
       required final SpreadShape layoutType,
       required final List<Reading> readings}) = _$$Spread;
 
@@ -270,11 +289,13 @@ abstract class $Spread implements Spread {
   @override
   String get name;
   @override
+  String? get query;
+  @override
   int get createdTimestamp;
   @override
   int get modifiedTimestamp;
   @override
-  int get projectId;
+  int get elementId;
   @override
   SpreadShape get layoutType;
   @override

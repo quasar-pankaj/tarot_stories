@@ -9,9 +9,10 @@ part of 'spread.dart';
 _$$Spread _$$$SpreadFromJson(Map<String, dynamic> json) => _$$Spread(
       id: json['id'] as int?,
       name: json['name'] as String,
+      query: json['query'] as String?,
       createdTimestamp: json['createdTimestamp'] as int,
       modifiedTimestamp: json['modifiedTimestamp'] as int,
-      projectId: json['projectId'] as int,
+      elementId: json['elementId'] as int,
       layoutType: $enumDecode(_$SpreadShapeEnumMap, json['layoutType']),
       readings: (json['readings'] as List<dynamic>)
           .map((e) => Reading.fromJson(e as Map<String, dynamic>))
@@ -21,9 +22,10 @@ _$$Spread _$$$SpreadFromJson(Map<String, dynamic> json) => _$$Spread(
 Map<String, dynamic> _$$$SpreadToJson(_$$Spread instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'query': instance.query,
       'createdTimestamp': instance.createdTimestamp,
       'modifiedTimestamp': instance.modifiedTimestamp,
-      'projectId': instance.projectId,
+      'elementId': instance.elementId,
       'layoutType': _$SpreadShapeEnumMap[instance.layoutType]!,
       'readings': instance.readings,
     };
