@@ -6,10 +6,9 @@ import '../database/repository.dart';
 import 'open_project_provider.dart';
 import 'spreads_repository_provider.dart';
 
-final spreadInMemoryProvider =
-    StateNotifierProvider.autoDispose<SpreadInMemoryNotifier, AsyncValue<Iterable<Spread>>>(
-        (ref) {
-  final openProject = ref.watch(openProjectProvider);
+final spreadInMemoryProvider = StateNotifierProvider.autoDispose<
+    SpreadInMemoryNotifier, AsyncValue<Iterable<Spread>>>((ref) {
+  final openProject = ref.watch(openProjectProvider); // need to change this!!!!
   final repo = ref.watch(spreadsRepositoryProvider);
 
   return SpreadInMemoryNotifier(
@@ -21,12 +20,12 @@ final spreadInMemoryProvider =
 class SpreadInMemoryNotifier
     extends StateNotifier<AsyncValue<Iterable<Spread>>> {
   final Repository<Spread> _repository;
-  final int _projectId;
+  final int _elementId;
   SpreadInMemoryNotifier(
     Repository<Spread> repository,
-    int? projectId,
+    int? elementId,
   )   : _repository = repository,
-        _projectId = projectId!,
+        _elementId = elementId!,
         super(const AsyncValue.loading()) {
     _init();
   }
@@ -35,7 +34,7 @@ class SpreadInMemoryNotifier
     try {
       final spreads = await _repository.getAllUnsorted();
       state = AsyncValue.data(
-        spreads.where((element) => element.projectId == _projectId),
+        spreads.where((element) => element.elementId == _elementId),
       );
     } on Exception catch (e) {
       state = AsyncValue.error(e, StackTrace.current);
@@ -48,7 +47,7 @@ class SpreadInMemoryNotifier
       name: 'no name',
       createdTimestamp: DateTime.now().millisecondsSinceEpoch,
       modifiedTimestamp: DateTime.now().millisecondsSinceEpoch,
-      projectId: _projectId,
+      elementId: _elementId,
       layoutType: SpreadShape.horiz1,
       readings: [],
     );

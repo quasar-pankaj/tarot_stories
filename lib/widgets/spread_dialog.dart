@@ -88,8 +88,8 @@ class _SpreadDialogState extends ConsumerState<SpreadDialog>
                                             .millisecondsSinceEpoch,
                                         modifiedTimestamp: DateTime.now()
                                             .millisecondsSinceEpoch,
-                                        projectId:
-                                            ref.watch(openProjectProvider)!.id!,
+                                        elementId: -1,
+                                        // ref.watch(openProjectProvider)!.id!,
                                         layoutType: shape,
                                         readings: [],
                                       ),

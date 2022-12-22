@@ -7,68 +7,50 @@ class ElementsSidebar extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       shrinkWrap: true,
-      children: [
+      children: const [
         ExpansionTile(
-          leading: const Icon(Icons.verified_user),
-          title: const Text('Characters'),
-          trailing: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.add),
-          ),
+          leading: Icon(Icons.face),
+          title: Text('Characters'),
           children: [],
         ),
         ExpansionTile(
-          leading: const Icon(Icons.verified_user),
-          title: const Text('Scenes'),
-          trailing: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.add),
-          ),
+          leading: Icon(Icons.picture_in_picture),
+          title: Text('Scenes/Sequels'),
           children: [],
         ),
         ExpansionTile(
-          leading: const Icon(Icons.verified_user),
-          title: const Text('Places'),
-          trailing: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.add),
-          ),
+          leading: Icon(Icons.house),
+          title: Text('Places'),
           children: [],
         ),
         ExpansionTile(
-          leading: const Icon(Icons.verified_user),
-          title: const Text('Props'),
-          trailing: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.add),
-          ),
+          leading: Icon(Icons.pending_actions),
+          title: Text('Props'),
           children: [],
         ),
         ExpansionTile(
-          leading: const Icon(Icons.verified_user),
-          title: const Text('Structure'),
-          trailing: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.add),
-          ),
+          leading: Icon(Icons.account_tree),
+          title: Text('Structure'),
           children: [],
         ),
         ExpansionTile(
-          leading: const Icon(Icons.verified_user),
-          title: const Text('Detached Beats'),
-          trailing: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.add),
-          ),
+          leading: Icon(Icons.link),
+          title: Text('Relationships'),
           children: [],
         ),
         ExpansionTile(
-          leading: const Icon(Icons.verified_user),
-          title: const Text('Uncategorised Stuff'),
-          trailing: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.add),
-          ),
+          leading: Icon(Icons.broken_image),
+          title: Text('Detached Beats'),
+          children: [],
+        ),
+        ExpansionTile(
+          leading: Icon(Icons.air),
+          title: Text('Uncategorised Stuff'),
+          children: [],
+        ),
+        ExpansionTile(
+          leading: Icon(Icons.recycling),
+          title: Text('Recycled'),
           children: [],
         ),
       ],
