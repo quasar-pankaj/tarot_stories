@@ -24,7 +24,6 @@ mixin _$Element {
   int get projectId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get synopsis => throw _privateConstructorUsedError;
-  List<Spread> get spreads => throw _privateConstructorUsedError;
   ElementType get elementType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,7 +41,6 @@ abstract class $ElementCopyWith<$Res> {
       int projectId,
       String name,
       String? synopsis,
-      List<Spread> spreads,
       ElementType elementType});
 }
 
@@ -63,7 +61,6 @@ class _$ElementCopyWithImpl<$Res, $Val extends Element>
     Object? projectId = null,
     Object? name = null,
     Object? synopsis = freezed,
-    Object? spreads = null,
     Object? elementType = null,
   }) {
     return _then(_value.copyWith(
@@ -83,10 +80,6 @@ class _$ElementCopyWithImpl<$Res, $Val extends Element>
           ? _value.synopsis
           : synopsis // ignore: cast_nullable_to_non_nullable
               as String?,
-      spreads: null == spreads
-          ? _value.spreads
-          : spreads // ignore: cast_nullable_to_non_nullable
-              as List<Spread>,
       elementType: null == elementType
           ? _value.elementType
           : elementType // ignore: cast_nullable_to_non_nullable
@@ -107,7 +100,6 @@ abstract class _$$$ElementCopyWith<$Res> implements $ElementCopyWith<$Res> {
       int projectId,
       String name,
       String? synopsis,
-      List<Spread> spreads,
       ElementType elementType});
 }
 
@@ -125,7 +117,6 @@ class __$$$ElementCopyWithImpl<$Res>
     Object? projectId = null,
     Object? name = null,
     Object? synopsis = freezed,
-    Object? spreads = null,
     Object? elementType = null,
   }) {
     return _then(_$$Element(
@@ -145,10 +136,6 @@ class __$$$ElementCopyWithImpl<$Res>
           ? _value.synopsis
           : synopsis // ignore: cast_nullable_to_non_nullable
               as String?,
-      spreads: null == spreads
-          ? _value._spreads
-          : spreads // ignore: cast_nullable_to_non_nullable
-              as List<Spread>,
       elementType: null == elementType
           ? _value.elementType
           : elementType // ignore: cast_nullable_to_non_nullable
@@ -165,9 +152,7 @@ class _$$Element implements $Element {
       required this.projectId,
       required this.name,
       this.synopsis,
-      required final List<Spread> spreads,
-      required this.elementType})
-      : _spreads = spreads;
+      required this.elementType});
 
   factory _$$Element.fromJson(Map<String, dynamic> json) =>
       _$$$ElementFromJson(json);
@@ -180,19 +165,12 @@ class _$$Element implements $Element {
   final String name;
   @override
   final String? synopsis;
-  final List<Spread> _spreads;
-  @override
-  List<Spread> get spreads {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_spreads);
-  }
-
   @override
   final ElementType elementType;
 
   @override
   String toString() {
-    return 'Element(id: $id, projectId: $projectId, name: $name, synopsis: $synopsis, spreads: $spreads, elementType: $elementType)';
+    return 'Element(id: $id, projectId: $projectId, name: $name, synopsis: $synopsis, elementType: $elementType)';
   }
 
   @override
@@ -206,15 +184,14 @@ class _$$Element implements $Element {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.synopsis, synopsis) ||
                 other.synopsis == synopsis) &&
-            const DeepCollectionEquality().equals(other._spreads, _spreads) &&
             (identical(other.elementType, elementType) ||
                 other.elementType == elementType));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, projectId, name, synopsis,
-      const DeepCollectionEquality().hash(_spreads), elementType);
+  int get hashCode =>
+      Object.hash(runtimeType, id, projectId, name, synopsis, elementType);
 
   @JsonKey(ignore: true)
   @override
@@ -236,7 +213,6 @@ abstract class $Element implements Element {
       required final int projectId,
       required final String name,
       final String? synopsis,
-      required final List<Spread> spreads,
       required final ElementType elementType}) = _$$Element;
 
   factory $Element.fromJson(Map<String, dynamic> json) = _$$Element.fromJson;
@@ -249,8 +225,6 @@ abstract class $Element implements Element {
   String get name;
   @override
   String? get synopsis;
-  @override
-  List<Spread> get spreads;
   @override
   ElementType get elementType;
   @override

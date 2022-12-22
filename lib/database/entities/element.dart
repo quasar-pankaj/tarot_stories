@@ -13,7 +13,6 @@ class Element with _$Element {
     required int projectId,
     required String name,
     String? synopsis,
-    required List<Spread> spreads,
     required ElementType elementType,
   }) = $Element;
 
