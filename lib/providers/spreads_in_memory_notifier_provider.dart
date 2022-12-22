@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../database/entities/enum_spread_shape.dart';
 import '../database/entities/spread.dart';
 import '../database/repository.dart';
+import 'generic_state_notifiers.dart';
 import 'open_project_provider.dart';
 import 'spreads_repository_provider.dart';
 
@@ -17,16 +18,16 @@ final spreadInMemoryProvider = StateNotifierProvider.autoDispose<
   );
 });
 
-class SpreadInMemoryNotifier
-    extends StateNotifier<AsyncValue<Iterable<Spread>>> {
+class SpreadInMemoryNotifier extends AsyncGenericStateNotifier<Spread> {
   final Repository<Spread> _repository;
   final int _elementId;
+
   SpreadInMemoryNotifier(
     Repository<Spread> repository,
     int? elementId,
   )   : _repository = repository,
         _elementId = elementId!,
-        super(const AsyncValue.loading()) {
+        super(repository, (e) => e.elementId == elementId) {
     _init();
   }
 
@@ -61,26 +62,11 @@ class SpreadInMemoryNotifier
     state = AsyncValue.data(spreads);
   }
 
-  Future<void> add(Spread spread) async {
-    final newSpread = await _repository.insert(spread);
-    final spreads = [...state.value!, newSpread];
-    state = AsyncValue.data(spreads);
-  }
-
   Future<void> remove(Spread spread) async {
-    final spreads = [
-      ...state.value!.where((element) => element.id != spread.id)
-    ];
-    await _repository.delete(spread);
-    state = AsyncValue.data(spreads);
+    await super.delete(spread, (entity) => entity.id == spread.id);
   }
 
   Future<void> update(Spread spread) async {
-    final spreads = [
-      for (Spread item in state.value!)
-        if (item.id == spread.id) spread else item
-    ];
-    await _repository.update(spread);
-    state = AsyncValue.data(spreads);
+    await super.modify(spread, (entity) => entity.id == spread.id);
   }
 }
