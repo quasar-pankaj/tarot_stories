@@ -7,10 +7,8 @@ import 'elements_repository_provider.dart';
 import 'generic_state_notifiers.dart';
 import 'open_project_provider.dart';
 
-final elementsProvider = StateNotifierProvider.autoDispose.family<
-    ElementsInMemoryNotifier,
-    AsyncValue<Iterable<Element>>,
-    ElementType>((ref, elementType) {
+final elementsProvider = StateNotifierProvider.family<ElementsInMemoryNotifier,
+    AsyncValue<Iterable<Element>>, ElementType>((ref, elementType) {
   final openProject = ref.watch(openProjectProvider);
   final repo = ref.watch(elementRepositoryProvider);
 
@@ -30,7 +28,10 @@ class ElementsInMemoryNotifier extends AsyncGenericStateNotifier<Element> {
         _elementType = elementType,
         super(
           repo,
-          (e) => e.id == projectId,
+          (e) =>
+              e.id == projectId &&
+              e.projectId == projectId &&
+              e.elementType == elementType,
         );
 
   Future<void> addNew() async {
