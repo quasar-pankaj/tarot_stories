@@ -30,6 +30,29 @@ class HomePage extends ConsumerWidget {
             builder: (context, ref, child) {
               final result = ref.watch(sortedFilteredProjectListProvider);
 
+              ref.listen(
+                inMemoryProjectsProvider,
+                (previous, next) {
+                  if (previous == null) return;
+                  if (next.length < previous.length) {
+                    final diff = previous.where(
+                      (element) => !next.contains(element),
+                    );
+                    final deleted = diff.first;
+                    final snackbar = SnackBar(
+                      content: Text('Deleting ${deleted.name}...'),
+                      action: SnackBarAction(
+                        label: 'Undo',
+                        onPressed: () => ref
+                            .read(inMemoryProjectsProvider.notifier)
+                            .add(deleted),
+                      ),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                  }
+                },
+              );
+
               return result.when(
                 data: (data) => GridView.extent(
                   shrinkWrap: true,
