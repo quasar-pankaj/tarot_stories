@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tarot_stories/providers/open_project_provider.dart';
 
 import '../database/entities/project.dart';
-import '../providers/projects_in_memory_notifier_provider.dart';
-import '../providers/project_sort_and_filter_providers.dart';
+import '../providers/open_project_provider.dart';
+import '../providers/project/project_filter_text_provider.dart';
+import '../providers/project/project_provider.dart';
+import '../providers/project/project_sort_condition_buttons_provider.dart';
+import '../providers/project/project_sort_condition_provider.dart';
+import '../providers/project/project_sort_order_buttons_provider.dart';
+import '../providers/project/project_sort_order_provider.dart';
+import '../providers/project/sorted_filtered_project_list_provider.dart';
 import '../widgets/in_place_editor.dart';
 import '../widgets/toolbar.dart';
 import 'page_base.dart';
@@ -31,21 +36,22 @@ class HomePage extends ConsumerWidget {
               final result = ref.watch(sortedFilteredProjectListProvider);
 
               ref.listen(
-                inMemoryProjectsProvider,
+                projectsProvider,
                 (previous, next) {
                   if (previous == null) return;
-                  if (next.length < previous.length) {
-                    final diff = previous.where(
-                      (element) => !next.contains(element),
+                  if (next.asData!.value.length <
+                      previous.asData!.value.length) {
+                    final diff = previous.asData!.value.where(
+                      (element) => !next.asData!.value.contains(element),
                     );
                     final deleted = diff.first;
                     final snackbar = SnackBar(
                       content: Text('Deleting ${deleted.name}...'),
                       action: SnackBarAction(
                         label: 'Undo',
-                        onPressed: () => ref
-                            .read(inMemoryProjectsProvider.notifier)
-                            .add(deleted),
+                        onPressed: () async => await ref
+                            .read(projectsProvider.notifier)
+                            .save(project: deleted),
                       ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackbar);
@@ -53,71 +59,64 @@ class HomePage extends ConsumerWidget {
                 },
               );
 
-              return result.when(
-                data: (data) => GridView.extent(
-                  shrinkWrap: true,
-                  maxCrossAxisExtent: 150,
-                  childAspectRatio: 0.75,
-                  children: data
-                      .map(
-                        (project) => Dismissible(
-                          key: Key(project.toString()),
-                          child: Card(
-                            color: Colors.green,
-                            child: InkWell(
-                              onTap: () {
-                                ref
-                                    .read(openProjectProvider.notifier)
-                                    .update((state) => project);
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return const ProjectPage();
+              return GridView.extent(
+                shrinkWrap: true,
+                maxCrossAxisExtent: 150,
+                childAspectRatio: 0.75,
+                children: result
+                    .map(
+                      (project) => Dismissible(
+                        key: Key(project.toString()),
+                        child: Card(
+                          color: Colors.green,
+                          child: InkWell(
+                            onTap: () {
+                              ref
+                                  .read(openProjectProvider.notifier)
+                                  .update((state) => project);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return const ProjectPage();
+                                  },
+                                ),
+                              );
+                            },
+                            child: GridTile(
+                              header: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: InPlaceEditor(
+                                    text: project.name,
+                                    onTextChanged: (newText) {
+                                      final Project renamedProject =
+                                          project.copyWith(
+                                        name: newText,
+                                        modifiedTimestamp: DateTime.now()
+                                            .millisecondsSinceEpoch,
+                                      );
+                                      ref
+                                          .read(projectsProvider.notifier)
+                                          .save(project: renamedProject);
                                     },
                                   ),
-                                );
-                              },
-                              child: GridTile(
-                                header: Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: InPlaceEditor(
-                                      text: project.name,
-                                      onTextChanged: (newText) {
-                                        final Project renamedProject =
-                                            project.copyWith(
-                                          name: newText,
-                                          modifiedTimestamp: DateTime.now()
-                                              .millisecondsSinceEpoch,
-                                        );
-                                        ref
-                                            .read(inMemoryProjectsProvider
-                                                .notifier)
-                                            .update(renamedProject);
-                                      },
-                                    ),
-                                  ),
                                 ),
-                                child: const Icon(
-                                  Icons.analytics_outlined,
-                                  size: 80.6,
-                                  color: Colors.yellowAccent,
-                                ),
+                              ),
+                              child: const Icon(
+                                Icons.analytics_outlined,
+                                size: 80.6,
+                                color: Colors.yellowAccent,
                               ),
                             ),
                           ),
-                          onDismissed: (direction) => ref
-                              .read(inMemoryProjectsProvider.notifier)
-                              .remove(project),
                         ),
-                      )
-                      .toList(),
-                ),
-                error: (error, stackTrace) => Text(
-                  error.toString(),
-                ),
-                loading: () => const CircularProgressIndicator(),
+                        onDismissed: (direction) => ref
+                            .read(projectsProvider.notifier)
+                            .delete(project),
+                      ),
+                    )
+                    .toList(),
               );
             },
           ),
@@ -126,7 +125,7 @@ class HomePage extends ConsumerWidget {
       fabIcon: Icons.add,
       fabToolTip: 'Add new Project',
       onFABPressed: () async =>
-          await ref.read(inMemoryProjectsProvider.notifier).addNew(),
+          await ref.read(projectsProvider.notifier).save(),
     );
   }
 }

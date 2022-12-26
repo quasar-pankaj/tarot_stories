@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../database/entities/element.dart';
@@ -48,4 +50,27 @@ class ElementsInMemoryNotifier extends AsyncGenericStateNotifier<Element> {
 
   Future<void> update(Element element) =>
       super.modify(element, (entity) => entity.id == element.id);
+}
+
+class ElementsNotifier extends AsyncNotifier<Iterable<Element>> {
+  @override
+  FutureOr<Iterable<Element>> build() async {
+    state = const AsyncValue.loading();
+    final elementsRepo = ref.watch(elementRepositoryProvider);
+    final openProject = ref.watch(openProjectProvider);
+    final elements = await elementsRepo.getAllUnsorted();
+    return elements.where((element) => element.projectId == openProject!.id);
+  }
+
+  Future<void> save(Element element) async {
+    if (element.id == null) {
+      await ref.read(elementRepositoryProvider).insert(element);
+    } else {
+      await ref.read(elementRepositoryProvider).update(element);
+    }
+  }
+
+  Future<void> delete(Element element) async {
+    await ref.read(elementRepositoryProvider).delete(element);
+  }
 }

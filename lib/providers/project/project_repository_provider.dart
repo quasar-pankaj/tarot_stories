@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../database/app_database.dart';
-import '../database/entities/project.dart';
-import '../database/repository.dart';
+import '../../database/app_database.dart';
+import '../../database/entities/project.dart';
+import '../../database/repository.dart';
 
 final projectRepositoryProvider = Provider<Repository<Project>>((ref) {
   return Repository<Project>(

@@ -60,7 +60,7 @@ class Repository<E> {
     return await _store.drop(await _db);
   }
 
-  Future<List<E>> getAllUnsorted() async {
+  Future<Iterable<E>> getAllUnsorted() async {
     final recordSnapshots = await _store.find(
       await _db,
     );
@@ -73,10 +73,10 @@ class Repository<E> {
       // entity.id = snapshot.key;
       _setId(entity, snapshot.key);
       return entity;
-    }).toList();
+    });
   }
 
-  Future<List<E>> _getAllSortedByFields(List<String> fieldnames,
+  Future<Iterable<E>> _getAllSortedByFields(List<String> fieldnames,
       {String? filterText, bool asc = true}) async {
     // Finder object can also sort data.
     Filter? filter =
@@ -100,17 +100,17 @@ class Repository<E> {
       // _setId(entity, snapshot.key);
       // return entity;
       return _setId(entity, snapshot.key);
-    }).toList();
+    });
   }
 
-  Future<List<E>> getAllSortedByName({
+  Future<Iterable<E>> getAllSortedByName({
     String? pattern,
     bool ascending = true,
   }) async {
     return _getAllSortedByFields(['name'], filterText: pattern, asc: ascending);
   }
 
-  Future<List<E>> getAllSortedByCreatedTimestamp({
+  Future<Iterable<E>> getAllSortedByCreatedTimestamp({
     String? pattern,
     bool ascending = true,
   }) async {
@@ -118,7 +118,7 @@ class Repository<E> {
         filterText: pattern, asc: ascending);
   }
 
-  Future<List<E>> getAllSortedByModifiedTimestamp({
+  Future<Iterable<E>> getAllSortedByModifiedTimestamp({
     String? pattern,
     bool ascending = true,
   }) async {
