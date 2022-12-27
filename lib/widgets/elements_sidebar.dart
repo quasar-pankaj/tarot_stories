@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tarot_stories/providers/elements/selected_element_provider.dart';
 
 import '../database/entities/element.dart' as entities;
 import '../database/entities/enum_element_type.dart';
@@ -36,16 +37,24 @@ class ElementsSidebar extends StatelessWidget {
             children: asyncChildren.when(
               data: (data) => data
                   .map(
-                    (e) => Dismissible(
-                      key: Key(e.toString()),
-                      child: ListTile(
-                        title: InPlaceEditor(
-                          text: e.name,
-                          onTextChanged: (newText) {
-                            final entities.Element element =
-                                e.copyWith(name: newText);
-                            ref.read(elementsProvider.notifier).save(element);
-                          },
+                    (e) => InkWell(
+                      onTap: () =>
+                          ref.read(selectedElementProvider.notifier).state = e,
+                      child: Dismissible(
+                        key: Key(e.toString()),
+                        child: Card(
+                          child: ListTile(
+                            title: InPlaceEditor(
+                              text: e.name,
+                              onTextChanged: (newText) {
+                                final entities.Element element =
+                                    e.copyWith(name: newText);
+                                ref
+                                    .read(elementsProvider.notifier)
+                                    .save(element);
+                              },
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -104,11 +113,10 @@ List<_ListViewItem> _items = [
     provider: propsFilterProvider,
   ),
   _ListViewItem(
-    text: 'Structure',
-    type: ElementType.structure,
-    icon: Icons.account_tree,
-    provider: structuresFilterProvider
-  ),
+      text: 'Structure',
+      type: ElementType.structure,
+      icon: Icons.account_tree,
+      provider: structuresFilterProvider),
   _ListViewItem(
     text: 'Relationships',
     type: ElementType.relationship,
