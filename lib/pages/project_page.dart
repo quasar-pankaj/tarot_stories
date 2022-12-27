@@ -40,30 +40,34 @@ class ProjectPage extends ConsumerWidget {
                 Consumer(
                   builder:
                       (BuildContext context, WidgetRef ref, Widget? child) {
-                    return Toolbar(
-                      sortOrderButtonsProvider: spreadSortOrderButtonsProvider,
-                      sortOrderProvider: spreadSortOrderProvider,
-                      sortConditionButtonsProvider:
-                          spreadSortConditionButtonsProvider,
-                      sortConditionProvider: spreadSortConditionProvider,
-                      filterTextProvider: spreadFilterTextProvider,
-                      optionalWidget: DropdownButton<SpreadCategory>(
-                        items: SpreadCategory.values
-                            .map(
-                              (filter) => DropdownMenuItem<SpreadCategory>(
-                                value: filter,
-                                child: Text(
-                                  filter.toString(),
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Toolbar(
+                        sortOrderButtonsProvider:
+                            spreadSortOrderButtonsProvider,
+                        sortOrderProvider: spreadSortOrderProvider,
+                        sortConditionButtonsProvider:
+                            spreadSortConditionButtonsProvider,
+                        sortConditionProvider: spreadSortConditionProvider,
+                        filterTextProvider: spreadFilterTextProvider,
+                        optionalWidget: DropdownButton<SpreadCategory>(
+                          items: SpreadCategory.values
+                              .map(
+                                (filter) => DropdownMenuItem<SpreadCategory>(
+                                  value: filter,
+                                  child: Text(
+                                    filter.toString(),
+                                  ),
                                 ),
-                              ),
-                            )
-                            .toList(),
-                        onChanged: (value) {
-                          ref
-                              .read(spreadCategoryProvider.notifier)
-                              .update((state) => value!);
-                        },
-                        value: ref.watch(spreadCategoryProvider),
+                              )
+                              .toList(),
+                          onChanged: (value) {
+                            ref
+                                .read(spreadCategoryProvider.notifier)
+                                .update((state) => value!);
+                          },
+                          value: ref.watch(spreadCategoryProvider),
+                        ),
                       ),
                     );
                   },
