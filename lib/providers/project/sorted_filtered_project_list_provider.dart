@@ -8,13 +8,14 @@ import 'project_provider.dart';
 import 'project_sort_condition_provider.dart';
 import 'project_sort_order_provider.dart';
 
-final sortedFilteredProjectListProvider = Provider<Iterable<Project>>((ref) {
+final sortedFilteredProjectListProvider =
+    FutureProvider<Iterable<Project>>((ref) async {
   final condition = ref.watch(projectSortConditionProvider);
   final order = ref.watch(projectSortOrderProvider);
 
   final filterPattern = ref.watch(projectFilterTextProvider);
 
-  final projects = ref.watch(projectsProvider).value!.toList();
+  final projects = (await ref.watch(projectsProvider.future)).toList();
 
   Iterable<Project> sortedProjects;
   switch (condition) {

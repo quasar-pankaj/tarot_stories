@@ -39,12 +39,11 @@ class HomePage extends ConsumerWidget {
                 projectsProvider,
                 (previous, next) {
                   if (previous == null) return;
-                  if (next.asData!.value.length <
-                      previous.asData!.value.length) {
-                    final diff = previous.asData!.value.where(
-                      (element) => !next.asData!.value.contains(element),
+                  if (next.value!.length < previous.value!.length) {
+                    final diff = previous.value?.where(
+                      (element) => !next.value!.contains(element),
                     );
-                    final deleted = diff.first;
+                    final deleted = diff!.first;
                     final snackbar = SnackBar(
                       content: Text('Deleting ${deleted.name}...'),
                       action: SnackBarAction(
@@ -59,64 +58,74 @@ class HomePage extends ConsumerWidget {
                 },
               );
 
-              return GridView.extent(
-                shrinkWrap: true,
-                maxCrossAxisExtent: 150,
-                childAspectRatio: 0.75,
-                children: result
-                    .map(
-                      (project) => Dismissible(
-                        key: Key(project.toString()),
-                        child: Card(
-                          color: Colors.green,
-                          child: InkWell(
-                            onTap: () {
-                              ref
-                                  .read(openProjectProvider.notifier)
-                                  .update((state) => project);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return const ProjectPage();
-                                  },
-                                ),
-                              );
-                            },
-                            child: GridTile(
-                              header: Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: InPlaceEditor(
-                                    text: project.name,
-                                    onTextChanged: (newText) {
-                                      final Project renamedProject =
-                                          project.copyWith(
-                                        name: newText,
-                                        modifiedTimestamp: DateTime.now()
-                                            .millisecondsSinceEpoch,
-                                      );
-                                      ref
-                                          .read(projectsProvider.notifier)
-                                          .save(project: renamedProject);
+              return result.when(
+                data: (data) => GridView.extent(
+                  shrinkWrap: true,
+                  maxCrossAxisExtent: 150,
+                  childAspectRatio: 0.75,
+                  children: data
+                      .map(
+                        (project) => Dismissible(
+                          key: Key(project.toString()),
+                          child: Card(
+                            color: Colors.green,
+                            child: InkWell(
+                              onTap: () {
+                                ref
+                                    .read(openProjectProvider.notifier)
+                                    .update((state) => project);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return const ProjectPage();
                                     },
                                   ),
+                                );
+                              },
+                              child: GridTile(
+                                header: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: InPlaceEditor(
+                                      text: project.name,
+                                      onTextChanged: (newText) {
+                                        final Project renamedProject =
+                                            project.copyWith(
+                                          name: newText,
+                                          modifiedTimestamp: DateTime.now()
+                                              .millisecondsSinceEpoch,
+                                        );
+                                        ref
+                                            .read(projectsProvider.notifier)
+                                            .save(project: renamedProject);
+                                      },
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              child: const Icon(
-                                Icons.analytics_outlined,
-                                size: 80.6,
-                                color: Colors.yellowAccent,
+                                child: const Icon(
+                                  Icons.analytics_outlined,
+                                  size: 80.6,
+                                  color: Colors.yellowAccent,
+                                ),
                               ),
                             ),
                           ),
+                          onDismissed: (direction) => ref
+                              .read(projectsProvider.notifier)
+                              .delete(project),
                         ),
-                        onDismissed: (direction) => ref
-                            .read(projectsProvider.notifier)
-                            .delete(project),
-                      ),
-                    )
-                    .toList(),
+                      )
+                      .toList(),
+                ),
+                error: (Object error, StackTrace stackTrace) => Center(
+                  child: Text(
+                    error.toString(),
+                  ),
+                ),
+                loading: () => const Center(
+                  child: CircularProgressIndicator(),
+                ),
               );
             },
           ),
