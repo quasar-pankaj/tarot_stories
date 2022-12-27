@@ -24,12 +24,15 @@ class HomePage extends ConsumerWidget {
       title: 'Tarot Stories',
       body: Column(
         children: [
-          Toolbar(
-            sortOrderButtonsProvider: projectSortOrderButtonsProvider,
-            sortOrderProvider: projectSortOrderProvider,
-            sortConditionButtonsProvider: projectSortConditionButtonsProvider,
-            sortConditionProvider: projectSortConditionProvider,
-            filterTextProvider: projectFilterTextProvider,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Toolbar(
+              sortOrderButtonsProvider: projectSortOrderButtonsProvider,
+              sortOrderProvider: projectSortOrderProvider,
+              sortConditionButtonsProvider: projectSortConditionButtonsProvider,
+              sortConditionProvider: projectSortConditionProvider,
+              filterTextProvider: projectFilterTextProvider,
+            ),
           ),
           Consumer(
             builder: (context, ref, child) {
@@ -38,7 +41,7 @@ class HomePage extends ConsumerWidget {
               ref.listen(
                 projectsProvider,
                 (previous, next) {
-                  if (previous == null) return;
+                  if (previous == null || previous.value == null) return;
                   if (next.value!.length < previous.value!.length) {
                     final diff = previous.value?.where(
                       (element) => !next.value!.contains(element),
@@ -50,7 +53,7 @@ class HomePage extends ConsumerWidget {
                         label: 'Undo',
                         onPressed: () async => await ref
                             .read(projectsProvider.notifier)
-                            .save(project: deleted),
+                            .add(deleted),
                       ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(snackbar);
@@ -98,7 +101,7 @@ class HomePage extends ConsumerWidget {
                                         );
                                         ref
                                             .read(projectsProvider.notifier)
-                                            .save(project: renamedProject);
+                                            .save(renamedProject);
                                       },
                                     ),
                                   ),
@@ -134,7 +137,7 @@ class HomePage extends ConsumerWidget {
       fabIcon: Icons.add,
       fabToolTip: 'Add new Project',
       onFABPressed: () async =>
-          await ref.read(projectsProvider.notifier).save(),
+          await ref.read(projectsProvider.notifier).addNew(),
     );
   }
 }

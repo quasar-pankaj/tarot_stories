@@ -19,22 +19,44 @@ class ProjetcsNotifier extends AsyncNotifier<Iterable<Project>> {
     return projects;
   }
 
-  Future<void> save({Project? project}) async {
-    project ??= Project(
-      name: 'no name',
+  Future<void> addNew() async {
+    final project = Project(
+      name: 'No Name',
       synopsis: '',
       createdTimestamp: DateTime.now().millisecondsSinceEpoch,
       modifiedTimestamp: DateTime.now().millisecondsSinceEpoch,
     );
 
-    if (project.id == null) {
-      await ref.read(projectRepositoryProvider).insert(project);
-    } else {
-      await ref.read(projectRepositoryProvider).update(project);
-    }
+    await add(project);
+  }
+
+  Future<void> add(Project project) async {
+    state = const AsyncValue.loading();
+
+    final p = await ref.read(projectRepositoryProvider).insert(project);
+    final projects = [...state.value!, p];
+
+    state = AsyncValue.data(projects);
+  }
+
+  Future<void> save(Project project) async {
+    state = const AsyncValue.loading();
+
+    await ref.read(projectRepositoryProvider).update(project);
+    final projects = [
+      for (Project item in state.value!)
+        if (item.id == project.id) project else item
+    ];
+
+    state = AsyncValue.data(projects);
   }
 
   Future<void> delete(Project project) async {
+    state = const AsyncValue.loading();
+
     await ref.read(projectRepositoryProvider).delete(project);
+    final projects = state.value!.where((element) => element.id != project.id);
+
+    state = AsyncData(projects);
   }
 }
