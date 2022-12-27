@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../database/entities/project.dart';
-import '../providers/open_project_provider.dart';
+import '../providers/project/open_project_provider.dart';
 import '../providers/project/project_filter_text_provider.dart';
 import '../providers/project/project_provider.dart';
 import '../providers/project/project_sort_condition_buttons_provider.dart';

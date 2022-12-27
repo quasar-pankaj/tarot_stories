@@ -7,7 +7,7 @@ import '../database/entities/enum_element_type.dart';
 import '../database/repository.dart';
 import 'elements_repository_provider.dart';
 import 'generic_state_notifiers.dart';
-import 'open_project_provider.dart';
+import 'project/open_project_provider.dart';
 
 final elementsProvider = StateNotifierProvider.family<ElementsInMemoryNotifier,
     AsyncValue<Iterable<Element>>, ElementType>((ref, elementType) {

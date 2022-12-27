@@ -4,7 +4,7 @@ import '../database/entities/enum_spread_shape.dart';
 import '../database/entities/spread.dart';
 import '../database/repository.dart';
 import 'generic_state_notifiers.dart';
-import 'open_project_provider.dart';
+import 'project/open_project_provider.dart';
 import 'spreads_repository_provider.dart';
 
 final spreadInMemoryProvider = StateNotifierProvider.autoDispose<
