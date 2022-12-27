@@ -1,10 +1,12 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../database/entities/enum_element_type.dart';
-import '../providers/elements_in_memory_notifier_provider.dart';
-import 'in_place_editor.dart';
 import '../database/entities/element.dart' as entities;
+import '../database/entities/enum_element_type.dart';
+import '../providers/elements/element_filter_by_type_providers.dart';
+import '../providers/elements/elements_notifier_provider.dart';
+import 'in_place_editor.dart';
 
 class ElementsSidebar extends StatelessWidget {
   const ElementsSidebar({super.key});
@@ -16,7 +18,7 @@ class ElementsSidebar extends StatelessWidget {
       itemCount: _items.length,
       itemBuilder: (context, index) => Consumer(
         builder: (context, ref, child) {
-          final children = ref.watch(elementsProvider(_items[index].type));
+          final asyncChildren = ref.watch(_items[index].provider);
           return ExpansionTile(
             title: Row(
               children: [
@@ -24,14 +26,14 @@ class ElementsSidebar extends StatelessWidget {
                 const Spacer(),
                 IconButton(
                   onPressed: () => ref
-                      .read(elementsProvider(_items[index].type).notifier)
-                      .addNew(),
+                      .read(elementsProvider.notifier)
+                      .addNew(_items[index].type),
                   icon: const Icon(Icons.add),
                 ),
               ],
             ),
             leading: Icon(_items[index].icon),
-            children: children.when(
+            children: asyncChildren.when(
               data: (data) => data
                   .map(
                     (e) => Dismissible(
@@ -42,10 +44,7 @@ class ElementsSidebar extends StatelessWidget {
                           onTextChanged: (newText) {
                             final entities.Element element =
                                 e.copyWith(name: newText);
-                            ref
-                                .read(elementsProvider(_items[index].type)
-                                    .notifier)
-                                .update(element);
+                            ref.read(elementsProvider.notifier).save(element);
                           },
                         ),
                       ),
@@ -70,10 +69,12 @@ class _ListViewItem {
   String text;
   ElementType type;
   IconData icon;
+  FutureProvider<Iterable<entities.Element>> provider;
   _ListViewItem({
     required this.text,
     required this.type,
     required this.icon,
+    required this.provider,
   });
 }
 
@@ -82,45 +83,54 @@ List<_ListViewItem> _items = [
     text: 'Characters',
     type: ElementType.character,
     icon: Icons.face,
+    provider: charactersFilterProvider,
   ),
   _ListViewItem(
     text: 'Scenes/Sequels',
     type: ElementType.scene,
     icon: Icons.picture_in_picture,
+    provider: scenesFilterProvider,
   ),
   _ListViewItem(
     text: 'Places',
     type: ElementType.place,
     icon: Icons.house,
+    provider: placesFilterProvider,
   ),
   _ListViewItem(
     text: 'Props',
     type: ElementType.prop,
     icon: Icons.pending_actions,
+    provider: propsFilterProvider,
   ),
   _ListViewItem(
     text: 'Structure',
     type: ElementType.structure,
     icon: Icons.account_tree,
+    provider: structuresFilterProvider
   ),
   _ListViewItem(
     text: 'Relationships',
     type: ElementType.relationship,
     icon: Icons.link,
+    provider: relationshipsFilterProvider,
   ),
   _ListViewItem(
     text: 'Detached Beats',
     type: ElementType.beat,
     icon: Icons.broken_image,
+    provider: beatsFilterProvider,
   ),
   _ListViewItem(
     text: 'Uncategorised Stuff',
     type: ElementType.unassociated,
     icon: Icons.air,
+    provider: unassociatedFilterProvider,
   ),
   _ListViewItem(
     text: 'Recycled',
     type: ElementType.recycled,
     icon: Icons.recycling,
+    provider: recycledFilterProvider,
   ),
 ];

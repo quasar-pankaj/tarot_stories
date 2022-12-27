@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../database/app_database.dart';
-import '../database/entities/element.dart';
-import '../database/repository.dart';
+import '../../database/app_database.dart';
+import '../../database/entities/element.dart';
+import '../../database/repository.dart';
 
 final elementRepositoryProvider = Provider<Repository<Element>>((ref) {
   return Repository<Element>(
@@ -14,5 +14,5 @@ final elementRepositoryProvider = Provider<Repository<Element>>((ref) {
       final element = entity.copyWith(id: id);
       return element;
     },
-  );;
+  );
 });
