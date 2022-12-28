@@ -38,9 +38,13 @@ class Toolbar extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: Row(
-        children: [
+        children: <Widget>[
           const Spacer(),
           if (_optionalWidget != null) _optionalWidget!,
+          const VerticalDivider(
+            width: 8,
+            thickness: 6,
+          ),
           Expanded(
             child: TextField(
               decoration: InputDecoration(

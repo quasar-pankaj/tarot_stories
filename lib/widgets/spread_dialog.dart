@@ -137,7 +137,7 @@ class _SpreadDialogState extends ConsumerState<SpreadDialog>
                     backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.orange[900]!),
                   ),
-                  onPressed: () {},
+                  onPressed:()=> Navigator.pop(context,),
                   child: const SizedBox(
                     width: 50,
                     child: Center(
