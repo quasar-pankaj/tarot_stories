@@ -66,8 +66,6 @@ const _$SpreadShapeEnumMap = {
   SpreadShape.threeDisasterFourAct: 'threeDisasterFourAct',
   SpreadShape.superStructure: 'superStructure',
   SpreadShape.fourteenPointStructure: 'fourteenPointStructure',
-  SpreadShape.freytagPyramid: 'freytagPyramid',
-  SpreadShape.horseShoe: 'horseShoe',
   SpreadShape.relationship2Way: 'relationship2Way',
   SpreadShape.relationship3Way: 'relationship3Way',
   SpreadShape.triangle: 'triangle',

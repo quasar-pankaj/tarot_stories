@@ -26,8 +26,6 @@ enum SpreadShape {
   threeDisasterFourAct('3 Disaster 4 Act'),
   superStructure('Superstructure'),
   fourteenPointStructure('Fourteen Point Structure'),
-  freytagPyramid('Freytag\'s Pyramid'),
-  horseShoe('Horseshoe'),
   relationship2Way('Two Way Relationship'),
   relationship3Way('Three Way Relationship'),
   triangle('Triangle'),

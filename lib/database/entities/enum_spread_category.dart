@@ -21,7 +21,6 @@ enum SpreadCategory {
     SpreadShape.backstory,
   ]),
   structure('Structure', [
-    SpreadShape.freytagPyramid,
     SpreadShape.blakeSnyderBeatSheet,
     SpreadShape.fourteenPointStructure,
     SpreadShape.herosJourney12Circular,
