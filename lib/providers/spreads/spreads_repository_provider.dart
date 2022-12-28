@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../database/app_database.dart';
-import '../database/entities/spread.dart';
-import '../database/repository.dart';
+import '../../database/app_database.dart';
+import '../../database/entities/spread.dart';
+import '../../database/repository.dart';
 
 final spreadsRepositoryProvider = Provider<Repository<Spread>>((ref) {
   return Repository<Spread>(

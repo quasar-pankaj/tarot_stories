@@ -3,9 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../database/entities/enum_spread_category.dart';
 import '../database/entities/spread.dart';
-import '../providers/project/open_project_provider.dart';
 import '../providers/open_spread_provider.dart';
-import '../providers/spreads_in_memory_notifier_provider.dart';
+import '../providers/spreads/spreads_provider.dart';
 import '../spread_icons/four_card_vert_layout.dart';
 
 class SpreadDialog extends ConsumerStatefulWidget {
@@ -95,7 +94,7 @@ class _SpreadDialogState extends ConsumerState<SpreadDialog>
                                       ),
                                     );
                                 await ref
-                                    .watch(spreadInMemoryProvider.notifier)
+                                    .watch(spreadProvider.notifier)
                                     .add(spread!);
                                 if (!mounted) return;
                                 Navigator.of(context).pop();

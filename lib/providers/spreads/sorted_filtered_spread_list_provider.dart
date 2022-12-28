@@ -1,41 +1,21 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tarot_stories/database/entities/spread.dart';
 
-import '../database/entities/enum_spread_category.dart';
-import 'sort_condition_buttons_notifier.dart';
-import 'sort_order_buttons_notifier.dart';
-import 'spreads_in_memory_notifier_provider.dart';
-
-final spreadSortOrderButtonsProvider =
-    StateNotifierProvider<SortOrderButtonsNotifier, List<bool>>(
-        (ref) => SortOrderButtonsNotifier());
-
-final spreadSortConditionButtonsProvider =
-    StateNotifierProvider<SortConditionButtonsNotifier, List<bool>>(
-        (ref) => SortConditionButtonsNotifier());
-
-final spreadFilterTextProvider = StateProvider<String>((ref) {
-  return "";
-});
-
-final spreadCategoryProvider = StateProvider<SpreadCategory>((ref) {
-  return SpreadCategory.all;
-});
-
-final spreadSortOrderProvider = StateProvider<SortOrder>((ref) {
-  return SortOrder.descending;
-});
-
-final spreadSortConditionProvider = StateProvider<SortCondition>((ref) {
-  return SortCondition.dateModified;
-});
+import '../../database/entities/enum_spread_category.dart';
+import '../../database/entities/spread.dart';
+import '../sort_condition_buttons_notifier.dart';
+import '../sort_order_buttons_notifier.dart';
+import 'spread_category_provider.dart';
+import 'spread_filter_text_provider.dart';
+import 'spread_sort_condition_provider.dart';
+import 'spread_sort_order_provider.dart';
+import 'spreads_provider.dart';
 
 final sortedFilteredSpreadListProvider =
     FutureProvider.autoDispose<List<Spread>>((ref) async {
   final condition = ref.watch(spreadSortConditionProvider);
   final order = ref.watch(spreadSortOrderProvider);
 
-  final spreads = ref.watch(spreadInMemoryProvider).value;
+  final spreads = ref.watch(spreadProvider).value;
   final filterPattern = ref.watch(spreadFilterTextProvider);
   final filterCondition = ref.watch(spreadCategoryProvider);
 
