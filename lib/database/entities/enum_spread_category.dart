@@ -32,7 +32,6 @@ enum SpreadCategory {
   relationship('Relationship', [
     SpreadShape.horiz1,
     SpreadShape.relationship3Way,
-    SpreadShape.relationship5Way,
   ]),
   all('All', SpreadShape.values);
 

@@ -16,12 +16,8 @@ enum SpreadShape {
   characterCross('Character Cross'),
   backstory('Backstory'),
   celticCross('Celtic Cross'),
-  cross4('Four Card Cross'),
-  cross5('Five Card Cross'),
-  cross6('Six Card Cross'),
   pentagram('Pentagram'),
   hexagram('Hexagram'),
-  heptagram('Heptagram'),
   herosJourney12Circular("Hero's Journey 12 Card Circular"),
   herosJourney16Circular("Hero's Journey 16 Card Circular"),
   herosJourney12MByN("Hero's Journey 12 Card 4x3"),
@@ -34,8 +30,6 @@ enum SpreadShape {
   horseShoe('Horseshoe'),
   relationship2Way('Two Way Relationship'),
   relationship3Way('Three Way Relationship'),
-  relationship5Way('Five Way Relationship'),
-  circularN('Circular N'),
   triangle('Triangle'),
   square('Square');
 

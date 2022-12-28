@@ -29,6 +29,8 @@ const _$ElementTypeEnumMap = {
   ElementType.prop: 'prop',
   ElementType.scene: 'scene',
   ElementType.structure: 'structure',
+  ElementType.relationship: 'relationship',
   ElementType.beat: 'beat',
   ElementType.unassociated: 'unassociated',
+  ElementType.recycled: 'recycled',
 };
