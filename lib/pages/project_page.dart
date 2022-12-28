@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../database/entities/enum_spread_category.dart';
 import '../database/entities/spread.dart';
 import '../providers/project/open_project_provider.dart';
-import '../providers/open_spread_provider.dart';
+import '../providers/spreads/open_spread_provider.dart';
 import '../providers/spreads/sorted_filtered_spread_list_provider.dart';
 import '../providers/spreads/spread_category_provider.dart';
 import '../providers/spreads/spread_filter_text_provider.dart';

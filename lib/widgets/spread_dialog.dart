@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../database/entities/enum_spread_category.dart';
 import '../database/entities/spread.dart';
-import '../providers/open_spread_provider.dart';
+import '../providers/spreads/open_spread_provider.dart';
 import '../providers/spreads/spreads_provider.dart';
 import '../spread_icons/four_card_vert_layout.dart';
 
