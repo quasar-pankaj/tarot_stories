@@ -17,7 +17,7 @@ class SpreadNotifier extends AsyncNotifier<Iterable<Spread>> {
     return await spreads.getAllUnsorted();
   }
 
-  Future<void> addNew(SpreadShape layoutType) async {
+  Future<Spread> addNew(SpreadShape layoutType) async {
     final selectedElement = ref.watch(selectedElementProvider);
     final spread = Spread(
       name: 'No Name',
@@ -28,14 +28,16 @@ class SpreadNotifier extends AsyncNotifier<Iterable<Spread>> {
       readings: [],
     );
 
-    await add(spread);
+    final s = await add(spread);
+    return s;
   }
 
-  Future<void> add(Spread spread) async {
+  Future<Spread> add(Spread spread) async {
     state = const AsyncValue.loading();
     final s = await ref.read(spreadsRepositoryProvider).insert(spread);
     final spreads = [...?state.value, s];
     state = AsyncValue.data(spreads);
+    return s;
   }
 
   Future<void> delete(Spread spread) async {

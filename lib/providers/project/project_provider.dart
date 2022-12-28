@@ -19,7 +19,7 @@ class ProjetcsNotifier extends AsyncNotifier<Iterable<Project>> {
     return projects;
   }
 
-  Future<void> addNew() async {
+  Future<Project> addNew() async {
     final project = Project(
       name: 'No Name',
       synopsis: '',
@@ -27,16 +27,19 @@ class ProjetcsNotifier extends AsyncNotifier<Iterable<Project>> {
       modifiedTimestamp: DateTime.now().millisecondsSinceEpoch,
     );
 
-    await add(project);
+    final p = await add(project);
+    return p;
   }
 
-  Future<void> add(Project project) async {
+  Future<Project> add(Project project) async {
     state = const AsyncValue.loading();
 
     final p = await ref.read(projectRepositoryProvider).insert(project);
     final projects = [...state.value!, p];
 
     state = AsyncValue.data(projects);
+
+    return p;
   }
 
   Future<void> save(Project project) async {

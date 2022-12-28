@@ -20,17 +20,18 @@ class ElementsNotifier extends AsyncNotifier<Iterable<Element>> {
     return await elementsRepo.getAllUnsorted();
   }
 
-  Future<void> addNew(ElementType type) async {
+  Future<Element> addNew(ElementType type) async {
     final project = ref.read(openProjectProvider);
     final element = Element(
       projectId: project!.id!,
       name: 'No Name',
       elementType: type,
     );
-    await add(element);
+    final elem = await add(element);
+    return elem;
   }
 
-  Future<void> add(Element element) async {
+  Future<Element> add(Element element) async {
     state = const AsyncValue.loading();
 
     final elem = await ref.read(elementRepositoryProvider).insert(element);
@@ -38,6 +39,8 @@ class ElementsNotifier extends AsyncNotifier<Iterable<Element>> {
     final elements = [...?state.value, elem];
 
     state = AsyncValue.data(elements);
+
+    return elem;
   }
 
   Future<void> save(Element element) async {

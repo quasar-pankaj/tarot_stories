@@ -78,24 +78,13 @@ class _SpreadDialogState extends ConsumerState<SpreadDialog>
                           .map(
                             (shape) => InkWell(
                               onTap: () async {
-                                final spread = ref
-                                    .read(openSpreadProvider.notifier)
-                                    .update(
-                                      (state) => Spread(
-                                        name: 'no name',
-                                        createdTimestamp: DateTime.now()
-                                            .millisecondsSinceEpoch,
-                                        modifiedTimestamp: DateTime.now()
-                                            .millisecondsSinceEpoch,
-                                        elementId: -1,
-                                        // ref.watch(openProjectProvider)!.id!,
-                                        layoutType: shape,
-                                        readings: [],
-                                      ),
+                                final spread = await ref
+                                    .read(spreadProvider.notifier)
+                                    .addNew(shape);
+                                ref.read(openSpreadProvider.notifier).update(
+                                      (state) => spread,
                                     );
-                                await ref
-                                    .watch(spreadProvider.notifier)
-                                    .add(spread!);
+
                                 if (!mounted) return;
                                 Navigator.of(context).pop();
                               },
@@ -137,7 +126,9 @@ class _SpreadDialogState extends ConsumerState<SpreadDialog>
                     backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.orange[900]!),
                   ),
-                  onPressed:()=> Navigator.pop(context,),
+                  onPressed: () => Navigator.pop(
+                    context,
+                  ),
                   child: const SizedBox(
                     width: 50,
                     child: Center(
