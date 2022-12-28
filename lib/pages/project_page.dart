@@ -5,8 +5,14 @@ import '../database/entities/enum_spread_category.dart';
 import '../database/entities/spread.dart';
 import '../providers/project/open_project_provider.dart';
 import '../providers/open_spread_provider.dart';
-import '../providers/spread_sort_and_filter_providers.dart';
-import '../providers/spreads_in_memory_notifier_provider.dart';
+import '../providers/spreads/sorted_filtered_spread_list_provider.dart';
+import '../providers/spreads/spread_category_provider.dart';
+import '../providers/spreads/spread_filter_text_provider.dart';
+import '../providers/spreads/spread_sort_condition_buttons_provider.dart';
+import '../providers/spreads/spread_sort_condition_provider.dart';
+import '../providers/spreads/spread_sort_order_buttons_provider.dart';
+import '../providers/spreads/spread_sort_order_provider.dart';
+import '../providers/spreads/spreads_provider.dart';
 import '../widgets/elements_sidebar.dart';
 import '../widgets/in_place_editor.dart';
 import '../widgets/spread_dialog.dart';
@@ -117,9 +123,9 @@ class ProjectPage extends ConsumerWidget {
                                                       .millisecondsSinceEpoch,
                                                 );
                                                 ref
-                                                    .read(spreadInMemoryProvider
-                                                        .notifier)
-                                                    .update(renamedSpread);
+                                                    .read(
+                                                        spreadProvider.notifier)
+                                                    .save(renamedSpread);
                                               },
                                             ),
                                           ),
@@ -133,8 +139,8 @@ class ProjectPage extends ConsumerWidget {
                                     ),
                                   ),
                                   onDismissed: (direction) => ref
-                                      .read(spreadInMemoryProvider.notifier)
-                                      .remove(spread),
+                                      .read(spreadProvider.notifier)
+                                      .delete(spread),
                                 ),
                               )
                               .toList(),
