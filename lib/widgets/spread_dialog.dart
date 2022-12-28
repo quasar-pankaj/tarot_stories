@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tarot_stories/spread_icons/single_card_layout.dart';
 
 import '../database/entities/enum_spread_category.dart';
 import '../providers/spreads/open_spread_provider.dart';
@@ -99,12 +100,7 @@ class _SpreadDialogState extends ConsumerState<SpreadDialog>
                                       shape.toString(),
                                     ),
                                   ),
-                                  child: const FourCardVertLayout(
-                                    label1: '1',
-                                    label2: '2',
-                                    label3: '3',
-                                    label4: '4',
-                                  ),
+                                  child: const SingleCardLayout(label1: '1'),
                                 ),
                               ),
                             ),
