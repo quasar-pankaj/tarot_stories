@@ -119,24 +119,6 @@ class _SpreadDialogState extends ConsumerState<SpreadDialog>
                 ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.orange[900]!),
-                  ),
-                  onPressed: () => Navigator.pop(
-                    context,
-                  ),
-                  child: const SizedBox(
-                    width: 50,
-                    child: Center(
-                      child: Text('OK'),
-                    ),
-                  ),
-                ),
-                const VerticalDivider(
-                  width: 10,
-                ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.amber[900]!),
                   ),
                   onPressed: () => Navigator.pop(context),
