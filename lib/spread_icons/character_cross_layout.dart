@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tarot_stories/spread_icons/box_widget.dart';
 
 class CharacterCrossLayout extends StatelessWidget {
-  static const _width = 35.0;
+  static const _width = 25.0;
 
   final String _card1, _card2, _card3, _card4, _card5, _card6;
 
@@ -26,9 +26,15 @@ class CharacterCrossLayout extends StatelessWidget {
     return Column(
       children: [
         const Spacer(),
-        BoxWidget(
-          width: _width,
-          label: _card5,
+        Row(
+          children: [
+            const Spacer(),
+            BoxWidget(
+              width: _width,
+              label: _card5,
+            ),
+            const Spacer(),
+          ],
         ),
         const Divider(
           height: 10,
@@ -64,14 +70,21 @@ class CharacterCrossLayout extends StatelessWidget {
               width: _width,
               label: _card6,
             ),
+            const Spacer(),
           ],
         ),
         const Divider(
           height: 10,
         ),
-        BoxWidget(
-          width: _width,
-          label: _card3,
+        Row(
+          children: [
+            const Spacer(),
+            BoxWidget(
+              width: _width,
+              label: _card3,
+            ),
+            const Spacer(),
+          ],
         ),
         const Spacer(),
       ],

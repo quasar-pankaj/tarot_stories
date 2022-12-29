@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tarot_stories/spread_icons/box_widget.dart';
 
 class BackstoryLayout extends StatelessWidget {
-  static const _width = 35.0;
+  static const _width = 25.0;
 
   final String _card1, _card2, _card3, _card4;
 
@@ -21,9 +21,15 @@ class BackstoryLayout extends StatelessWidget {
     return Column(
       children: [
         const Spacer(),
-        BoxWidget(
-          width: _width,
-          label: _card1,
+        Row(
+          children: [
+            const Spacer(),
+            BoxWidget(
+              width: _width,
+              label: _card1,
+            ),
+            const Spacer(),
+          ],
         ),
         const Divider(
           height: 10,
@@ -43,14 +49,21 @@ class BackstoryLayout extends StatelessWidget {
               width: _width,
               label: _card3,
             ),
+            const Spacer(),
           ],
         ),
         const Divider(
           height: 10,
         ),
-        BoxWidget(
-          width: _width,
-          label: _card4,
+        Row(
+          children: [
+            const Spacer(),
+            BoxWidget(
+              width: _width,
+              label: _card4,
+            ),
+            const Spacer(),
+          ],
         ),
         const Spacer(),
       ],

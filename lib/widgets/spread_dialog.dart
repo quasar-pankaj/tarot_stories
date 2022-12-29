@@ -100,7 +100,7 @@ class _SpreadDialogState extends ConsumerState<SpreadDialog>
                                       shape.toString(),
                                     ),
                                   ),
-                                  child: const SingleCardLayout(label1: '1'),
+                                  child: shape.widget,
                                 ),
                               ),
                             ),
