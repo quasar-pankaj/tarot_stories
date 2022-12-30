@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'enum_element_type.dart';
-import 'spread.dart';
 
 part 'element.freezed.dart';
 part 'element.g.dart';

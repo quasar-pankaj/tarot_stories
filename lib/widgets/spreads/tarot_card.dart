@@ -1,7 +1,7 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 
-import '../services/card_model.dart';
+import '../../services/card_model.dart';
 import 'card_back.dart';
 import 'card_front.dart';
 

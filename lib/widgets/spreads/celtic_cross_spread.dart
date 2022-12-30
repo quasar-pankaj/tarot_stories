@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../services/card_service.dart';
+import '../../services/card_service.dart';
 import 'tarot_card.dart';
 
-class CelticCross extends StatelessWidget {
-  const CelticCross({super.key});
+class CelticCrossSpread extends StatelessWidget {
+  const CelticCrossSpread({super.key});
 
   @override
   Widget build(BuildContext context) {
