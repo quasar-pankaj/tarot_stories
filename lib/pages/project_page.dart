@@ -15,9 +15,7 @@ import '../providers/journals/journal_sort_order_provider.dart';
 import '../providers/journals/journals_provider.dart';
 import '../widgets/elements_sidebar.dart';
 import '../widgets/in_place_editor.dart';
-import '../widgets/spread_dialog.dart';
 import '../widgets/toolbar.dart';
-import 'page_base.dart';
 
 class ProjectPage extends ConsumerWidget {
   const ProjectPage({super.key});
@@ -26,8 +24,10 @@ class ProjectPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final openProject = ref.watch(openProjectProvider);
 
-    return PageBase(
-      title: openProject!.name,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(openProject!.name),
+      ),
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -158,16 +158,6 @@ class ProjectPage extends ConsumerWidget {
           ),
         ],
       ),
-      fabIcon: Icons.add,
-      fabToolTip: 'Add New Spread',
-      onFABPressed: () {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return const SpreadDialog();
-          },
-        );
-      },
     );
   }
 }

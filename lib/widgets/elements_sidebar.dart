@@ -54,6 +54,10 @@ class ElementsSidebar extends StatelessWidget {
                                     .save(element);
                               },
                             ),
+                            trailing: IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.more_vert),
+                            ),
                           ),
                         ),
                       ),
