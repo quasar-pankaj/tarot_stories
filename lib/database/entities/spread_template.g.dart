@@ -73,11 +73,11 @@ const _$SpreadShapeEnumMap = {
 };
 
 const _$SpreadCategoryEnumMap = {
-  SpreadCategory.character: 'character',
-  SpreadCategory.sceneSequel: 'sceneSequel',
-  SpreadCategory.location: 'location',
-  SpreadCategory.prop: 'prop',
-  SpreadCategory.structure: 'structure',
-  SpreadCategory.relationship: 'relationship',
-  SpreadCategory.all: 'all',
+  JournalCategory.character: 'character',
+  JournalCategory.sceneSequel: 'sceneSequel',
+  JournalCategory.location: 'location',
+  JournalCategory.prop: 'prop',
+  JournalCategory.structure: 'structure',
+  JournalCategory.relationship: 'relationship',
+  JournalCategory.all: 'all',
 };

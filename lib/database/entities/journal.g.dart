@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'spread.dart';
+part of 'journal.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$$Spread _$$$SpreadFromJson(Map<String, dynamic> json) => _$$Spread(
+_$$Journal _$$$JournalFromJson(Map<String, dynamic> json) => _$$Journal(
       id: json['id'] as int?,
       name: json['name'] as String,
       query: json['query'] as String?,
@@ -19,7 +19,8 @@ _$$Spread _$$$SpreadFromJson(Map<String, dynamic> json) => _$$Spread(
           .toList(),
     );
 
-Map<String, dynamic> _$$$SpreadToJson(_$$Spread instance) => <String, dynamic>{
+Map<String, dynamic> _$$$JournalToJson(_$$Journal instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'query': instance.query,

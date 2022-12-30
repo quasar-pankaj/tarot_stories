@@ -4,22 +4,23 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tarot_stories/database/entities/enum_spread_shape.dart';
 import 'package:tarot_stories/providers/elements/selected_element_provider.dart';
 
-import '../../database/entities/spread.dart';
-import 'spreads_repository_provider.dart';
+import '../../database/entities/journal.dart';
+import 'journals_repository_provider.dart';
 
-final spreadProvider =
-    AsyncNotifierProvider<SpreadNotifier, Iterable<Spread>>(SpreadNotifier.new);
+final journalProvider =
+    AsyncNotifierProvider<JournalNotifier, Iterable<Journal>>(
+        JournalNotifier.new);
 
-class SpreadNotifier extends AsyncNotifier<Iterable<Spread>> {
+class JournalNotifier extends AsyncNotifier<Iterable<Journal>> {
   @override
-  FutureOr<Iterable<Spread>> build() async {
-    final spreads = ref.watch(spreadsRepositoryProvider);
+  FutureOr<Iterable<Journal>> build() async {
+    final spreads = ref.watch(journalsRepositoryProvider);
     return await spreads.getAllUnsorted();
   }
 
-  Future<Spread> addNew(SpreadShape layoutType) async {
+  Future<Journal> addNew(SpreadShape layoutType) async {
     final selectedElement = ref.watch(selectedElementProvider);
-    final spread = Spread(
+    final spread = Journal(
       name: 'No Name',
       createdTimestamp: DateTime.now().millisecondsSinceEpoch,
       modifiedTimestamp: DateTime.now().millisecondsSinceEpoch,
@@ -32,26 +33,26 @@ class SpreadNotifier extends AsyncNotifier<Iterable<Spread>> {
     return s;
   }
 
-  Future<Spread> add(Spread spread) async {
+  Future<Journal> add(Journal spread) async {
     state = const AsyncValue.loading();
-    final s = await ref.read(spreadsRepositoryProvider).insert(spread);
+    final s = await ref.read(journalsRepositoryProvider).insert(spread);
     final spreads = [...?state.value, s];
     state = AsyncValue.data(spreads);
     return s;
   }
 
-  Future<void> delete(Spread spread) async {
+  Future<void> delete(Journal spread) async {
     state = const AsyncValue.loading();
-    await ref.read(spreadsRepositoryProvider).delete(spread);
+    await ref.read(journalsRepositoryProvider).delete(spread);
     final spreads = state.value!.where((element) => element.id != spread.id);
     state = AsyncValue.data(spreads);
   }
 
-  Future<void> save(Spread spread) async {
+  Future<void> save(Journal spread) async {
     state = const AsyncValue.loading();
-    await ref.read(spreadsRepositoryProvider).update(spread);
+    await ref.read(journalsRepositoryProvider).update(spread);
     final spreads = [
-      for (Spread item in state.value!)
+      for (Journal item in state.value!)
         if (spread.id == item.id) spread else item
     ];
     state = AsyncValue.data(spreads);

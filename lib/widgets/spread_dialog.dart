@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tarot_stories/spread_icons/single_card_layout.dart';
 
 import '../database/entities/enum_spread_category.dart';
-import '../providers/spreads/open_spread_provider.dart';
-import '../providers/spreads/spreads_provider.dart';
+import '../providers/journals/open_journal_provider.dart';
+import '../providers/journals/journals_provider.dart';
 import '../spread_icons/four_card_vert_layout.dart';
 
 class SpreadDialog extends ConsumerStatefulWidget {
@@ -22,7 +22,7 @@ class _SpreadDialogState extends ConsumerState<SpreadDialog>
   void initState() {
     super.initState();
     _tabController =
-        TabController(length: SpreadCategory.values.length, vsync: this);
+        TabController(length: JournalCategory.values.length, vsync: this);
   }
 
   @override
@@ -56,7 +56,7 @@ class _SpreadDialogState extends ConsumerState<SpreadDialog>
               indicatorPadding: const EdgeInsets.all(5),
               isScrollable: true,
               controller: _tabController,
-              tabs: SpreadCategory.values
+              tabs: JournalCategory.values
                   .map(
                     (category) => Text(
                       category.toString(),
@@ -68,7 +68,7 @@ class _SpreadDialogState extends ConsumerState<SpreadDialog>
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: SpreadCategory.values
+              children: JournalCategory.values
                   .map(
                     (category) => GridView.extent(
                       maxCrossAxisExtent: 250,
@@ -79,9 +79,9 @@ class _SpreadDialogState extends ConsumerState<SpreadDialog>
                             (shape) => InkWell(
                               onTap: () async {
                                 final spread = await ref
-                                    .read(spreadProvider.notifier)
+                                    .read(journalProvider.notifier)
                                     .addNew(shape);
-                                ref.read(openSpreadProvider.notifier).update(
+                                ref.read(openJournalProvider.notifier).update(
                                       (state) => spread,
                                     );
 

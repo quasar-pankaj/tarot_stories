@@ -27,7 +27,7 @@ mixin _$SpreadTemplate {
   List<PositionTemplate> get positions => throw _privateConstructorUsedError;
   List<Reading> get readings => throw _privateConstructorUsedError;
   List<int> get cardOrdering => throw _privateConstructorUsedError;
-  List<SpreadCategory> get categories => throw _privateConstructorUsedError;
+  List<JournalCategory> get categories => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +49,7 @@ abstract class $SpreadTemplateCopyWith<$Res> {
       List<PositionTemplate> positions,
       List<Reading> readings,
       List<int> cardOrdering,
-      List<SpreadCategory> categories});
+      List<JournalCategory> categories});
 }
 
 /// @nodoc
@@ -106,7 +106,7 @@ class _$SpreadTemplateCopyWithImpl<$Res, $Val extends SpreadTemplate>
       categories: null == categories
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
-              as List<SpreadCategory>,
+              as List<JournalCategory>,
     ) as $Val);
   }
 }
@@ -127,7 +127,7 @@ abstract class _$$$SpreadTemplateCopyWith<$Res>
       List<PositionTemplate> positions,
       List<Reading> readings,
       List<int> cardOrdering,
-      List<SpreadCategory> categories});
+      List<JournalCategory> categories});
 }
 
 /// @nodoc
@@ -182,7 +182,7 @@ class __$$$SpreadTemplateCopyWithImpl<$Res>
       categories: null == categories
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
-              as List<SpreadCategory>,
+              as List<JournalCategory>,
     ));
   }
 }
@@ -198,7 +198,7 @@ class _$$SpreadTemplate implements $SpreadTemplate {
       required final List<PositionTemplate> positions,
       required final List<Reading> readings,
       required final List<int> cardOrdering,
-      required final List<SpreadCategory> categories})
+      required final List<JournalCategory> categories})
       : _positions = positions,
         _readings = readings,
         _cardOrdering = cardOrdering,
@@ -236,9 +236,9 @@ class _$$SpreadTemplate implements $SpreadTemplate {
     return EqualUnmodifiableListView(_cardOrdering);
   }
 
-  final List<SpreadCategory> _categories;
+  final List<JournalCategory> _categories;
   @override
-  List<SpreadCategory> get categories {
+  List<JournalCategory> get categories {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_categories);
   }
@@ -303,7 +303,7 @@ abstract class $SpreadTemplate implements SpreadTemplate {
       required final List<PositionTemplate> positions,
       required final List<Reading> readings,
       required final List<int> cardOrdering,
-      required final List<SpreadCategory> categories}) = _$$SpreadTemplate;
+      required final List<JournalCategory> categories}) = _$$SpreadTemplate;
 
   factory $SpreadTemplate.fromJson(Map<String, dynamic> json) =
       _$$SpreadTemplate.fromJson;
@@ -323,7 +323,7 @@ abstract class $SpreadTemplate implements SpreadTemplate {
   @override
   List<int> get cardOrdering;
   @override
-  List<SpreadCategory> get categories;
+  List<JournalCategory> get categories;
   @override
   @JsonKey(ignore: true)
   _$$$SpreadTemplateCopyWith<_$$SpreadTemplate> get copyWith =>

@@ -1,13 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../database/app_database.dart';
-import '../../database/entities/spread.dart';
+import '../../database/entities/journal.dart';
 import '../../database/repository.dart';
 
-final spreadsRepositoryProvider = Provider<Repository<Spread>>((ref) {
-  return Repository<Spread>(
+final journalsRepositoryProvider = Provider<Repository<Journal>>((ref) {
+  return Repository<Journal>(
     storeName: AppDatabase.spreads,
-    getEntity: (map) => Spread.fromJson(map),
+    getEntity: (map) => Journal.fromJson(map),
     getId: (entity) => entity.id!,
     getMap: (entity) => entity.toJson(),
     setId: (entity, id) {

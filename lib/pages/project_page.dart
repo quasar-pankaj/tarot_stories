@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../database/entities/enum_spread_category.dart';
-import '../database/entities/spread.dart';
+import '../database/entities/journal.dart';
 import '../providers/project/open_project_provider.dart';
-import '../providers/spreads/open_spread_provider.dart';
-import '../providers/spreads/sorted_filtered_spread_list_provider.dart';
-import '../providers/spreads/spread_category_provider.dart';
-import '../providers/spreads/spread_filter_text_provider.dart';
-import '../providers/spreads/spread_sort_condition_buttons_provider.dart';
-import '../providers/spreads/spread_sort_condition_provider.dart';
-import '../providers/spreads/spread_sort_order_buttons_provider.dart';
-import '../providers/spreads/spread_sort_order_provider.dart';
-import '../providers/spreads/spreads_provider.dart';
+import '../providers/journals/open_journal_provider.dart';
+import '../providers/journals/sorted_filtered_journal_list_provider.dart';
+import '../providers/journals/journal_category_provider.dart';
+import '../providers/journals/journal_filter_text_provider.dart';
+import '../providers/journals/journal_sort_condition_buttons_provider.dart';
+import '../providers/journals/journal_sort_condition_provider.dart';
+import '../providers/journals/journal_sort_order_buttons_provider.dart';
+import '../providers/journals/journal_sort_order_provider.dart';
+import '../providers/journals/journals_provider.dart';
 import '../widgets/elements_sidebar.dart';
 import '../widgets/in_place_editor.dart';
 import '../widgets/spread_dialog.dart';
@@ -50,16 +50,16 @@ class ProjectPage extends ConsumerWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Toolbar(
                         sortOrderButtonsProvider:
-                            spreadSortOrderButtonsProvider,
-                        sortOrderProvider: spreadSortOrderProvider,
+                            journalSortOrderButtonsProvider,
+                        sortOrderProvider: journalSortOrderProvider,
                         sortConditionButtonsProvider:
-                            spreadSortConditionButtonsProvider,
-                        sortConditionProvider: spreadSortConditionProvider,
-                        filterTextProvider: spreadFilterTextProvider,
-                        optionalWidget: DropdownButton<SpreadCategory>(
-                          items: SpreadCategory.values
+                            journalSortConditionButtonsProvider,
+                        sortConditionProvider: journalSortConditionProvider,
+                        filterTextProvider: journalFilterTextProvider,
+                        optionalWidget: DropdownButton<JournalCategory>(
+                          items: JournalCategory.values
                               .map(
-                                (filter) => DropdownMenuItem<SpreadCategory>(
+                                (filter) => DropdownMenuItem<JournalCategory>(
                                   value: filter,
                                   child: Text(
                                     filter.toString(),
@@ -69,10 +69,10 @@ class ProjectPage extends ConsumerWidget {
                               .toList(),
                           onChanged: (value) {
                             ref
-                                .read(spreadCategoryProvider.notifier)
+                                .read(journalCategoryProvider.notifier)
                                 .update((state) => value!);
                           },
-                          value: ref.watch(spreadCategoryProvider),
+                          value: ref.watch(journalCategoryProvider),
                         ),
                       ),
                     );
@@ -80,7 +80,7 @@ class ProjectPage extends ConsumerWidget {
                 ),
                 Consumer(
                   builder: (context, ref, child) {
-                    final result = ref.watch(sortedFilteredSpreadListProvider);
+                    final result = ref.watch(sortedFilteredJournalListProvider);
 
                     return result.when(
                       data: (data) {
@@ -97,7 +97,7 @@ class ProjectPage extends ConsumerWidget {
                                     child: InkWell(
                                       onTap: () {
                                         ref
-                                            .read(openSpreadProvider.notifier)
+                                            .read(openJournalProvider.notifier)
                                             .update((state) => spread);
                                         Navigator.push(
                                           context,
@@ -115,7 +115,7 @@ class ProjectPage extends ConsumerWidget {
                                             child: InPlaceEditor(
                                               text: spread.name,
                                               onTextChanged: (newText) {
-                                                final Spread renamedSpread =
+                                                final Journal renamedSpread =
                                                     spread.copyWith(
                                                   name: newText,
                                                   modifiedTimestamp: DateTime
@@ -123,8 +123,8 @@ class ProjectPage extends ConsumerWidget {
                                                       .millisecondsSinceEpoch,
                                                 );
                                                 ref
-                                                    .read(
-                                                        spreadProvider.notifier)
+                                                    .read(journalProvider
+                                                        .notifier)
                                                     .save(renamedSpread);
                                               },
                                             ),
@@ -139,7 +139,7 @@ class ProjectPage extends ConsumerWidget {
                                     ),
                                   ),
                                   onDismissed: (direction) => ref
-                                      .read(spreadProvider.notifier)
+                                      .read(journalProvider.notifier)
                                       .delete(spread),
                                 ),
                               )

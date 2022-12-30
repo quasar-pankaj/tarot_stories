@@ -3,12 +3,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'enum_spread_shape.dart';
 import 'reading.dart';
 
-part 'spread.freezed.dart';
-part 'spread.g.dart';
+part 'journal.freezed.dart';
+part 'journal.g.dart';
 
 @freezed
-class Spread with _$Spread {
-  factory Spread({
+class Journal with _$Journal {
+  factory Journal({
     int? id,
     required String name,
     String? query,
@@ -17,7 +17,7 @@ class Spread with _$Spread {
     required int elementId,
     required SpreadShape layoutType,
     required List<Reading> readings,
-  }) = $Spread;
+  }) = $Journal;
 
-  factory Spread.fromJson(Map<String, Object?> json) => _$SpreadFromJson(json);
+  factory Journal.fromJson(Map<String, Object?> json) => _$JournalFromJson(json);
 }

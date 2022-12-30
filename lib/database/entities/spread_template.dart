@@ -20,7 +20,7 @@ class SpreadTemplate with _$SpreadTemplate {
     required List<PositionTemplate> positions,
     required List<Reading> readings,
     required List<int> cardOrdering,
-    required List<SpreadCategory> categories,
+    required List<JournalCategory> categories,
   }) = $SpreadTemplate;
 
   factory SpreadTemplate.fromJson(Map<String, Object?> json) =>

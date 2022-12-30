@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final spreadFilterTextProvider = StateProvider<String>((ref) {
+final journalFilterTextProvider = StateProvider<String>((ref) {
   return "";
 });

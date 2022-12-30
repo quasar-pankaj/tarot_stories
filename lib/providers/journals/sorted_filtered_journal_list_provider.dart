@@ -1,25 +1,25 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../database/entities/enum_spread_category.dart';
-import '../../database/entities/spread.dart';
+import '../../database/entities/journal.dart';
 import '../sort_condition_buttons_notifier.dart';
 import '../sort_order_buttons_notifier.dart';
-import 'spread_category_provider.dart';
-import 'spread_filter_text_provider.dart';
-import 'spread_sort_condition_provider.dart';
-import 'spread_sort_order_provider.dart';
-import 'spreads_provider.dart';
+import 'journal_category_provider.dart';
+import 'journal_filter_text_provider.dart';
+import 'journal_sort_condition_provider.dart';
+import 'journal_sort_order_provider.dart';
+import 'journals_provider.dart';
 
-final sortedFilteredSpreadListProvider =
-    FutureProvider.autoDispose<List<Spread>>((ref) async {
-  final condition = ref.watch(spreadSortConditionProvider);
-  final order = ref.watch(spreadSortOrderProvider);
+final sortedFilteredJournalListProvider =
+    FutureProvider.autoDispose<List<Journal>>((ref) async {
+  final condition = ref.watch(journalSortConditionProvider);
+  final order = ref.watch(journalSortOrderProvider);
 
-  final spreads = ref.watch(spreadProvider).value;
-  final filterPattern = ref.watch(spreadFilterTextProvider);
-  final filterCondition = ref.watch(spreadCategoryProvider);
+  final spreads = ref.watch(journalProvider).value;
+  final filterPattern = ref.watch(journalFilterTextProvider);
+  final filterCondition = ref.watch(journalCategoryProvider);
 
-  late final List<Spread> sortedSpreads;
+  late final List<Journal> sortedSpreads;
 
   switch (condition) {
     case SortCondition.name:
@@ -63,40 +63,41 @@ final sortedFilteredSpreadListProvider =
       break;
   }
 
-  late final List<Spread> filteredSpreads;
+  late final List<Journal> filteredSpreads;
 
   switch (filterCondition) {
-    case SpreadCategory.all:
+    case JournalCategory.all:
       filteredSpreads = sortedSpreads;
       break;
-    case SpreadCategory.character:
+    case JournalCategory.character:
       filteredSpreads = sortedSpreads
-          .where((element) => element.layoutType == SpreadCategory.character)
+          .where((element) => element.layoutType == JournalCategory.character)
           .toList();
       break;
-    case SpreadCategory.structure:
+    case JournalCategory.structure:
       filteredSpreads = sortedSpreads
-          .where((element) => element.layoutType == SpreadCategory.structure)
+          .where((element) => element.layoutType == JournalCategory.structure)
           .toList();
       break;
-    case SpreadCategory.relationship:
+    case JournalCategory.relationship:
       filteredSpreads = sortedSpreads
-          .where((element) => element.layoutType == SpreadCategory.relationship)
+          .where(
+              (element) => element.layoutType == JournalCategory.relationship)
           .toList();
       break;
-    case SpreadCategory.sceneSequel:
+    case JournalCategory.sceneSequel:
       filteredSpreads = sortedSpreads
-          .where((element) => element.layoutType == SpreadCategory.sceneSequel)
+          .where((element) => element.layoutType == JournalCategory.sceneSequel)
           .toList();
       break;
-    case SpreadCategory.location:
+    case JournalCategory.location:
       filteredSpreads = sortedSpreads
-          .where((element) => element.layoutType == SpreadCategory.location)
+          .where((element) => element.layoutType == JournalCategory.location)
           .toList();
       break;
-    case SpreadCategory.prop:
+    case JournalCategory.prop:
       filteredSpreads = sortedSpreads
-          .where((element) => element.layoutType == SpreadCategory.prop)
+          .where((element) => element.layoutType == JournalCategory.prop)
           .toList();
       break;
   }

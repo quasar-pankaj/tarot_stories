@@ -1,6 +1,6 @@
 import 'enum_spread_shape.dart';
 
-enum SpreadCategory {
+enum JournalCategory {
   character('Character', [
     SpreadShape.horiz1,
     SpreadShape.goalMotivationConflict,
@@ -37,7 +37,7 @@ enum SpreadCategory {
   final String _name;
   final List<SpreadShape> _spreads;
 
-  const SpreadCategory(
+  const JournalCategory(
     String name,
     final List<SpreadShape> spreads,
   )   : _name = name,
