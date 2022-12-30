@@ -1,12 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tarot_stories/providers/elements/selected_element_provider.dart';
 
 import '../database/entities/element.dart' as entities;
 import '../database/entities/enum_element_type.dart';
 import '../providers/elements/element_filter_by_type_providers.dart';
 import '../providers/elements/elements_notifier_provider.dart';
+import '../providers/elements/selected_element_provider.dart';
 import 'in_place_editor.dart';
 
 class ElementsSidebar extends StatelessWidget {
@@ -65,7 +65,9 @@ class ElementsSidebar extends StatelessWidget {
                   )
                   .toList(),
               error: (error, stackTrace) => [
-                const Text('Error occured'),
+                Text(
+                  error.toString(),
+                ),
               ],
               loading: () => [
                 const CircularProgressIndicator(),
