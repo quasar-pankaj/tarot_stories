@@ -1,9 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tarot_stories/database/entities/enum_journal_category.dart';
 
 import '../database/entities/element.dart' as entities;
-import '../database/entities/enum_element_type.dart';
 import '../providers/elements/element_filter_by_type_providers.dart';
 import '../providers/elements/elements_notifier_provider.dart';
 import '../providers/elements/selected_element_provider.dart';
@@ -54,9 +54,22 @@ class ElementsSidebar extends StatelessWidget {
                                     .save(element);
                               },
                             ),
-                            trailing: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.more_vert),
+                            trailing: PopupMenuButton(
+                              itemBuilder: (context) => _items[index]
+                                  .type
+                                  .spreads
+                                  .map(
+                                    (e) => PopupMenuItem(
+                                      onTap: () {
+                                        
+                                      },
+                                      value: e,
+                                      child: Text(
+                                        e.toString(),
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
                             ),
                           ),
                         ),
@@ -82,7 +95,7 @@ class ElementsSidebar extends StatelessWidget {
 
 class _ListViewItem {
   String text;
-  ElementType type;
+  JournalCategory type;
   IconData icon;
   FutureProvider<Iterable<entities.Element>> provider;
   _ListViewItem({
@@ -96,55 +109,55 @@ class _ListViewItem {
 List<_ListViewItem> _items = [
   _ListViewItem(
     text: 'Characters',
-    type: ElementType.character,
+    type: JournalCategory.character,
     icon: Icons.face,
     provider: charactersFilterProvider,
   ),
   _ListViewItem(
     text: 'Scenes/Sequels',
-    type: ElementType.scene,
+    type: JournalCategory.sceneSequel,
     icon: Icons.picture_in_picture,
     provider: scenesFilterProvider,
   ),
   _ListViewItem(
     text: 'Places',
-    type: ElementType.place,
+    type: JournalCategory.location,
     icon: Icons.house,
     provider: placesFilterProvider,
   ),
   _ListViewItem(
     text: 'Props',
-    type: ElementType.prop,
+    type: JournalCategory.prop,
     icon: Icons.pending_actions,
     provider: propsFilterProvider,
   ),
   _ListViewItem(
       text: 'Structure',
-      type: ElementType.structure,
+      type: JournalCategory.structure,
       icon: Icons.account_tree,
       provider: structuresFilterProvider),
   _ListViewItem(
     text: 'Relationships',
-    type: ElementType.relationship,
+    type: JournalCategory.relationship,
     icon: Icons.link,
     provider: relationshipsFilterProvider,
   ),
-  _ListViewItem(
-    text: 'Detached Beats',
-    type: ElementType.beat,
-    icon: Icons.broken_image,
-    provider: beatsFilterProvider,
-  ),
-  _ListViewItem(
-    text: 'Uncategorised Stuff',
-    type: ElementType.unassociated,
-    icon: Icons.air,
-    provider: unassociatedFilterProvider,
-  ),
-  _ListViewItem(
-    text: 'Recycled',
-    type: ElementType.recycled,
-    icon: Icons.recycling,
-    provider: recycledFilterProvider,
-  ),
+  // _ListViewItem(
+  //   text: 'Detached Beats',
+  //   type: JournalCategory.,
+  //   icon: Icons.broken_image,
+  //   provider: beatsFilterProvider,
+  // ),
+  // _ListViewItem(
+  //   text: 'Uncategorised Stuff',
+  //   type: JournalCategory.unassociated,
+  //   icon: Icons.air,
+  //   provider: unassociatedFilterProvider,
+  // ),
+  // _ListViewItem(
+  //   text: 'Recycled',
+  //   type: JournalCategory.recycled,
+  //   icon: Icons.recycling,
+  //   provider: recycledFilterProvider,
+  // ),
 ];

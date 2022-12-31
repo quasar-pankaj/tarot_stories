@@ -31,8 +31,7 @@ enum JournalCategory {
   relationship('Relationship', [
     SpreadShape.horiz1,
     SpreadShape.relationship3Way,
-  ]),
-  all('All', SpreadShape.values);
+  ]);
 
   final String _name;
   final List<SpreadShape> _spreads;

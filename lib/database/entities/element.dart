@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'enum_element_type.dart';
+import 'enum_journal_category.dart';
 
 part 'element.freezed.dart';
 part 'element.g.dart';
@@ -12,7 +12,7 @@ class Element with _$Element {
     required int projectId,
     required String name,
     String? synopsis,
-    required ElementType elementType,
+    required JournalCategory elementType,
   }) = $Element;
 
   factory Element.fromJson(Map<String, Object?> json) =>

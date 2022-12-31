@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tarot_stories/spread_icons/single_card_layout.dart';
 
-import '../database/entities/enum_spread_category.dart';
+import '../database/entities/enum_journal_category.dart';
 import '../providers/journals/open_journal_provider.dart';
 import '../providers/journals/journals_provider.dart';
 import '../spread_icons/four_card_vert_layout.dart';

@@ -79,5 +79,4 @@ const _$JournalCategoryEnumMap = {
   JournalCategory.prop: 'prop',
   JournalCategory.structure: 'structure',
   JournalCategory.relationship: 'relationship',
-  JournalCategory.all: 'all',
 };

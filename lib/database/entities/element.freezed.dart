@@ -24,7 +24,7 @@ mixin _$Element {
   int get projectId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String? get synopsis => throw _privateConstructorUsedError;
-  ElementType get elementType => throw _privateConstructorUsedError;
+  JournalCategory get elementType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +41,7 @@ abstract class $ElementCopyWith<$Res> {
       int projectId,
       String name,
       String? synopsis,
-      ElementType elementType});
+      JournalCategory elementType});
 }
 
 /// @nodoc
@@ -83,7 +83,7 @@ class _$ElementCopyWithImpl<$Res, $Val extends Element>
       elementType: null == elementType
           ? _value.elementType
           : elementType // ignore: cast_nullable_to_non_nullable
-              as ElementType,
+              as JournalCategory,
     ) as $Val);
   }
 }
@@ -100,7 +100,7 @@ abstract class _$$$ElementCopyWith<$Res> implements $ElementCopyWith<$Res> {
       int projectId,
       String name,
       String? synopsis,
-      ElementType elementType});
+      JournalCategory elementType});
 }
 
 /// @nodoc
@@ -139,7 +139,7 @@ class __$$$ElementCopyWithImpl<$Res>
       elementType: null == elementType
           ? _value.elementType
           : elementType // ignore: cast_nullable_to_non_nullable
-              as ElementType,
+              as JournalCategory,
     ));
   }
 }
@@ -166,7 +166,7 @@ class _$$Element implements $Element {
   @override
   final String? synopsis;
   @override
-  final ElementType elementType;
+  final JournalCategory elementType;
 
   @override
   String toString() {
@@ -213,7 +213,7 @@ abstract class $Element implements Element {
       required final int projectId,
       required final String name,
       final String? synopsis,
-      required final ElementType elementType}) = _$$Element;
+      required final JournalCategory elementType}) = _$$Element;
 
   factory $Element.fromJson(Map<String, dynamic> json) = _$$Element.fromJson;
 
@@ -226,7 +226,7 @@ abstract class $Element implements Element {
   @override
   String? get synopsis;
   @override
-  ElementType get elementType;
+  JournalCategory get elementType;
   @override
   @JsonKey(ignore: true)
   _$$$ElementCopyWith<_$$Element> get copyWith =>

@@ -2,7 +2,7 @@ import 'dart:core';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'enum_spread_category.dart';
+import 'enum_journal_category.dart';
 import 'enum_spread_shape.dart';
 import 'position_template.dart';
 import 'reading.dart';

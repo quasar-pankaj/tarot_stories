@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tarot_stories/database/entities/enum_journal_category.dart';
 
 import '../../database/entities/element.dart';
-import '../../database/entities/enum_element_type.dart';
 import '../project/open_project_provider.dart';
 import 'elements_repository_provider.dart';
 
@@ -20,7 +20,7 @@ class ElementsNotifier extends AsyncNotifier<Iterable<Element>> {
     return await elementsRepo.getAllUnsorted();
   }
 
-  Future<Element> addNew(ElementType type) async {
+  Future<Element> addNew(JournalCategory type) async {
     final project = ref.read(openProjectProvider);
     final element = Element(
       projectId: project!.id!,
@@ -69,6 +69,6 @@ class ElementsNotifier extends AsyncNotifier<Iterable<Element>> {
     state = AsyncValue.data(elements);
   }
 
-  Iterable<Element> filterByType(ElementType type) =>
+  Iterable<Element> filterByType(JournalCategory type) =>
       state.value!.where((element) => element.elementType == type);
 }
