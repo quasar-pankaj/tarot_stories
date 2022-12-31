@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../database/entities/enum_spread_category.dart';
 import '../database/entities/journal.dart';
 import '../providers/project/open_project_provider.dart';
 import '../providers/journals/open_journal_provider.dart';
 import '../providers/journals/sorted_filtered_journal_list_provider.dart';
-import '../providers/journals/journal_category_provider.dart';
 import '../providers/journals/journal_filter_text_provider.dart';
 import '../providers/journals/journal_sort_condition_buttons_provider.dart';
 import '../providers/journals/journal_sort_condition_provider.dart';
@@ -56,24 +54,6 @@ class ProjectPage extends ConsumerWidget {
                             journalSortConditionButtonsProvider,
                         sortConditionProvider: journalSortConditionProvider,
                         filterTextProvider: journalFilterTextProvider,
-                        optionalWidget: DropdownButton<JournalCategory>(
-                          items: JournalCategory.values
-                              .map(
-                                (filter) => DropdownMenuItem<JournalCategory>(
-                                  value: filter,
-                                  child: Text(
-                                    filter.toString(),
-                                  ),
-                                ),
-                              )
-                              .toList(),
-                          onChanged: (value) {
-                            ref
-                                .read(journalCategoryProvider.notifier)
-                                .update((state) => value!);
-                          },
-                          value: ref.watch(journalCategoryProvider),
-                        ),
                       ),
                     );
                   },
