@@ -15,6 +15,7 @@ enum SpreadShape {
   horiz1(
     name: 'Horizontal One Card',
     widget: SingleCardLayout(label1: '1'),
+    numCards: 1,
   ),
   horiz2(
     name: 'Horizontal Two Card',
@@ -22,6 +23,7 @@ enum SpreadShape {
       label1: '1',
       label2: '2',
     ),
+    numCards: 2,
   ),
   horiz3(
     name: 'Horizontal Three Card',
@@ -30,6 +32,7 @@ enum SpreadShape {
       label2: '2',
       label3: '3',
     ),
+    numCards: 3,
   ),
   horiz4(
     name: 'Horizontal Four Card',
@@ -39,6 +42,7 @@ enum SpreadShape {
       label3: '3',
       label4: '4',
     ),
+    numCards: 4,
   ),
   horiz5(
     name: 'Horizontal Five Card',
@@ -49,6 +53,7 @@ enum SpreadShape {
       card4: '4',
       card5: '5',
     ),
+    numCards: 5,
   ),
   vert2(
     name: 'Vertical Two Card',
@@ -56,6 +61,7 @@ enum SpreadShape {
       label1: '1',
       label2: '2',
     ),
+    numCards: 2,
   ),
   vert3(
     name: 'Vertical Three Card',
@@ -64,6 +70,7 @@ enum SpreadShape {
       label2: '2',
       label3: '3',
     ),
+    numCards: 3,
   ),
   vert4(
     name: 'Vertical Four Card',
@@ -73,6 +80,7 @@ enum SpreadShape {
       label3: '3',
       label4: '4',
     ),
+    numCards: 4,
   ),
   goalMotivationConflict(
     name: 'Goal-Motivation-Conflict',
@@ -81,6 +89,7 @@ enum SpreadShape {
       label2: 'M',
       label3: 'C',
     ),
+    numCards: 3,
   ),
   goalConflictDisaster(
     name: 'Goal-Conflict-Disaster',
@@ -89,6 +98,7 @@ enum SpreadShape {
       label2: 'C',
       label3: 'D',
     ),
+    numCards: 3,
   ),
   reactionDilemmaDecision(
     name: 'Reaction-Dilemma-Decision',
@@ -97,6 +107,7 @@ enum SpreadShape {
       label2: 'D',
       label3: 'D',
     ),
+    numCards: 3,
   ),
   actionReactionMovement(
     name: 'Action-Reaction-Movement',
@@ -105,6 +116,7 @@ enum SpreadShape {
       label2: 'R',
       label3: 'M',
     ),
+    numCards: 3,
   ),
   thesisAntithesisSynthesis(
     name: 'Thesis-Antithesis-Synthesis',
@@ -113,6 +125,7 @@ enum SpreadShape {
       label2: 'A',
       label3: 'S',
     ),
+    numCards: 3,
   ),
   fiveSenses(
     name: '5 Senses',
@@ -123,6 +136,7 @@ enum SpreadShape {
       card4: 'T',
       card5: 'T',
     ),
+    numCards: 5,
   ),
   characterCross(
     name: 'Character Cross',
@@ -134,6 +148,7 @@ enum SpreadShape {
       card5: '5',
       card6: '6',
     ),
+    numCards: 6,
   ),
   backstory(
     name: 'Backstory',
@@ -143,108 +158,128 @@ enum SpreadShape {
       card3: '3',
       card4: '4',
     ),
+    numCards: 4,
   ),
   celticCross(
     name: 'Celtic Cross',
     widget: SingleCardLayout(
       label1: '1',
     ),
+    numCards: 10,
   ), //this is a temporary measure change later
   pentagram(
     name: 'Pentagram',
     widget: SingleCardLayout(
       label1: '1',
     ),
+    numCards: 5,
   ), //this is a temporary measure change later
   hexagram(
     name: 'Hexagram',
     widget: SingleCardLayout(
       label1: '1',
     ),
+    numCards: 6,
   ), //this is a temporary measure change later
   herosJourney12Circular(
     name: "Hero's Journey 12 Card Circular",
     widget: SingleCardLayout(
       label1: '1',
     ),
+    numCards: 12,
   ), //this is a temporary measure change later
   herosJourney16Circular(
     name: "Hero's Journey 16 Card Circular",
     widget: SingleCardLayout(
       label1: '1',
     ),
+    numCards: 16,
   ), //this is a temporary measure change later
   herosJourney12MByN(
     name: "Hero's Journey 12 Card 4x3",
     widget: SingleCardLayout(
       label1: '1',
     ),
+    numCards: 12,
   ), //this is a temporary measure change later
   herosJourney16MByN(
     name: "Hero's Journey 16 Card 4x4",
     widget: SingleCardLayout(
       label1: '1',
     ),
+    numCards: 16,
   ), //this is a temporary measure change later
   blakeSnyderBeatSheet(
     name: 'Blake Snyder\'s Beat Sheet',
     widget: SingleCardLayout(
       label1: '1',
     ),
+    numCards: 12,
   ), //this is a temporary measure change later
   threeDisasterFourAct(
     name: '3 Disaster 4 Act',
     widget: SingleCardLayout(
       label1: '1',
     ),
+    numCards: 7,
   ), //this is a temporary measure change later
   superStructure(
     name: 'Superstructure',
     widget: SingleCardLayout(
       label1: '1',
     ),
+    numCards: 12,
   ), //this is a temporary measure change later
   fourteenPointStructure(
     name: 'Fourteen Point Structure',
     widget: SingleCardLayout(
       label1: '1',
     ),
+    numCards: 14,
   ), //this is a temporary measure change later
   relationship2Way(
     name: 'Two Way Relationship',
     widget: SingleCardLayout(
       label1: '1',
     ),
+    numCards: 3,
   ), //this is a temporary measure change later
   relationship3Way(
     name: 'Three Way Relationship',
     widget: SingleCardLayout(
       label1: '1',
     ),
+    numCards: 6,
   ), //this is a temporary measure change later
   triangle(
     name: 'Triangle',
     widget: SingleCardLayout(
       label1: '1',
     ),
+    numCards: 3,
   ), //this is a temporary measure change later
   square(
     name: 'Square',
     widget: SingleCardLayout(
       label1: '1',
     ),
+    numCards: 4,
   ); //this is a temporary measure change later
 
   final String _name;
   final Widget _widget;
+  final int _numCards;
 
   const SpreadShape({
     required String name,
     required Widget widget,
+    required int numCards,
   })  : _name = name,
-        _widget = widget;
+        _widget = widget,
+        _numCards = numCards;
 
   Widget get widget => _widget;
+  int get numCards => _numCards;
 
   @override
   String toString() => _name;

@@ -1,13 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tarot_stories/database/entities/enum_journal_category.dart';
-import 'package:tarot_stories/providers/journals/journals_provider.dart';
 
 import '../database/entities/element.dart' as entities;
+import '../database/entities/enum_journal_category.dart';
 import '../providers/elements/element_filter_by_type_providers.dart';
 import '../providers/elements/elements_notifier_provider.dart';
 import '../providers/elements/selected_element_provider.dart';
+import '../providers/journals/journals_provider.dart';
+import '../providers/journals/open_journal_provider.dart';
+import '../providers/spreads/spread_generation_provider.dart';
 import 'in_place_editor.dart';
 
 class ElementsSidebar extends StatelessWidget {
@@ -61,9 +63,17 @@ class ElementsSidebar extends StatelessWidget {
                                   .spreads
                                   .map(
                                     (shape) => PopupMenuItem(
-                                      onTap: () async => await ref
-                                          .read(journalProvider.notifier)
-                                          .addNew(shape),
+                                      onTap: () async {
+                                        final journal = await ref
+                                            .read(journalProvider.notifier)
+                                            .addNew(shape);
+                                        ref
+                                            .read(openJournalProvider.notifier)
+                                            .state = journal;
+                                        final spread = await ref.read(
+                                            spreadProvider(shape.numCards)
+                                                .future);
+                                      },
                                       value: shape,
                                       child: Text(
                                         shape.toString(),
