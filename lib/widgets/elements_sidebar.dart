@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tarot_stories/database/entities/enum_journal_category.dart';
+import 'package:tarot_stories/providers/journals/journals_provider.dart';
 
 import '../database/entities/element.dart' as entities;
 import '../providers/elements/element_filter_by_type_providers.dart';
@@ -59,13 +60,13 @@ class ElementsSidebar extends StatelessWidget {
                                   .type
                                   .spreads
                                   .map(
-                                    (e) => PopupMenuItem(
-                                      onTap: () {
-                                        
-                                      },
-                                      value: e,
+                                    (shape) => PopupMenuItem(
+                                      onTap: () async => await ref
+                                          .read(journalProvider.notifier)
+                                          .addNew(shape),
+                                      value: shape,
                                       child: Text(
-                                        e.toString(),
+                                        shape.toString(),
                                       ),
                                     ),
                                   )

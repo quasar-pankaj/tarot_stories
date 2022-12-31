@@ -21,7 +21,7 @@ Reading _$ReadingFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Reading {
   int? get id => throw _privateConstructorUsedError;
-  String get journalId => throw _privateConstructorUsedError;
+  int get journalId => throw _privateConstructorUsedError;
   List<String> get readings => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ abstract class $ReadingCopyWith<$Res> {
   factory $ReadingCopyWith(Reading value, $Res Function(Reading) then) =
       _$ReadingCopyWithImpl<$Res, Reading>;
   @useResult
-  $Res call({int? id, String journalId, List<String> readings});
+  $Res call({int? id, int journalId, List<String> readings});
 }
 
 /// @nodoc
@@ -62,7 +62,7 @@ class _$ReadingCopyWithImpl<$Res, $Val extends Reading>
       journalId: null == journalId
           ? _value.journalId
           : journalId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       readings: null == readings
           ? _value.readings
           : readings // ignore: cast_nullable_to_non_nullable
@@ -78,7 +78,7 @@ abstract class _$$$ReadingCopyWith<$Res> implements $ReadingCopyWith<$Res> {
       __$$$ReadingCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String journalId, List<String> readings});
+  $Res call({int? id, int journalId, List<String> readings});
 }
 
 /// @nodoc
@@ -103,7 +103,7 @@ class __$$$ReadingCopyWithImpl<$Res>
       journalId: null == journalId
           ? _value.journalId
           : journalId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       readings: null == readings
           ? _value._readings
           : readings // ignore: cast_nullable_to_non_nullable
@@ -125,7 +125,7 @@ class _$$Reading implements $Reading {
   @override
   final int? id;
   @override
-  final String journalId;
+  final int journalId;
   final List<String> _readings;
   @override
   List<String> get readings {
@@ -171,7 +171,7 @@ class _$$Reading implements $Reading {
 abstract class $Reading implements Reading {
   factory $Reading(
       {final int? id,
-      required final String journalId,
+      required final int journalId,
       required final List<String> readings}) = _$$Reading;
 
   factory $Reading.fromJson(Map<String, dynamic> json) = _$$Reading.fromJson;
@@ -179,7 +179,7 @@ abstract class $Reading implements Reading {
   @override
   int? get id;
   @override
-  String get journalId;
+  int get journalId;
   @override
   List<String> get readings;
   @override

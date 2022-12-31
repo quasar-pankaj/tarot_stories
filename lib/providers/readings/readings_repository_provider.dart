@@ -1,18 +1,18 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../database/app_database.dart';
-import '../../database/entities/spread.dart';
+import '../../database/entities/reading.dart';
 import '../../database/repository.dart';
 
-final spreadRepositoryProvider = Provider<Repository<Spread>>((ref) {
-  return Repository<Spread>(
+final readingsRepositoryProvider = Provider<Repository<Reading>>((ref) {
+  return Repository<Reading>(
     storeName: AppDatabase.projects,
-    getEntity: (json) => Spread.fromJson(json),
+    getEntity: (json) => Reading.fromJson(json),
     getId: (entity) => entity.id!,
     getMap: (entity) => entity.toJson(),
     setId: (entity, id) {
-      final spread = entity.copyWith(id: id);
-      return spread;
+      final reading = entity.copyWith(id: id);
+      return reading;
     },
   );
 });

@@ -7,7 +7,7 @@ part 'reading.g.dart';
 class Reading with _$Reading {
   factory Reading({
     int? id,
-    required String journalId,
+    required int journalId,
     required List<String> readings,
   }) = $Reading;
 
