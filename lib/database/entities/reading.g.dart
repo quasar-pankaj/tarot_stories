@@ -7,15 +7,15 @@ part of 'reading.dart';
 // **************************************************************************
 
 _$$Reading _$$$ReadingFromJson(Map<String, dynamic> json) => _$$Reading(
-      cardId: json['cardId'] as String,
-      context:
-          PositionTemplate.fromJson(json['context'] as Map<String, dynamic>),
-      text: json['text'] as String,
+      id: json['id'] as int?,
+      journalId: json['journalId'] as String,
+      readings:
+          (json['readings'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$$$ReadingToJson(_$$Reading instance) =>
     <String, dynamic>{
-      'cardId': instance.cardId,
-      'context': instance.context,
-      'text': instance.text,
+      'id': instance.id,
+      'journalId': instance.journalId,
+      'readings': instance.readings,
     };

@@ -26,8 +26,6 @@ mixin _$Journal {
   int get createdTimestamp => throw _privateConstructorUsedError;
   int get modifiedTimestamp => throw _privateConstructorUsedError;
   int get elementId => throw _privateConstructorUsedError;
-  SpreadShape get layoutType => throw _privateConstructorUsedError;
-  List<Reading> get readings => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,9 +43,7 @@ abstract class $JournalCopyWith<$Res> {
       String? query,
       int createdTimestamp,
       int modifiedTimestamp,
-      int elementId,
-      SpreadShape layoutType,
-      List<Reading> readings});
+      int elementId});
 }
 
 /// @nodoc
@@ -69,8 +65,6 @@ class _$JournalCopyWithImpl<$Res, $Val extends Journal>
     Object? createdTimestamp = null,
     Object? modifiedTimestamp = null,
     Object? elementId = null,
-    Object? layoutType = null,
-    Object? readings = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -97,14 +91,6 @@ class _$JournalCopyWithImpl<$Res, $Val extends Journal>
           ? _value.elementId
           : elementId // ignore: cast_nullable_to_non_nullable
               as int,
-      layoutType: null == layoutType
-          ? _value.layoutType
-          : layoutType // ignore: cast_nullable_to_non_nullable
-              as SpreadShape,
-      readings: null == readings
-          ? _value.readings
-          : readings // ignore: cast_nullable_to_non_nullable
-              as List<Reading>,
     ) as $Val);
   }
 }
@@ -122,9 +108,7 @@ abstract class _$$$JournalCopyWith<$Res> implements $JournalCopyWith<$Res> {
       String? query,
       int createdTimestamp,
       int modifiedTimestamp,
-      int elementId,
-      SpreadShape layoutType,
-      List<Reading> readings});
+      int elementId});
 }
 
 /// @nodoc
@@ -143,8 +127,6 @@ class __$$$JournalCopyWithImpl<$Res>
     Object? createdTimestamp = null,
     Object? modifiedTimestamp = null,
     Object? elementId = null,
-    Object? layoutType = null,
-    Object? readings = null,
   }) {
     return _then(_$$Journal(
       id: freezed == id
@@ -171,14 +153,6 @@ class __$$$JournalCopyWithImpl<$Res>
           ? _value.elementId
           : elementId // ignore: cast_nullable_to_non_nullable
               as int,
-      layoutType: null == layoutType
-          ? _value.layoutType
-          : layoutType // ignore: cast_nullable_to_non_nullable
-              as SpreadShape,
-      readings: null == readings
-          ? _value._readings
-          : readings // ignore: cast_nullable_to_non_nullable
-              as List<Reading>,
     ));
   }
 }
@@ -192,10 +166,7 @@ class _$$Journal implements $Journal {
       this.query,
       required this.createdTimestamp,
       required this.modifiedTimestamp,
-      required this.elementId,
-      required this.layoutType,
-      required final List<Reading> readings})
-      : _readings = readings;
+      required this.elementId});
 
   factory _$$Journal.fromJson(Map<String, dynamic> json) =>
       _$$$JournalFromJson(json);
@@ -212,18 +183,10 @@ class _$$Journal implements $Journal {
   final int modifiedTimestamp;
   @override
   final int elementId;
-  @override
-  final SpreadShape layoutType;
-  final List<Reading> _readings;
-  @override
-  List<Reading> get readings {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_readings);
-  }
 
   @override
   String toString() {
-    return 'Journal(id: $id, name: $name, query: $query, createdTimestamp: $createdTimestamp, modifiedTimestamp: $modifiedTimestamp, elementId: $elementId, layoutType: $layoutType, readings: $readings)';
+    return 'Journal(id: $id, name: $name, query: $query, createdTimestamp: $createdTimestamp, modifiedTimestamp: $modifiedTimestamp, elementId: $elementId)';
   }
 
   @override
@@ -239,24 +202,13 @@ class _$$Journal implements $Journal {
             (identical(other.modifiedTimestamp, modifiedTimestamp) ||
                 other.modifiedTimestamp == modifiedTimestamp) &&
             (identical(other.elementId, elementId) ||
-                other.elementId == elementId) &&
-            (identical(other.layoutType, layoutType) ||
-                other.layoutType == layoutType) &&
-            const DeepCollectionEquality().equals(other._readings, _readings));
+                other.elementId == elementId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      query,
-      createdTimestamp,
-      modifiedTimestamp,
-      elementId,
-      layoutType,
-      const DeepCollectionEquality().hash(_readings));
+  int get hashCode => Object.hash(runtimeType, id, name, query,
+      createdTimestamp, modifiedTimestamp, elementId);
 
   @JsonKey(ignore: true)
   @override
@@ -279,9 +231,7 @@ abstract class $Journal implements Journal {
       final String? query,
       required final int createdTimestamp,
       required final int modifiedTimestamp,
-      required final int elementId,
-      required final SpreadShape layoutType,
-      required final List<Reading> readings}) = _$$Journal;
+      required final int elementId}) = _$$Journal;
 
   factory $Journal.fromJson(Map<String, dynamic> json) = _$$Journal.fromJson;
 
@@ -297,10 +247,6 @@ abstract class $Journal implements Journal {
   int get modifiedTimestamp;
   @override
   int get elementId;
-  @override
-  SpreadShape get layoutType;
-  @override
-  List<Reading> get readings;
   @override
   @JsonKey(ignore: true)
   _$$$JournalCopyWith<_$$Journal> get copyWith =>

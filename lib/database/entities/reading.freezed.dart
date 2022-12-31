@@ -20,9 +20,9 @@ Reading _$ReadingFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Reading {
-  String get cardId => throw _privateConstructorUsedError;
-  PositionTemplate get context => throw _privateConstructorUsedError;
-  String get text => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String get journalId => throw _privateConstructorUsedError;
+  List<String> get readings => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,9 +34,7 @@ abstract class $ReadingCopyWith<$Res> {
   factory $ReadingCopyWith(Reading value, $Res Function(Reading) then) =
       _$ReadingCopyWithImpl<$Res, Reading>;
   @useResult
-  $Res call({String cardId, PositionTemplate context, String text});
-
-  $PositionTemplateCopyWith<$Res> get context;
+  $Res call({int? id, String journalId, List<String> readings});
 }
 
 /// @nodoc
@@ -52,32 +50,24 @@ class _$ReadingCopyWithImpl<$Res, $Val extends Reading>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cardId = null,
-    Object? context = null,
-    Object? text = null,
+    Object? id = freezed,
+    Object? journalId = null,
+    Object? readings = null,
   }) {
     return _then(_value.copyWith(
-      cardId: null == cardId
-          ? _value.cardId
-          : cardId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      journalId: null == journalId
+          ? _value.journalId
+          : journalId // ignore: cast_nullable_to_non_nullable
               as String,
-      context: null == context
-          ? _value.context
-          : context // ignore: cast_nullable_to_non_nullable
-              as PositionTemplate,
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
+      readings: null == readings
+          ? _value.readings
+          : readings // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $PositionTemplateCopyWith<$Res> get context {
-    return $PositionTemplateCopyWith<$Res>(_value.context, (value) {
-      return _then(_value.copyWith(context: value) as $Val);
-    });
   }
 }
 
@@ -88,10 +78,7 @@ abstract class _$$$ReadingCopyWith<$Res> implements $ReadingCopyWith<$Res> {
       __$$$ReadingCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String cardId, PositionTemplate context, String text});
-
-  @override
-  $PositionTemplateCopyWith<$Res> get context;
+  $Res call({int? id, String journalId, List<String> readings});
 }
 
 /// @nodoc
@@ -104,23 +91,23 @@ class __$$$ReadingCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cardId = null,
-    Object? context = null,
-    Object? text = null,
+    Object? id = freezed,
+    Object? journalId = null,
+    Object? readings = null,
   }) {
     return _then(_$$Reading(
-      cardId: null == cardId
-          ? _value.cardId
-          : cardId // ignore: cast_nullable_to_non_nullable
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      journalId: null == journalId
+          ? _value.journalId
+          : journalId // ignore: cast_nullable_to_non_nullable
               as String,
-      context: null == context
-          ? _value.context
-          : context // ignore: cast_nullable_to_non_nullable
-              as PositionTemplate,
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
+      readings: null == readings
+          ? _value._readings
+          : readings // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -128,21 +115,27 @@ class __$$$ReadingCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$$Reading implements $Reading {
-  _$$Reading({required this.cardId, required this.context, required this.text});
+  _$$Reading(
+      {this.id, required this.journalId, required final List<String> readings})
+      : _readings = readings;
 
   factory _$$Reading.fromJson(Map<String, dynamic> json) =>
       _$$$ReadingFromJson(json);
 
   @override
-  final String cardId;
+  final int? id;
   @override
-  final PositionTemplate context;
+  final String journalId;
+  final List<String> _readings;
   @override
-  final String text;
+  List<String> get readings {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_readings);
+  }
 
   @override
   String toString() {
-    return 'Reading(cardId: $cardId, context: $context, text: $text)';
+    return 'Reading(id: $id, journalId: $journalId, readings: $readings)';
   }
 
   @override
@@ -150,14 +143,16 @@ class _$$Reading implements $Reading {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$$Reading &&
-            (identical(other.cardId, cardId) || other.cardId == cardId) &&
-            (identical(other.context, context) || other.context == context) &&
-            (identical(other.text, text) || other.text == text));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.journalId, journalId) ||
+                other.journalId == journalId) &&
+            const DeepCollectionEquality().equals(other._readings, _readings));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, cardId, context, text);
+  int get hashCode => Object.hash(runtimeType, id, journalId,
+      const DeepCollectionEquality().hash(_readings));
 
   @JsonKey(ignore: true)
   @override
@@ -175,18 +170,18 @@ class _$$Reading implements $Reading {
 
 abstract class $Reading implements Reading {
   factory $Reading(
-      {required final String cardId,
-      required final PositionTemplate context,
-      required final String text}) = _$$Reading;
+      {final int? id,
+      required final String journalId,
+      required final List<String> readings}) = _$$Reading;
 
   factory $Reading.fromJson(Map<String, dynamic> json) = _$$Reading.fromJson;
 
   @override
-  String get cardId;
+  int? get id;
   @override
-  PositionTemplate get context;
+  String get journalId;
   @override
-  String get text;
+  List<String> get readings;
   @override
   @JsonKey(ignore: true)
   _$$$ReadingCopyWith<_$$Reading> get copyWith =>

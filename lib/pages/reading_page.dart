@@ -22,7 +22,11 @@ class ReadingPage extends StatelessWidget {
           children: [
             Expanded(
               flex: 3,
-              child: _spread,
+              child: FittedBox(
+                child: InteractiveViewer(
+                  child: _spread,
+                ),
+              ),
             ),
             Expanded(
               flex: 2,

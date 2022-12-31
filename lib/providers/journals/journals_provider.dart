@@ -25,8 +25,6 @@ class JournalNotifier extends AsyncNotifier<Iterable<Journal>> {
       createdTimestamp: DateTime.now().millisecondsSinceEpoch,
       modifiedTimestamp: DateTime.now().millisecondsSinceEpoch,
       elementId: selectedElement!.id!,
-      layoutType: layoutType,
-      readings: [],
     );
 
     final s = await add(spread);

@@ -1,11 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../database/entities/enum_spread_category.dart';
 import '../../database/entities/journal.dart';
 import '../sort_condition_buttons_notifier.dart';
 import '../sort_order_buttons_notifier.dart';
-import 'journal_category_provider.dart';
-import 'journal_filter_text_provider.dart';
 import 'journal_sort_condition_provider.dart';
 import 'journal_sort_order_provider.dart';
 import 'journals_provider.dart';
@@ -16,8 +13,6 @@ final sortedFilteredJournalListProvider =
   final order = ref.watch(journalSortOrderProvider);
 
   final spreads = ref.watch(journalProvider).value;
-  final filterPattern = ref.watch(journalFilterTextProvider);
-  final filterCondition = ref.watch(journalCategoryProvider);
 
   late final List<Journal> sortedSpreads;
 
@@ -63,50 +58,5 @@ final sortedFilteredJournalListProvider =
       break;
   }
 
-  late final List<Journal> filteredSpreads;
-
-  switch (filterCondition) {
-    case JournalCategory.all:
-      filteredSpreads = sortedSpreads;
-      break;
-    case JournalCategory.character:
-      filteredSpreads = sortedSpreads
-          .where((element) => element.layoutType == JournalCategory.character)
-          .toList();
-      break;
-    case JournalCategory.structure:
-      filteredSpreads = sortedSpreads
-          .where((element) => element.layoutType == JournalCategory.structure)
-          .toList();
-      break;
-    case JournalCategory.relationship:
-      filteredSpreads = sortedSpreads
-          .where(
-              (element) => element.layoutType == JournalCategory.relationship)
-          .toList();
-      break;
-    case JournalCategory.sceneSequel:
-      filteredSpreads = sortedSpreads
-          .where((element) => element.layoutType == JournalCategory.sceneSequel)
-          .toList();
-      break;
-    case JournalCategory.location:
-      filteredSpreads = sortedSpreads
-          .where((element) => element.layoutType == JournalCategory.location)
-          .toList();
-      break;
-    case JournalCategory.prop:
-      filteredSpreads = sortedSpreads
-          .where((element) => element.layoutType == JournalCategory.prop)
-          .toList();
-      break;
-  }
-
-  return filteredSpreads
-      .where(
-        (element) => element.name.contains(
-          filterPattern,
-        ),
-      )
-      .toList();
+  return sortedSpreads.toList();
 });

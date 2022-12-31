@@ -1,8 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'enum_spread_shape.dart';
-import 'reading.dart';
-
 part 'journal.freezed.dart';
 part 'journal.g.dart';
 
@@ -15,9 +12,8 @@ class Journal with _$Journal {
     required int createdTimestamp,
     required int modifiedTimestamp,
     required int elementId,
-    required SpreadShape layoutType,
-    required List<Reading> readings,
   }) = $Journal;
 
-  factory Journal.fromJson(Map<String, Object?> json) => _$JournalFromJson(json);
+  factory Journal.fromJson(Map<String, Object?> json) =>
+      _$JournalFromJson(json);
 }
