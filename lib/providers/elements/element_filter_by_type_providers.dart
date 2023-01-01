@@ -3,7 +3,7 @@ import 'package:tarot_stories/database/entities/enum_journal_category.dart';
 import 'package:tarot_stories/providers/project/open_project_provider.dart';
 
 import '../../database/entities/element.dart';
-import 'elements_notifier_provider.dart';
+import 'elements_provider.dart';
 
 final charactersFilterProvider = FutureProvider<Iterable<Element>>((ref) async {
   final project = ref.watch(openProjectProvider);

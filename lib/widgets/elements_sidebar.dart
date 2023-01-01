@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../database/entities/element.dart' as entities;
 import '../database/entities/enum_journal_category.dart';
 import '../providers/elements/element_filter_by_type_providers.dart';
-import '../providers/elements/elements_notifier_provider.dart';
+import '../providers/elements/elements_provider.dart';
 import '../providers/elements/selected_element_provider.dart';
 import '../providers/journals/journals_provider.dart';
 import '../providers/journals/open_journal_provider.dart';
@@ -65,7 +65,8 @@ class ElementsSidebar extends StatelessWidget {
                                     (shape) => PopupMenuItem(
                                       onTap: () async {
                                         final journal = await ref
-                                            .read(journalProvider.notifier)
+                                            .read(
+                                                journalProvider(e.id!).notifier)
                                             .addNew(shape);
                                         ref
                                             .read(openJournalProvider.notifier)

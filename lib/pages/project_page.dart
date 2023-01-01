@@ -70,15 +70,15 @@ class ProjectPage extends ConsumerWidget {
                           shrinkWrap: true,
                           children: data
                               .map(
-                                (spread) => Dismissible(
-                                  key: Key(spread.toString()),
+                                (journal) => Dismissible(
+                                  key: Key(journal.toString()),
                                   child: Card(
                                     color: Colors.green,
                                     child: InkWell(
                                       onTap: () {
                                         ref
                                             .read(openJournalProvider.notifier)
-                                            .update((state) => spread);
+                                            .update((state) => journal);
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -93,17 +93,19 @@ class ProjectPage extends ConsumerWidget {
                                           child: Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: InPlaceEditor(
-                                              text: spread.name,
+                                              text: journal.name,
                                               onTextChanged: (newText) {
                                                 final Journal renamedSpread =
-                                                    spread.copyWith(
+                                                    journal.copyWith(
                                                   name: newText,
                                                   modifiedTimestamp: DateTime
                                                           .now()
                                                       .millisecondsSinceEpoch,
                                                 );
                                                 ref
-                                                    .read(journalProvider
+                                                    .read(journalProvider(
+                                                            renamedSpread
+                                                                .elementId)
                                                         .notifier)
                                                     .save(renamedSpread);
                                               },
@@ -119,8 +121,8 @@ class ProjectPage extends ConsumerWidget {
                                     ),
                                   ),
                                   onDismissed: (direction) => ref
-                                      .read(journalProvider.notifier)
-                                      .delete(spread),
+                                      .read(journalProvider(journal.id!).notifier)
+                                      .delete(journal),
                                 ),
                               )
                               .toList(),

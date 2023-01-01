@@ -56,8 +56,35 @@ class Repository<E> {
     );
   }
 
+  Future<int> deleteWhereFieldMatches(String field, String pattern) async {
+    final finder = Finder(filter: Filter.matches(field, pattern));
+    return await _store.delete(
+      await _db,
+      finder: finder,
+    );
+  }
+
   Future<void> deleteAll() async {
     return await _store.drop(await _db);
+  }
+
+  Future<Iterable<E>> getAllWhereFieldMatches(
+      String field, String pattern) async {
+    final finder = Finder(filter: Filter.matches(field, pattern));
+    final recordSnapshots = await _store.find(
+      await _db,
+      finder: finder,
+    );
+
+    // Making a List<Fruit> out of List<RecordSnapshot>
+    return recordSnapshots.map((snapshot) {
+      // final entity = Entity.fromMap(_storeName, snapshot.value);
+      final entity = _getEntity(snapshot.value);
+      // An ID is a key of a record from the database.
+      // entity.id = snapshot.key;
+      _setId(entity, snapshot.key);
+      return entity;
+    });
   }
 
   Future<Iterable<E>> getAllUnsorted() async {

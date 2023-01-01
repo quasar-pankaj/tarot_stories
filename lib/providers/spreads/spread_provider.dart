@@ -1,12 +1,38 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tarot_stories/providers/journals/open_journal_provider.dart';
 
 import '../../database/entities/spread.dart';
 import 'spread_repository_provider.dart';
 
-final spreadProvider = FutureProvider<Spread>((ref) async {
-  final repo = ref.watch(spreadRepositoryProvider);
-  final journal = ref.watch(openJournalProvider);
-  final spreads = await repo.getAllUnsorted();
-  return spreads.firstWhere((element) => element.journalId == journal!.id!);
-});
+final spreadProvider = AsyncNotifierProvider.family
+    .autoDispose<SpreadNotifier, Spread, int>(SpreadNotifier.new);
+
+class SpreadNotifier extends FamilyAsyncNotifier<Spread, int> {
+  @override
+  FutureOr<Spread> build(int arg) async {
+    final repo = ref.watch(spreadRepositoryProvider);
+
+    final spreads = await repo.getAllWhereFieldMatches('journalId', '$arg');
+
+    if (spreads.isNotEmpty) {
+      return spreads.first;
+    } else {
+      final reading = Spread(journalId: arg, cards: []);
+      final r = await repo.insert(reading);
+      return r;
+    }
+  }
+
+  Future<void> save(List<String> cards) async {
+    final spread = state.value;
+    final modifiedReading = spread!.copyWith(cards: cards);
+    await ref.read(spreadRepositoryProvider).update(modifiedReading);
+    state = AsyncValue.data(modifiedReading);
+  }
+
+  Future<void> delete() async {
+    final spread = state.value;
+    await ref.read(spreadRepositoryProvider).delete(spread!);
+  }
+}

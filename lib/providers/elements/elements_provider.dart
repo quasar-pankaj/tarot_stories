@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tarot_stories/database/entities/enum_journal_category.dart';
+import 'package:tarot_stories/providers/journals/journals_provider.dart';
 
 import '../../database/entities/element.dart';
 import '../project/open_project_provider.dart';
@@ -59,6 +60,10 @@ class ElementsNotifier extends AsyncNotifier<Iterable<Element>> {
   Future<void> delete(Element element) async {
     state = const AsyncValue.loading();
 
+    await ref
+        .read(journalProvider(element.id!).notifier)
+        .deleteAllForElement(element.id!);
+
     await ref.read(elementRepositoryProvider).delete(element);
 
     final elements = [
@@ -67,6 +72,22 @@ class ElementsNotifier extends AsyncNotifier<Iterable<Element>> {
     ];
 
     state = AsyncValue.data(elements);
+  }
+
+  Future<void> deleteAllForProject(int projectId) async {
+    final elements = await ref
+        .read(elementRepositoryProvider)
+        .getAllWhereFieldMatches('projectId', '$projectId');
+
+    for (var element in elements) {
+      await ref
+          .read(journalProvider(element.id!).notifier)
+          .deleteAllForElement(element.id!);
+    }
+
+    await ref
+        .read(elementRepositoryProvider)
+        .deleteWhereFieldMatches('projectId', '$projectId');
   }
 
   Iterable<Element> filterByType(JournalCategory type) =>

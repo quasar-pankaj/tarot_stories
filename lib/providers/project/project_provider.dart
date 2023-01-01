@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../database/entities/project.dart';
+import '../elements/elements_provider.dart';
 import 'project_repository_provider.dart';
 
 final projectsProvider =
@@ -56,6 +57,8 @@ class ProjetcsNotifier extends AsyncNotifier<Iterable<Project>> {
 
   Future<void> delete(Project project) async {
     state = const AsyncValue.loading();
+
+    ref.read(elementsProvider.notifier).deleteAllForProject(project.id!);
 
     await ref.read(projectRepositoryProvider).delete(project);
     final projects = state.value!.where((element) => element.id != project.id);

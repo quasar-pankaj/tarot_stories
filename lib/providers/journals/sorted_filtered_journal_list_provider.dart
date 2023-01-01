@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tarot_stories/providers/elements/selected_element_provider.dart';
 
 import '../../database/entities/journal.dart';
 import '../sort_condition_buttons_notifier.dart';
@@ -12,7 +13,9 @@ final sortedFilteredJournalListProvider =
   final condition = ref.watch(journalSortConditionProvider);
   final order = ref.watch(journalSortOrderProvider);
 
-  final spreads = ref.watch(journalProvider).value;
+  final selectedElement = ref.watch(selectedElementProvider);
+
+  final spreads = ref.watch(journalProvider(selectedElement!.id!)).value;
 
   late final List<Journal> sortedSpreads;
 

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tarot_stories/spread_icons/single_card_layout.dart';
 
 import '../database/entities/enum_journal_category.dart';
 import '../providers/journals/open_journal_provider.dart';
 import '../providers/journals/journals_provider.dart';
-import '../spread_icons/four_card_vert_layout.dart';
 
 class SpreadDialog extends ConsumerStatefulWidget {
-  const SpreadDialog({super.key});
+  final int _elementId;
+  const SpreadDialog({super.key, required int elementId})
+      : _elementId = elementId;
 
   @override
   ConsumerState<SpreadDialog> createState() => _SpreadDialogState();
@@ -79,7 +79,8 @@ class _SpreadDialogState extends ConsumerState<SpreadDialog>
                             (shape) => InkWell(
                               onTap: () async {
                                 final spread = await ref
-                                    .read(journalProvider.notifier)
+                                    .read(journalProvider(widget._elementId)
+                                        .notifier)
                                     .addNew(shape);
                                 ref.read(openJournalProvider.notifier).update(
                                       (state) => spread,
