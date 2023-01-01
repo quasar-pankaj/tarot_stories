@@ -71,11 +71,11 @@ class ElementsSidebar extends StatelessWidget {
                                         ref
                                             .read(openJournalProvider.notifier)
                                             .state = journal;
-                                        final spread = ref
+                                        await ref
                                             .read(spreadProvider(journal.id!)
                                                 .notifier)
                                             .save([]);
-                                            final readings = ref
+                                        await ref
                                             .read(readingsProvider(journal.id!)
                                                 .notifier)
                                             .save([]);
