@@ -21,14 +21,14 @@ class JournalNotifier extends FamilyAsyncNotifier<Iterable<Journal>, int> {
 
   Future<Journal> addNew(SpreadShape layoutType) async {
     final selectedElement = ref.watch(selectedElementProvider);
-    final spread = Journal(
+    final journal = Journal(
       name: 'No Name',
       createdTimestamp: DateTime.now().millisecondsSinceEpoch,
       modifiedTimestamp: DateTime.now().millisecondsSinceEpoch,
       elementId: selectedElement!.id!,
     );
 
-    final s = await add(spread);
+    final s = await add(journal);
     return s;
   }
 
