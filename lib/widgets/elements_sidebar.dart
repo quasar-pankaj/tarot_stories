@@ -8,7 +8,8 @@ import '../providers/elements/elements_provider.dart';
 import '../providers/elements/selected_element_provider.dart';
 import '../providers/journals/journals_provider.dart';
 import '../providers/journals/open_journal_provider.dart';
-import '../providers/spreads/spread_generation_provider.dart';
+import '../providers/readings/readings_provider.dart';
+import '../providers/spreads/spread_provider.dart';
 import 'in_place_editor.dart';
 
 class ElementsSidebar extends StatelessWidget {
@@ -70,9 +71,14 @@ class ElementsSidebar extends StatelessWidget {
                                         ref
                                             .read(openJournalProvider.notifier)
                                             .state = journal;
-                                        final spread = await ref.read(
-                                            spreadProvider(shape.numCards)
-                                                .future);
+                                        final spread = ref
+                                            .read(spreadProvider(journal.id!)
+                                                .notifier)
+                                            .save([]);
+                                            final readings = ref
+                                            .read(readingsProvider(journal.id!)
+                                                .notifier)
+                                            .save([]);
                                       },
                                       value: shape,
                                       child: Text(
