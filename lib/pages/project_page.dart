@@ -15,16 +15,17 @@ import '../widgets/elements_sidebar.dart';
 import '../widgets/in_place_editor.dart';
 import '../widgets/toolbar.dart';
 
-class ProjectPage extends ConsumerWidget {
+class ProjectPage extends StatelessWidget {
   const ProjectPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final openProject = ref.watch(openProjectProvider);
-
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(openProject!.name),
+        title: Consumer(
+          builder: (context, ref, child) =>
+              Text(ref.watch(openProjectProvider)!.name),
+        ),
       ),
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,7 +122,8 @@ class ProjectPage extends ConsumerWidget {
                                     ),
                                   ),
                                   onDismissed: (direction) => ref
-                                      .read(journalProvider(journal.id!).notifier)
+                                      .read(
+                                          journalProvider(journal.id!).notifier)
                                       .delete(journal),
                                 ),
                               )
