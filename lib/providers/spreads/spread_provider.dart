@@ -8,7 +8,7 @@ import 'spread_repository_provider.dart';
 final spreadProvider = AsyncNotifierProvider.family
     .autoDispose<SpreadNotifier, Spread, int>(SpreadNotifier.new);
 
-class SpreadNotifier extends FamilyAsyncNotifier<Spread, int> {
+class SpreadNotifier extends AutoDisposeFamilyAsyncNotifier<Spread, int> {
   @override
   FutureOr<Spread> build(int arg) async {
     final repo = ref.watch(spreadRepositoryProvider);

@@ -114,7 +114,7 @@ class _ListViewItem {
   String text;
   JournalCategory type;
   IconData icon;
-  FutureProvider<Iterable<entities.Element>> provider;
+  AutoDisposeFutureProvider<Iterable<entities.Element>> provider;
   _ListViewItem({
     required this.text,
     required this.type,

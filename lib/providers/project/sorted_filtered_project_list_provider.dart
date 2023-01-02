@@ -9,7 +9,7 @@ import 'project_sort_condition_provider.dart';
 import 'project_sort_order_provider.dart';
 
 final sortedFilteredProjectListProvider =
-    FutureProvider<Iterable<Project>>((ref) async {
+    FutureProvider.autoDispose<Iterable<Project>>((ref) async {
   final condition = ref.watch(projectSortConditionProvider);
   final order = ref.watch(projectSortOrderProvider);
 

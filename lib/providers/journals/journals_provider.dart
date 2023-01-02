@@ -12,7 +12,8 @@ import 'journals_repository_provider.dart';
 final journalProvider = AsyncNotifierProvider.family
     .autoDispose<JournalNotifier, Iterable<Journal>, int>(JournalNotifier.new);
 
-class JournalNotifier extends FamilyAsyncNotifier<Iterable<Journal>, int> {
+class JournalNotifier
+    extends AutoDisposeFamilyAsyncNotifier<Iterable<Journal>, int> {
   @override
   FutureOr<Iterable<Journal>> build(int arg) async {
     final journals = ref.watch(journalsRepositoryProvider);

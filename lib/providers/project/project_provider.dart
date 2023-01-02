@@ -7,11 +7,11 @@ import '../elements/elements_provider.dart';
 import 'project_repository_provider.dart';
 
 final projectsProvider =
-    AsyncNotifierProvider<ProjetcsNotifier, Iterable<Project>>(
+    AsyncNotifierProvider.autoDispose<ProjetcsNotifier, Iterable<Project>>(
   ProjetcsNotifier.new,
 );
 
-class ProjetcsNotifier extends AsyncNotifier<Iterable<Project>> {
+class ProjetcsNotifier extends AutoDisposeAsyncNotifier<Iterable<Project>> {
   @override
   FutureOr<Iterable<Project>> build() async {
     state = const AsyncLoading();

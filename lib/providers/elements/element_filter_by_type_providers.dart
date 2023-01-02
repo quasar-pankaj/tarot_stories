@@ -5,7 +5,8 @@ import 'package:tarot_stories/providers/project/open_project_provider.dart';
 import '../../database/entities/element.dart';
 import 'elements_provider.dart';
 
-final charactersFilterProvider = FutureProvider<Iterable<Element>>((ref) async {
+final charactersFilterProvider =
+    FutureProvider.autoDispose<Iterable<Element>>((ref) async {
   final project = ref.watch(openProjectProvider);
   final Iterable<Element> all = await ref.watch(elementsProvider.future);
   return all.where((element) =>
@@ -21,7 +22,8 @@ final charactersFilterProvider = FutureProvider<Iterable<Element>>((ref) async {
 //       element.projectId == project!.id);
 // });
 
-final placesFilterProvider = FutureProvider<Iterable<Element>>((ref) async {
+final placesFilterProvider =
+    FutureProvider.autoDispose<Iterable<Element>>((ref) async {
   final project = ref.watch(openProjectProvider);
   final Iterable<Element> all = await ref.watch(elementsProvider.future);
   return all.where((element) =>
@@ -29,7 +31,8 @@ final placesFilterProvider = FutureProvider<Iterable<Element>>((ref) async {
       element.projectId == project!.id);
 });
 
-final propsFilterProvider = FutureProvider<Iterable<Element>>((ref) async {
+final propsFilterProvider =
+    FutureProvider.autoDispose<Iterable<Element>>((ref) async {
   final project = ref.watch(openProjectProvider);
   final Iterable<Element> all = await ref.watch(elementsProvider.future);
   return all.where((element) =>
@@ -46,7 +49,7 @@ final propsFilterProvider = FutureProvider<Iterable<Element>>((ref) async {
 // });
 
 final relationshipsFilterProvider =
-    FutureProvider<Iterable<Element>>((ref) async {
+    FutureProvider.autoDispose<Iterable<Element>>((ref) async {
   final project = ref.watch(openProjectProvider);
   final Iterable<Element> all = await ref.watch(elementsProvider.future);
   return all.where((element) =>
@@ -54,7 +57,8 @@ final relationshipsFilterProvider =
       element.projectId == project!.id);
 });
 
-final scenesFilterProvider = FutureProvider<Iterable<Element>>((ref) async {
+final scenesFilterProvider =
+    FutureProvider.autoDispose<Iterable<Element>>((ref) async {
   final project = ref.watch(openProjectProvider);
   final Iterable<Element> all = await ref.watch(elementsProvider.future);
   return all.where((element) =>
@@ -62,7 +66,8 @@ final scenesFilterProvider = FutureProvider<Iterable<Element>>((ref) async {
       element.projectId == project!.id);
 });
 
-final structuresFilterProvider = FutureProvider<Iterable<Element>>((ref) async {
+final structuresFilterProvider =
+    FutureProvider.autoDispose<Iterable<Element>>((ref) async {
   final project = ref.watch(openProjectProvider);
   final Iterable<Element> all = await ref.watch(elementsProvider.future);
   return all.where((element) =>

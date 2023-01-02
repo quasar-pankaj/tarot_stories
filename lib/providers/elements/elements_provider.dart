@@ -9,11 +9,11 @@ import '../project/open_project_provider.dart';
 import 'elements_repository_provider.dart';
 
 final elementsProvider =
-    AsyncNotifierProvider<ElementsNotifier, Iterable<Element>>(
+    AsyncNotifierProvider.autoDispose<ElementsNotifier, Iterable<Element>>(
   ElementsNotifier.new,
 );
 
-class ElementsNotifier extends AsyncNotifier<Iterable<Element>> {
+class ElementsNotifier extends AutoDisposeAsyncNotifier<Iterable<Element>> {
   @override
   FutureOr<Iterable<Element>> build() async {
     state = const AsyncValue.loading();

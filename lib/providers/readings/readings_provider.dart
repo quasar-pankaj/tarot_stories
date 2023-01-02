@@ -8,7 +8,7 @@ import 'readings_repository_provider.dart';
 final readingsProvider = AsyncNotifierProvider.family
     .autoDispose<ReadingsNotifier, Reading, int>(ReadingsNotifier.new);
 
-class ReadingsNotifier extends FamilyAsyncNotifier<Reading, int> {
+class ReadingsNotifier extends AutoDisposeFamilyAsyncNotifier<Reading, int> {
   @override
   FutureOr<Reading> build(int arg) async {
     final repo = ref.watch(readingsRepositoryProvider);
