@@ -12,7 +12,7 @@ mixin HistoryMixin<T> on FamilyAsyncNotifier<T, int> {
   @override
   set state(AsyncValue<T> value) {
     _clearRedoHistory();
-    _history.insert(0, value.value!);
+    _history.insert(0, value.value as T);
     super.state = value;
   }
 
