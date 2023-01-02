@@ -82,8 +82,8 @@ class Repository<E> {
       final entity = _getEntity(snapshot.value);
       // An ID is a key of a record from the database.
       // entity.id = snapshot.key;
-      _setId(entity, snapshot.key);
-      return entity;
+
+      return _setId(entity, snapshot.key);
     });
   }
 
@@ -98,8 +98,8 @@ class Repository<E> {
       final entity = _getEntity(snapshot.value);
       // An ID is a key of a record from the database.
       // entity.id = snapshot.key;
-      _setId(entity, snapshot.key);
-      return entity;
+
+      return _setId(entity, snapshot.key);
     });
   }
 
