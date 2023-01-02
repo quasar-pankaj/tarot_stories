@@ -15,19 +15,23 @@ final sortedFilteredJournalListProvider =
 
   final selectedElement = ref.watch(selectedElementProvider);
 
-  final spreads = ref.watch(journalProvider(selectedElement!.id!)).value;
+  if (selectedElement == null) {
+    return [];
+  }
+
+  final journals = ref.watch(journalProvider(selectedElement.id!)).value;
 
   late final List<Journal> sortedSpreads;
 
   switch (condition) {
     case SortCondition.name:
       if (order == SortOrder.ascending) {
-        sortedSpreads = spreads!.toList()
+        sortedSpreads = journals!.toList()
           ..sort(
             (a, b) => a.name.compareTo(b.name),
           );
       } else {
-        sortedSpreads = spreads!.toList()
+        sortedSpreads = journals!.toList()
           ..sort(
             (b, a) => a.name.compareTo(b.name),
           );
@@ -35,12 +39,12 @@ final sortedFilteredJournalListProvider =
       break;
     case SortCondition.dateCreated:
       if (order == SortOrder.ascending) {
-        sortedSpreads = spreads!.toList()
+        sortedSpreads = journals!.toList()
           ..sort(
             (a, b) => a.createdTimestamp.compareTo(b.createdTimestamp),
           );
       } else {
-        sortedSpreads = spreads!.toList()
+        sortedSpreads = journals!.toList()
           ..sort(
             (b, a) => a.createdTimestamp.compareTo(b.createdTimestamp),
           );
@@ -48,12 +52,12 @@ final sortedFilteredJournalListProvider =
       break;
     case SortCondition.dateModified:
       if (order == SortOrder.ascending) {
-        sortedSpreads = spreads!.toList()
+        sortedSpreads = journals!.toList()
           ..sort(
             (a, b) => a.modifiedTimestamp.compareTo(b.modifiedTimestamp),
           );
       } else {
-        sortedSpreads = spreads!.toList()
+        sortedSpreads = journals!.toList()
           ..sort(
             (b, a) => a.modifiedTimestamp.compareTo(b.modifiedTimestamp),
           );
