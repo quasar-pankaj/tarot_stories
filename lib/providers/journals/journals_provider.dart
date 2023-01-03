@@ -21,7 +21,7 @@ class JournalNotifier
   @override
   FutureOr<Iterable<Journal>> build(int arg) async {
     final journals = ref.watch(journalsRepositoryProvider);
-    return await journals.getAllWhereFieldMatches('elementId', '$arg');
+    return await journals.getAllWhereFieldMatches('elementId', arg);
   }
 
   Future<Journal> addNew(SpreadShape layoutType) async {
@@ -63,7 +63,7 @@ class JournalNotifier
     state = const AsyncValue.loading();
     final journals = await ref
         .read(journalsRepositoryProvider)
-        .getAllWhereFieldMatches('elementId', '$elementId');
+        .getAllWhereFieldMatches('elementId', elementId);
 
     for (var journal in journals) {
       await ref.read(spreadProvider(journal.id!).notifier).delete();

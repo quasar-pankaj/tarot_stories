@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tarot_stories/database/entities/enum_journal_category.dart';
+import 'package:tarot_stories/providers/elements/selected_element_provider.dart';
 import 'package:tarot_stories/providers/journals/journals_provider.dart';
 
 import '../../database/entities/element.dart';
@@ -29,6 +30,7 @@ class ElementsNotifier extends AutoDisposeAsyncNotifier<Iterable<Element>> {
       elementType: type,
     );
     final elem = await add(element);
+    ref.read(selectedElementProvider.notifier).state = elem;
     return elem;
   }
 
@@ -77,7 +79,7 @@ class ElementsNotifier extends AutoDisposeAsyncNotifier<Iterable<Element>> {
   Future<void> deleteAllForProject(int projectId) async {
     final elements = await ref
         .read(elementRepositoryProvider)
-        .getAllWhereFieldMatches('projectId', '$projectId');
+        .getAllWhereFieldMatches('projectId', projectId);
 
     for (var element in elements) {
       await ref

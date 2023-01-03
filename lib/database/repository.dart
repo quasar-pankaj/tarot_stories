@@ -68,9 +68,8 @@ class Repository<E> {
     return await _store.drop(await _db);
   }
 
-  Future<Iterable<E>> getAllWhereFieldMatches(
-      String field, String pattern) async {
-    final finder = Finder(filter: Filter.matches(field, pattern));
+  Future<Iterable<E>> getAllWhereFieldMatches(String field, int fk) async {
+    final finder = Finder(filter: Filter.equals(field, fk));
     final recordSnapshots = await _store.find(
       await _db,
       finder: finder,

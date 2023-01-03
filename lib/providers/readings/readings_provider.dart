@@ -13,7 +13,7 @@ class ReadingsNotifier extends AutoDisposeFamilyAsyncNotifier<Reading, int> {
   FutureOr<Reading> build(int arg) async {
     final repo = ref.watch(readingsRepositoryProvider);
 
-    final readings = await repo.getAllWhereFieldMatches('journalId', '$arg');
+    final readings = await repo.getAllWhereFieldMatches('journalId', arg);
 
     if (readings.isNotEmpty) {
       return readings.first;
