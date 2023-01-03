@@ -15,13 +15,7 @@ class SpreadNotifier extends AutoDisposeFamilyAsyncNotifier<Spread, int> {
 
     final spreads = await repo.getAllWhereFieldMatches('journalId', '$arg');
 
-    if (spreads.isNotEmpty) {
-      return spreads.first;
-    } else {
-      final reading = Spread(journalId: arg, cards: []);
-      final r = await repo.insert(reading);
-      return r;
-    }
+    return spreads.first;
   }
 
   Future<void> save(List<String> cards) async {

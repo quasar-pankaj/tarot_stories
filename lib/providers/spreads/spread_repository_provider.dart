@@ -6,7 +6,7 @@ import '../../database/repository.dart';
 
 final spreadRepositoryProvider = Provider<Repository<Spread>>((ref) {
   return Repository<Spread>(
-    storeName: AppDatabase.projects,
+    storeName: AppDatabase.spreads,
     getEntity: (json) => Spread.fromJson(json),
     getId: (entity) => entity.id!,
     getMap: (entity) => entity.toJson(),

@@ -6,7 +6,7 @@ import '../../database/repository.dart';
 
 final journalsRepositoryProvider = Provider<Repository<Journal>>((ref) {
   return Repository<Journal>(
-    storeName: AppDatabase.spreads,
+    storeName: AppDatabase.journals,
     getEntity: (map) => Journal.fromJson(map),
     getId: (entity) => entity.id!,
     getMap: (entity) => entity.toJson(),

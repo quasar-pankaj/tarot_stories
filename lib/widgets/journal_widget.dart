@@ -75,14 +75,14 @@ class JournalWidget extends StatelessWidget {
                                     padding: const EdgeInsets.all(8.0),
                                     child: InPlaceEditor(
                                       text: journal.name,
-                                      onTextChanged: (newText) {
+                                      onTextChanged: (newText) async {
                                         final Journal renamedSpread =
                                             journal.copyWith(
                                           name: newText,
                                           modifiedTimestamp: DateTime.now()
                                               .millisecondsSinceEpoch,
                                         );
-                                        ref
+                                        await ref
                                             .read(journalProvider(
                                                     renamedSpread.elementId)
                                                 .notifier)
@@ -99,7 +99,7 @@ class JournalWidget extends StatelessWidget {
                               ),
                             ),
                           ),
-                          onDismissed: (direction) => ref
+                          onDismissed: (direction) async => await ref
                               .read(journalProvider(journal.id!).notifier)
                               .delete(journal),
                         ),

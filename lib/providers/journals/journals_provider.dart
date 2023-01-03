@@ -1,12 +1,16 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tarot_stories/providers/readings/readings_repository_provider.dart';
 
 import '../../database/entities/enum_spread_shape.dart';
 import '../../database/entities/journal.dart';
+import '../../database/entities/reading.dart';
+import '../../database/entities/spread.dart';
 import '../elements/selected_element_provider.dart';
 import '../readings/readings_provider.dart';
 import '../spreads/spread_provider.dart';
+import '../spreads/spread_repository_provider.dart';
 import 'journals_repository_provider.dart';
 
 final journalProvider = AsyncNotifierProvider.family
@@ -21,7 +25,7 @@ class JournalNotifier
   }
 
   Future<Journal> addNew(SpreadShape layoutType) async {
-    final selectedElement = ref.watch(selectedElementProvider);
+    final selectedElement = ref.read(selectedElementProvider);
     final journal = Journal(
       name: 'No Name',
       createdTimestamp: DateTime.now().millisecondsSinceEpoch,
@@ -29,8 +33,12 @@ class JournalNotifier
       elementId: selectedElement!.id!,
     );
 
-    final s = await add(journal);
-    return s;
+    final j = await add(journal);
+    final spread = Spread(journalId: j.id!, cards: []);
+    await ref.read(spreadRepositoryProvider).insert(spread);
+    final readings = Reading(journalId: j.id!, readings: []);
+    await ref.read(readingsRepositoryProvider).insert(readings);
+    return j;
   }
 
   Future<Journal> add(Journal spread) async {

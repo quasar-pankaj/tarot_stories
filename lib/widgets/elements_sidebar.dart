@@ -8,8 +8,6 @@ import '../providers/elements/elements_provider.dart';
 import '../providers/elements/selected_element_provider.dart';
 import '../providers/journals/journals_provider.dart';
 import '../providers/journals/open_journal_provider.dart';
-import '../providers/readings/readings_provider.dart';
-import '../providers/spreads/spread_provider.dart';
 import 'in_place_editor.dart';
 
 class ElementsSidebar extends StatelessWidget {
@@ -40,21 +38,23 @@ class ElementsSidebar extends StatelessWidget {
             children: asyncChildren.when(
               data: (data) => data
                   .map(
-                    (e) => InkWell(
-                      onTap: () =>
-                          ref.read(selectedElementProvider.notifier).state = e,
+                    (element) => InkWell(
+                      onTap: () => ref
+                          .read(selectedElementProvider.notifier)
+                          .state = element,
                       child: Dismissible(
-                        key: Key(e.toString()),
+                        onDismissed: (direction) async => await ref
+                            .read(elementsProvider.notifier)
+                            .delete(element),
+                        key: Key(element.toString()),
                         child: Card(
                           child: ListTile(
                             title: InPlaceEditor(
-                              text: e.name,
-                              onTextChanged: (newText) {
-                                final entities.Element element =
-                                    e.copyWith(name: newText);
-                                ref
+                              text: element.name,
+                              onTextChanged: (newText) async {
+                                await ref
                                     .read(elementsProvider.notifier)
-                                    .save(element);
+                                    .save(element.copyWith(name: newText));
                               },
                             ),
                             trailing: PopupMenuButton(
@@ -65,20 +65,12 @@ class ElementsSidebar extends StatelessWidget {
                                     (shape) => PopupMenuItem(
                                       onTap: () async {
                                         final journal = await ref
-                                            .read(
-                                                journalProvider(e.id!).notifier)
+                                            .read(journalProvider(element.id!)
+                                                .notifier)
                                             .addNew(shape);
                                         ref
                                             .read(openJournalProvider.notifier)
                                             .state = journal;
-                                        await ref
-                                            .read(spreadProvider(journal.id!)
-                                                .notifier)
-                                            .save([]);
-                                        await ref
-                                            .read(readingsProvider(journal.id!)
-                                                .notifier)
-                                            .save([]);
                                       },
                                       value: shape,
                                       child: Text(

@@ -8,7 +8,9 @@ import 'package:sembast/sembast_io.dart';
 class AppDatabase {
   static const projects = 'projects';
   static const elements = 'elements';
+  static const journals = 'journals';
   static const spreads = 'spreads';
+  static const readings = 'readings';
 
   // Singleton instance
   static final AppDatabase _singleton = AppDatabase._();

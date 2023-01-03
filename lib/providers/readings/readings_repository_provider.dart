@@ -6,7 +6,7 @@ import '../../database/repository.dart';
 
 final readingsRepositoryProvider = Provider<Repository<Reading>>((ref) {
   return Repository<Reading>(
-    storeName: AppDatabase.projects,
+    storeName: AppDatabase.readings,
     getEntity: (json) => Reading.fromJson(json),
     getId: (entity) => entity.id!,
     getMap: (entity) => entity.toJson(),
