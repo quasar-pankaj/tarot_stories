@@ -26,7 +26,12 @@ class SpreadNotifier extends AutoDisposeFamilyAsyncNotifier<Spread, int> {
 
   Future<void> save(List<String> cards) async {
     final spread = state.value;
-    final modifiedReading = spread!.copyWith(cards: cards);
+    late final Spread modifiedReading;
+    if (spread == null) {
+      modifiedReading = Spread(journalId: arg, cards: []);
+    } else {
+      modifiedReading = spread!.copyWith(cards: cards);
+    }
     await ref.read(spreadRepositoryProvider).update(modifiedReading);
     state = AsyncValue.data(modifiedReading);
   }

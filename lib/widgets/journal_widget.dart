@@ -62,8 +62,8 @@ class JournalWidget extends StatelessWidget {
                                   MaterialPageRoute(
                                     builder: (context) {
                                       return const ReadingPage(
-                                        journal: FlutterLogo(),
-                                        spread: FlutterLogo(),
+                                        journal: FlutterLogo(), // Change later
+                                        spread: FlutterLogo(), // Change later
                                       );
                                     },
                                   ),
