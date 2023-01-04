@@ -49,9 +49,6 @@ class _InPlaceEditorState extends State<InPlaceEditor> {
         },
         child: Text(
           widget._text,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
         ),
       );
     }
