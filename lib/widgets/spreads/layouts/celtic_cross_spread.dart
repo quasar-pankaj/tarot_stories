@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../services/card_service.dart';
-import 'tarot_card.dart';
+import '../../../services/card_service.dart';
+import '../tarot_card.dart';
 
 class CelticCrossSpread extends StatelessWidget {
   const CelticCrossSpread({super.key});

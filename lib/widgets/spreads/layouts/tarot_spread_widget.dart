@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../providers/cards_provider.dart';
-import 'tarot_card.dart';
+import '../../../providers/cards_provider.dart';
+import '../tarot_card.dart';
 
 abstract class TarotSpreadWidget extends ConsumerWidget {
   const TarotSpreadWidget({super.key});
