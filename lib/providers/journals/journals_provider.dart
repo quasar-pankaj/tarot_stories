@@ -1,15 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tarot_stories/providers/cards_provider.dart';
-import 'package:tarot_stories/providers/readings/readings_repository_provider.dart';
 
 import '../../database/entities/enum_spread_shape.dart';
 import '../../database/entities/journal.dart';
 import '../../database/entities/reading.dart';
 import '../../database/entities/spread.dart';
+import '../cards_provider.dart';
 import '../elements/selected_element_provider.dart';
 import '../readings/readings_provider.dart';
+import '../readings/readings_repository_provider.dart';
 import '../spreads/spread_provider.dart';
 import '../spreads/spread_repository_provider.dart';
 import 'journals_repository_provider.dart';
