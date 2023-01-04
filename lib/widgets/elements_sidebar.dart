@@ -51,6 +51,7 @@ class ElementsSidebar extends StatelessWidget {
                         child: Card(
                           child: ListTile(
                             selectedColor: Colors.blue[400],
+                            selectedTileColor: Colors.pink[50],
                             selected: selectedElement == element,
                             title: InPlaceEditor(
                               text: element.name,
