@@ -21,6 +21,7 @@ class ElementsSidebar extends StatelessWidget {
       itemBuilder: (context, index) => Consumer(
         builder: (context, ref, child) {
           final asyncChildren = ref.watch(_items[index].provider);
+          final selectedElement = ref.watch(selectedElementProvider);
           return ExpansionTile(
             title: Row(
               children: [
@@ -49,6 +50,8 @@ class ElementsSidebar extends StatelessWidget {
                         key: Key(element.toString()),
                         child: Card(
                           child: ListTile(
+                            selectedColor: Colors.blue[400],
+                            selected: selectedElement == element,
                             title: InPlaceEditor(
                               text: element.name,
                               onTextChanged: (newText) async {
