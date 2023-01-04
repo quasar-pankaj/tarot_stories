@@ -79,7 +79,7 @@ class ElementsNotifier extends AutoDisposeAsyncNotifier<Iterable<Element>> {
   Future<void> deleteAllForProject(int projectId) async {
     final elements = await ref
         .read(elementRepositoryProvider)
-        .getAllWhereFieldMatches('projectId', projectId);
+        .getAllWhereFKFieldEquals('projectId', projectId);
 
     for (var element in elements) {
       await ref

@@ -13,7 +13,7 @@ class SpreadNotifier extends AutoDisposeFamilyAsyncNotifier<Spread, int> {
   FutureOr<Spread> build(int arg) async {
     final repo = ref.watch(spreadRepositoryProvider);
 
-    final spreads = await repo.getAllWhereFieldMatches('journalId', arg);
+    final spreads = await repo.getAllWhereFKFieldEquals('journalId', arg);
 
     return spreads.first;
   }
