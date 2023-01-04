@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tarot_stories/providers/cards_provider.dart';
 import 'package:tarot_stories/providers/readings/readings_repository_provider.dart';
 
 import '../../database/entities/enum_spread_shape.dart';
@@ -30,11 +31,19 @@ class JournalNotifier
       name: 'No Name',
       createdTimestamp: DateTime.now().millisecondsSinceEpoch,
       modifiedTimestamp: DateTime.now().millisecondsSinceEpoch,
+      shape: layoutType,
       elementId: selectedElement!.id!,
     );
 
     final j = await add(journal);
-    final spread = Spread(journalId: j.id!, cards: []);
+    final List<String> cards = [];
+
+    final cardsProvider = ref.read(cardServiceProvider).value;
+
+    for (int i = 0; i < layoutType.numCards; i++) {
+      cards.add(cardsProvider!.nextCard.name);
+    }
+    final spread = Spread(journalId: j.id!, cards: cards);
     await ref.read(spreadRepositoryProvider).insert(spread);
     final readings = Reading(journalId: j.id!, readings: []);
     await ref.read(readingsRepositoryProvider).insert(readings);

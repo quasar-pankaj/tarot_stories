@@ -26,6 +26,7 @@ mixin _$Journal {
   int get createdTimestamp => throw _privateConstructorUsedError;
   int get modifiedTimestamp => throw _privateConstructorUsedError;
   int get elementId => throw _privateConstructorUsedError;
+  SpreadShape get shape => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +44,8 @@ abstract class $JournalCopyWith<$Res> {
       String? query,
       int createdTimestamp,
       int modifiedTimestamp,
-      int elementId});
+      int elementId,
+      SpreadShape shape});
 }
 
 /// @nodoc
@@ -65,6 +67,7 @@ class _$JournalCopyWithImpl<$Res, $Val extends Journal>
     Object? createdTimestamp = null,
     Object? modifiedTimestamp = null,
     Object? elementId = null,
+    Object? shape = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -91,6 +94,10 @@ class _$JournalCopyWithImpl<$Res, $Val extends Journal>
           ? _value.elementId
           : elementId // ignore: cast_nullable_to_non_nullable
               as int,
+      shape: null == shape
+          ? _value.shape
+          : shape // ignore: cast_nullable_to_non_nullable
+              as SpreadShape,
     ) as $Val);
   }
 }
@@ -108,7 +115,8 @@ abstract class _$$$JournalCopyWith<$Res> implements $JournalCopyWith<$Res> {
       String? query,
       int createdTimestamp,
       int modifiedTimestamp,
-      int elementId});
+      int elementId,
+      SpreadShape shape});
 }
 
 /// @nodoc
@@ -127,6 +135,7 @@ class __$$$JournalCopyWithImpl<$Res>
     Object? createdTimestamp = null,
     Object? modifiedTimestamp = null,
     Object? elementId = null,
+    Object? shape = null,
   }) {
     return _then(_$$Journal(
       id: freezed == id
@@ -153,6 +162,10 @@ class __$$$JournalCopyWithImpl<$Res>
           ? _value.elementId
           : elementId // ignore: cast_nullable_to_non_nullable
               as int,
+      shape: null == shape
+          ? _value.shape
+          : shape // ignore: cast_nullable_to_non_nullable
+              as SpreadShape,
     ));
   }
 }
@@ -166,7 +179,8 @@ class _$$Journal implements $Journal {
       this.query,
       required this.createdTimestamp,
       required this.modifiedTimestamp,
-      required this.elementId});
+      required this.elementId,
+      required this.shape});
 
   factory _$$Journal.fromJson(Map<String, dynamic> json) =>
       _$$$JournalFromJson(json);
@@ -183,10 +197,12 @@ class _$$Journal implements $Journal {
   final int modifiedTimestamp;
   @override
   final int elementId;
+  @override
+  final SpreadShape shape;
 
   @override
   String toString() {
-    return 'Journal(id: $id, name: $name, query: $query, createdTimestamp: $createdTimestamp, modifiedTimestamp: $modifiedTimestamp, elementId: $elementId)';
+    return 'Journal(id: $id, name: $name, query: $query, createdTimestamp: $createdTimestamp, modifiedTimestamp: $modifiedTimestamp, elementId: $elementId, shape: $shape)';
   }
 
   @override
@@ -202,13 +218,14 @@ class _$$Journal implements $Journal {
             (identical(other.modifiedTimestamp, modifiedTimestamp) ||
                 other.modifiedTimestamp == modifiedTimestamp) &&
             (identical(other.elementId, elementId) ||
-                other.elementId == elementId));
+                other.elementId == elementId) &&
+            (identical(other.shape, shape) || other.shape == shape));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, query,
-      createdTimestamp, modifiedTimestamp, elementId);
+      createdTimestamp, modifiedTimestamp, elementId, shape);
 
   @JsonKey(ignore: true)
   @override
@@ -231,7 +248,8 @@ abstract class $Journal implements Journal {
       final String? query,
       required final int createdTimestamp,
       required final int modifiedTimestamp,
-      required final int elementId}) = _$$Journal;
+      required final int elementId,
+      required final SpreadShape shape}) = _$$Journal;
 
   factory $Journal.fromJson(Map<String, dynamic> json) = _$$Journal.fromJson;
 
@@ -247,6 +265,8 @@ abstract class $Journal implements Journal {
   int get modifiedTimestamp;
   @override
   int get elementId;
+  @override
+  SpreadShape get shape;
   @override
   @JsonKey(ignore: true)
   _$$$JournalCopyWith<_$$Journal> get copyWith =>
