@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class OneCardSpread extends ConsumerWidget {
+import 'tarot_spread_widget.dart';
+
+class OneCardSpread extends TarotSpreadWidget {
   const OneCardSpread({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Container();
+  Widget layoutCards(Iterable<Widget> widgets) {
+    return widgets.first;
   }
 }
