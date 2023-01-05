@@ -57,6 +57,4 @@ const _$SpreadShapeEnumMap = {
   SpreadShape.fourteenPointStructure: 'fourteenPointStructure',
   SpreadShape.relationship2Way: 'relationship2Way',
   SpreadShape.relationship3Way: 'relationship3Way',
-  SpreadShape.triangle: 'triangle',
-  SpreadShape.square: 'square',
 };

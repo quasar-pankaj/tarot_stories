@@ -239,8 +239,10 @@ enum SpreadShape {
   ), //this is a temporary measure change later
   relationship2Way(
     name: 'Two Way Relationship',
-    widget: SingleCardLayout(
-      label1: '1',
+    widget: ThreeCardHorizLayout(
+      label1: 'C1',
+      label2: 'R',
+      label3: 'C2',
     ),
     numCards: 3,
   ), //this is a temporary measure change later
@@ -250,20 +252,6 @@ enum SpreadShape {
       label1: '1',
     ),
     numCards: 6,
-  ), //this is a temporary measure change later
-  triangle(
-    name: 'Triangle',
-    widget: SingleCardLayout(
-      label1: '1',
-    ),
-    numCards: 3,
-  ), //this is a temporary measure change later
-  square(
-    name: 'Square',
-    widget: SingleCardLayout(
-      label1: '1',
-    ),
-    numCards: 4,
   ); //this is a temporary measure change later
 
   final String _name;

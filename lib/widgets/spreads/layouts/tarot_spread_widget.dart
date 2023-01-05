@@ -13,10 +13,13 @@ abstract class TarotSpreadWidget extends ConsumerWidget {
     int index = 0;
     final Iterable<Widget> cards = cp.when(
       data: (data) => data.map(
-        (card) => TarotCard(
-          name: card.name,
-          suit: card.suit,
-          index: '${index++}',
+        (card) => Padding(
+          padding: const EdgeInsets.all(2.5),
+          child: TarotCard(
+            name: card.name,
+            suit: card.suit,
+            index: '${index++}',
+          ),
         ),
       ),
       error: (error, stacktrace) => [Text(error.toString())],

@@ -7,16 +7,8 @@ class HorizontalSpread extends TarotSpreadWidget {
 
   @override
   Widget layoutCards(Iterable<Widget> widgets) {
-    final modifiedWidgets = <Widget>[];
-    for (var element in widgets) {
-      modifiedWidgets.add(element);
-      const VerticalDivider(
-        thickness: 3,
-        width: 3,
-      );
-    }
     return Row(
-      children: modifiedWidgets,
+      children: widgets.toList(),
     );
   }
 }
