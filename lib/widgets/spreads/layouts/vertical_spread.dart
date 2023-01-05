@@ -7,8 +7,16 @@ class VerticalSpread extends TarotSpreadWidget {
 
   @override
   Widget layoutCards(Iterable<Widget> widgets) {
+    final modifiedWidgets = <Widget>[];
+    for (var element in widgets) {
+      modifiedWidgets.add(element);
+      const Divider(
+        thickness: 3,
+        height: 3,
+      );
+    }
     return Column(
-      children: widgets.toList(),
+      children: modifiedWidgets,
     );
   }
 }
