@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:tarot_stories/spread_icons/backstory_layout.dart';
-import 'package:tarot_stories/spread_icons/character_cross_layout.dart';
-import 'package:tarot_stories/spread_icons/five_card_horiz_layout.dart';
-import 'package:tarot_stories/spread_icons/four_card_horiz_layout.dart';
-import 'package:tarot_stories/spread_icons/four_card_vert_layout.dart';
-import 'package:tarot_stories/spread_icons/three_card_horiz_layout.dart';
-import 'package:tarot_stories/spread_icons/three_card_vert_layout.dart';
-import 'package:tarot_stories/spread_icons/two_card_horiz_layout.dart';
-import 'package:tarot_stories/spread_icons/two_card_vert_layout.dart';
 
+import '../../spread_icons/backstory_layout.dart';
+import '../../spread_icons/character_cross_layout.dart';
+import '../../spread_icons/five_card_horiz_layout.dart';
+import '../../spread_icons/four_card_horiz_layout.dart';
+import '../../spread_icons/four_card_vert_layout.dart';
 import '../../spread_icons/single_card_layout.dart';
+import '../../spread_icons/three_card_horiz_layout.dart';
+import '../../spread_icons/three_card_vert_layout.dart';
+import '../../spread_icons/two_card_horiz_layout.dart';
+import '../../spread_icons/two_card_vert_layout.dart';
 
 enum SpreadShape {
   horiz1(
@@ -166,20 +166,6 @@ enum SpreadShape {
       label1: '1',
     ),
     numCards: 10,
-  ), //this is a temporary measure change later
-  pentagram(
-    name: 'Pentagram',
-    widget: SingleCardLayout(
-      label1: '1',
-    ),
-    numCards: 5,
-  ), //this is a temporary measure change later
-  hexagram(
-    name: 'Hexagram',
-    widget: SingleCardLayout(
-      label1: '1',
-    ),
-    numCards: 6,
   ), //this is a temporary measure change later
   herosJourney12Circular(
     name: "Hero's Journey 12 Card Circular",

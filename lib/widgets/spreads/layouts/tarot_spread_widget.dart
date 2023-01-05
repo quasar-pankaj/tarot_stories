@@ -15,10 +15,13 @@ abstract class TarotSpreadWidget extends ConsumerWidget {
       data: (data) => data.map(
         (card) => Padding(
           padding: const EdgeInsets.all(2.5),
-          child: TarotCard(
-            name: card.name,
-            suit: card.suit,
-            index: '${index++}',
+          child: Tooltip(
+            message: card.description,
+            child: TarotCard(
+              name: card.name,
+              suit: card.suit,
+              index: '${index++}',
+            ),
           ),
         ),
       ),

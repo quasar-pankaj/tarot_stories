@@ -45,8 +45,6 @@ const _$SpreadShapeEnumMap = {
   SpreadShape.characterCross: 'characterCross',
   SpreadShape.backstory: 'backstory',
   SpreadShape.celticCross: 'celticCross',
-  SpreadShape.pentagram: 'pentagram',
-  SpreadShape.hexagram: 'hexagram',
   SpreadShape.herosJourney12Circular: 'herosJourney12Circular',
   SpreadShape.herosJourney16Circular: 'herosJourney16Circular',
   SpreadShape.herosJourney12MByN: 'herosJourney12MByN',
