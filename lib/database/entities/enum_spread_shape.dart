@@ -14,8 +14,11 @@ import '../../spread_icons/two_card_vert_layout.dart';
 enum SpreadShape {
   horiz1(
     name: 'Horizontal One Card',
-    widget: SingleCardLayout(label1: '1'),
+    widget: SingleCardLayout(
+      label1: '1',
+    ),
     numCards: 1,
+    contexts: ['Query'],
   ),
   horiz2(
     name: 'Horizontal Two Card',
@@ -24,6 +27,10 @@ enum SpreadShape {
       label2: '2',
     ),
     numCards: 2,
+    contexts: [
+      'Query 1',
+      'Query 2',
+    ],
   ),
   horiz3(
     name: 'Horizontal Three Card',
@@ -33,6 +40,11 @@ enum SpreadShape {
       label3: '3',
     ),
     numCards: 3,
+    contexts: [
+      'Query 1',
+      'Query 2',
+      'Query 3',
+    ],
   ),
   horiz4(
     name: 'Horizontal Four Card',
@@ -43,6 +55,12 @@ enum SpreadShape {
       label4: '4',
     ),
     numCards: 4,
+    contexts: [
+      'Query 1',
+      'Query 2',
+      'Query 3',
+      'Query 4',
+    ],
   ),
   horiz5(
     name: 'Horizontal Five Card',
@@ -54,6 +72,13 @@ enum SpreadShape {
       card5: '5',
     ),
     numCards: 5,
+    contexts: [
+      'Query 1',
+      'Query 2',
+      'Query 3',
+      'Query 4',
+      'Query 5',
+    ],
   ),
   vert2(
     name: 'Vertical Two Card',
@@ -62,6 +87,10 @@ enum SpreadShape {
       label2: '2',
     ),
     numCards: 2,
+    contexts: [
+      'Query 1',
+      'Query 2',
+    ],
   ),
   vert3(
     name: 'Vertical Three Card',
@@ -71,6 +100,11 @@ enum SpreadShape {
       label3: '3',
     ),
     numCards: 3,
+    contexts: [
+      'Query 1',
+      'Query 2',
+      'Query 3',
+    ],
   ),
   vert4(
     name: 'Vertical Four Card',
@@ -81,6 +115,12 @@ enum SpreadShape {
       label4: '4',
     ),
     numCards: 4,
+    contexts: [
+      'Query 1',
+      'Query 2',
+      'Query 3',
+      'Query 4',
+    ],
   ),
   goalMotivationConflict(
     name: 'Goal-Motivation-Conflict',
@@ -90,6 +130,11 @@ enum SpreadShape {
       label3: 'C',
     ),
     numCards: 3,
+    contexts: [
+      'Goal',
+      'Motivation',
+      'Conflict',
+    ],
   ),
   goalConflictDisaster(
     name: 'Goal-Conflict-Disaster',
@@ -99,6 +144,11 @@ enum SpreadShape {
       label3: 'D',
     ),
     numCards: 3,
+    contexts: [
+      'Goal',
+      'Conflict',
+      'Disaster',
+    ],
   ),
   reactionDilemmaDecision(
     name: 'Reaction-Dilemma-Decision',
@@ -108,6 +158,11 @@ enum SpreadShape {
       label3: 'D',
     ),
     numCards: 3,
+    contexts: [
+      'Reaction',
+      'Dilemma',
+      'Decision',
+    ],
   ),
   actionReactionMovement(
     name: 'Action-Reaction-Movement',
@@ -117,6 +172,11 @@ enum SpreadShape {
       label3: 'M',
     ),
     numCards: 3,
+    contexts: [
+      'Action',
+      'Reaction',
+      'Movement',
+    ],
   ),
   thesisAntithesisSynthesis(
     name: 'Thesis-Antithesis-Synthesis',
@@ -126,6 +186,11 @@ enum SpreadShape {
       label3: 'S',
     ),
     numCards: 3,
+    contexts: [
+      'Thesis',
+      'Antithesis',
+      'Synthesis',
+    ],
   ),
   fiveSenses(
     name: '5 Senses',
@@ -137,6 +202,13 @@ enum SpreadShape {
       card5: 'T',
     ),
     numCards: 5,
+    contexts: [
+      'Sight',
+      'Smell',
+      'Sounds',
+      'Taste',
+      'Touch',
+    ],
   ),
   characterCross(
     name: 'Character Cross',
@@ -149,6 +221,14 @@ enum SpreadShape {
       card6: '6',
     ),
     numCards: 6,
+    contexts: [
+      'Character',
+      'Conflict',
+      'Flaws',
+      'Need',
+      'Goal',
+      'Want',
+    ],
   ),
   backstory(
     name: 'Backstory',
@@ -159,6 +239,12 @@ enum SpreadShape {
       card4: '4',
     ),
     numCards: 4,
+    contexts: [
+      'Key Past Event',
+      'Positive Fugure',
+      'Childhood Overall',
+      'Negative Figure',
+    ],
   ),
   celticCross(
     name: 'Celtic Cross',
@@ -166,6 +252,18 @@ enum SpreadShape {
       label1: '1',
     ),
     numCards: 10,
+    contexts: [
+      'The Issue',
+      'Obstacle',
+      'Past',
+      'Present',
+      'Near Future',
+      'Far Future',
+      'The Character',
+      'Environment',
+      'Hopes and Fears',
+      'Outcome',
+    ],
   ), //this is a temporary measure change later
   herosJourney12Circular(
     name: "Hero's Journey 12 Card Circular",
@@ -173,6 +271,20 @@ enum SpreadShape {
       label1: '1',
     ),
     numCards: 12,
+    contexts: [
+      'Ordinary World',
+      'Call To Action',
+      'Refusing the Call',
+      'Mentor/Helper',
+      'Crossing the Threshold',
+      'The Magical World',
+      'Test/Allies/Enemies',
+      'Trials',
+      'Dark night of the Soul',
+      'Ordeal',
+      'Reward',
+      'Return',
+    ],
   ), //this is a temporary measure change later
   herosJourney16Circular(
     name: "Hero's Journey 16 Card Circular",
@@ -180,6 +292,24 @@ enum SpreadShape {
       label1: '1',
     ),
     numCards: 16,
+    contexts: [
+      'Ordinary World',
+      'Call To Action',
+      'Refusing the Call',
+      'Ally/Mentor/Helper',
+      'Crossing the Threshold',
+      'Guardians and Gatekeepers',
+      'The road of Trials',
+      'Supreme Ordeal',
+      'Meeting with the Godess',
+      'Woman as Temptress',
+      'Atonement with Father',
+      'The Abyss',
+      'Ultimate Boon',
+      'Flight',
+      'rescue from Without',
+      'Master of Two Worlds',
+    ],
   ), //this is a temporary measure change later
   herosJourney12MByN(
     name: "Hero's Journey 12 Card 4x3",
@@ -187,6 +317,20 @@ enum SpreadShape {
       label1: '1',
     ),
     numCards: 12,
+    contexts: [
+      'Ordinary World',
+      'Call To Action',
+      'Refusing the Call',
+      'Mentor/Helper',
+      'Crossing the Threshold',
+      'The Magical World',
+      'Test/Allies/Enemies',
+      'Trials',
+      'Dark night of the Soul',
+      'Ordeal',
+      'Reward',
+      'Return',
+    ],
   ), //this is a temporary measure change later
   herosJourney16MByN(
     name: "Hero's Journey 16 Card 4x4",
@@ -194,13 +338,24 @@ enum SpreadShape {
       label1: '1',
     ),
     numCards: 16,
-  ), //this is a temporary measure change later
-  blakeSnyderBeatSheet(
-    name: 'Blake Snyder\'s Beat Sheet',
-    widget: SingleCardLayout(
-      label1: '1',
-    ),
-    numCards: 12,
+    contexts: [
+      'Ordinary World',
+      'Call To Action',
+      'Refusing the Call',
+      'Ally/Mentor/Helper',
+      'Crossing the Threshold',
+      'Guardians and Gatekeepers',
+      'The road of Trials',
+      'Supreme Ordeal',
+      'Meeting with the Godess',
+      'Woman as Temptress',
+      'Atonement with Father',
+      'The Abyss',
+      'Ultimate Boon',
+      'Flight',
+      'rescue from Without',
+      'Master of Two Worlds',
+    ],
   ), //this is a temporary measure change later
   threeDisasterFourAct(
     name: '3 Disaster 4 Act',
@@ -208,20 +363,15 @@ enum SpreadShape {
       label1: '1',
     ),
     numCards: 7,
-  ), //this is a temporary measure change later
-  superStructure(
-    name: 'Superstructure',
-    widget: SingleCardLayout(
-      label1: '1',
-    ),
-    numCards: 12,
-  ), //this is a temporary measure change later
-  fourteenPointStructure(
-    name: 'Fourteen Point Structure',
-    widget: SingleCardLayout(
-      label1: '1',
-    ),
-    numCards: 14,
+    contexts: [
+      'Act 1',
+      'Disaster 1',
+      'Act 2',
+      'Disaster 2',
+      'Act 3',
+      'Disaster 3',
+      'Act 4',
+    ],
   ), //this is a temporary measure change later
   relationship2Way(
     name: 'Two Way Relationship',
@@ -231,6 +381,11 @@ enum SpreadShape {
       label3: 'C2',
     ),
     numCards: 3,
+    contexts: [
+      'Character 1',
+      'Relationship',
+      'Character 2',
+    ],
   ), //this is a temporary measure change later
   relationship3Way(
     name: 'Three Way Relationship',
@@ -238,22 +393,34 @@ enum SpreadShape {
       label1: '1',
     ),
     numCards: 6,
+    contexts: [
+      'Character 1',
+      'C1-C2 Relationship',
+      'C1-C3 Relationship',
+      'Character 2',
+      'C2-C3 relationship',
+      'Character 3',
+    ],
   ); //this is a temporary measure change later
 
   final String _name;
   final Widget _widget;
   final int _numCards;
+  final List<String> _contexts;
 
   const SpreadShape({
     required String name,
     required Widget widget,
     required int numCards,
+    required List<String> contexts,
   })  : _name = name,
         _widget = widget,
-        _numCards = numCards;
+        _numCards = numCards,
+        _contexts = contexts;
 
   Widget get widget => _widget;
   int get numCards => _numCards;
+  List<String> get contexts => _contexts;
 
   @override
   String toString() => _name;
