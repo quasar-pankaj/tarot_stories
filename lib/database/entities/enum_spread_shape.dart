@@ -395,11 +395,11 @@ enum SpreadShape {
     numCards: 6,
     contexts: [
       'Character 1',
+      'Character 2',
+      'Character 3',
       'C1-C2 Relationship',
       'C1-C3 Relationship',
-      'Character 2',
       'C2-C3 relationship',
-      'Character 3',
     ],
   ); //this is a temporary measure change later
 
