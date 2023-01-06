@@ -21,8 +21,6 @@ enum JournalCategory {
     SpreadShape.backstory,
   ]),
   structure('Structure', [
-    SpreadShape.blakeSnyderBeatSheet,
-    SpreadShape.fourteenPointStructure,
     SpreadShape.herosJourney12Circular,
     SpreadShape.herosJourney16Circular,
     SpreadShape.herosJourney12MByN,

@@ -49,10 +49,7 @@ const _$SpreadShapeEnumMap = {
   SpreadShape.herosJourney16Circular: 'herosJourney16Circular',
   SpreadShape.herosJourney12MByN: 'herosJourney12MByN',
   SpreadShape.herosJourney16MByN: 'herosJourney16MByN',
-  SpreadShape.blakeSnyderBeatSheet: 'blakeSnyderBeatSheet',
   SpreadShape.threeDisasterFourAct: 'threeDisasterFourAct',
-  SpreadShape.superStructure: 'superStructure',
-  SpreadShape.fourteenPointStructure: 'fourteenPointStructure',
   SpreadShape.relationship2Way: 'relationship2Way',
   SpreadShape.relationship3Way: 'relationship3Way',
 };
