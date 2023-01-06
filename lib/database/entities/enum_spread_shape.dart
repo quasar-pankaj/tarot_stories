@@ -307,7 +307,7 @@ enum SpreadShape {
       'The Abyss',
       'Ultimate Boon',
       'Flight',
-      'rescue from Without',
+      'Rescue from Without',
       'Master of Two Worlds',
     ],
   ), //this is a temporary measure change later
@@ -321,7 +321,7 @@ enum SpreadShape {
       'Ordinary World',
       'Call To Action',
       'Refusing the Call',
-      'Mentor/Helper',
+      'Ally/Mentor/Helper',
       'Crossing the Threshold',
       'The Magical World',
       'Test/Allies/Enemies',
@@ -353,7 +353,7 @@ enum SpreadShape {
       'The Abyss',
       'Ultimate Boon',
       'Flight',
-      'rescue from Without',
+      'Rescue from Without',
       'Master of Two Worlds',
     ],
   ), //this is a temporary measure change later
