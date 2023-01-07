@@ -33,6 +33,7 @@ dependencies:
   flip_card: ^0.6.0
   flutter:
     sdk: flutter
+  flutter_quill: ^6.1.12
   flutter_riverpod: ^2.0.2
   freezed_annotation: ^2.2.0
   json_annotation: ^4.7.0
