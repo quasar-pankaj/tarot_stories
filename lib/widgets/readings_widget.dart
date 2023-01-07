@@ -8,8 +8,7 @@ import '../providers/journals/open_journal_provider.dart';
 import '../providers/readings/readings_provider.dart';
 
 class ReadingsWidget extends ConsumerWidget {
-  final quill.QuillController _controller = quill.QuillController.basic();
-  ReadingsWidget({super.key});
+  const ReadingsWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -35,7 +34,7 @@ class ReadingsWidget extends ConsumerWidget {
               ),
               Expanded(
                 child: quill.QuillEditor.basic(
-                  controller: _controller,
+                  controller: controller,
                   readOnly: false,
                 ),
               ),
