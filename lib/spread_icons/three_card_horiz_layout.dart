@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tarot_stories/spread_icons/box_widget.dart';
 
 class ThreeCardHorizLayout extends StatelessWidget {
-  static const _width = 40.0;
+  static const _width = 35.0;
 
   final String _label1, _label2, _label3;
 
