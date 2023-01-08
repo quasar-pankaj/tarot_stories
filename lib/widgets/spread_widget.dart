@@ -32,6 +32,7 @@ class SpreadWidget extends ConsumerWidget {
       case SpreadShape.actionReactionMovement:
       case SpreadShape.thesisAntithesisSynthesis:
       case SpreadShape.fiveSenses:
+      case SpreadShape.relationship2Way:
         spread = const HorizontalSpread();
         break;
       case SpreadShape.vert2:
@@ -62,9 +63,6 @@ class SpreadWidget extends ConsumerWidget {
         break;
       case SpreadShape.threeDisasterFourAct:
         spread = const ThreeDisasterFourActSpread();
-        break;
-      case SpreadShape.relationship2Way:
-        // TODO: Handle this case.
         break;
       case SpreadShape.relationship3Way:
         spread = const ThreeWayRelationShipSpread();
