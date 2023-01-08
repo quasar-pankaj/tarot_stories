@@ -36,7 +36,7 @@ class JournalNotifier
       elementId: selectedElement!.id!,
     );
 
-    final cardsProvider = ref.read(cardServiceProvider).value;
+    final cardsProvider = await ref.read(cardServiceProvider.future);
     final j = await add(journal);
 
     final List<CardModel> cards = List.generate(
@@ -61,7 +61,7 @@ class JournalNotifier
         growable: false,
       ),
     );
-    
+
     await ref.read(readingsRepositoryProvider).insert(readings);
     return j;
   }

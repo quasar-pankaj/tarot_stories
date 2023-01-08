@@ -75,6 +75,10 @@ class ElementsSidebar extends StatelessWidget {
                                         ref
                                             .read(openJournalProvider.notifier)
                                             .state = journal;
+                                        ref
+                                            .read(selectedElementProvider
+                                                .notifier)
+                                            .state = element;
                                       },
                                       value: shape,
                                       child: Text(
