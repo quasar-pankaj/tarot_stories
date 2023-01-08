@@ -64,10 +64,10 @@ class SpreadWidget extends ConsumerWidget {
         spread = const ThreeDisasterFourActSpread();
         break;
       case SpreadShape.relationship2Way:
-        spread = const ThreeWayRelationShipSpread();
+        // TODO: Handle this case.
         break;
       case SpreadShape.relationship3Way:
-        // TODO: Handle this case.
+        spread = const ThreeWayRelationShipSpread();
         break;
     }
 

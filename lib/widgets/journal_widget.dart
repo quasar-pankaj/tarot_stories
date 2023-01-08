@@ -13,6 +13,7 @@ import '../providers/journals/journals_provider.dart';
 import '../providers/journals/open_journal_provider.dart';
 import '../providers/journals/sorted_filtered_journal_list_provider.dart';
 import 'in_place_editor.dart';
+import 'readings_widget.dart';
 import 'toolbar.dart';
 
 class JournalWidget extends StatelessWidget {
@@ -63,7 +64,7 @@ class JournalWidget extends StatelessWidget {
                                   MaterialPageRoute(
                                     builder: (context) {
                                       return const ReadingPage(
-                                        journal: JournalWidget(),
+                                        journal: ReadingsWidget(),
                                         spread: SpreadWidget(),
                                       );
                                     },
@@ -92,11 +93,7 @@ class JournalWidget extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                child: const Icon(
-                                  Icons.analytics_outlined,
-                                  size: 80.6,
-                                  color: Colors.yellowAccent,
-                                ),
+                                child: journal.shape.widget,
                               ),
                             ),
                           ),
