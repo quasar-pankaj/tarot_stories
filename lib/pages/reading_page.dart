@@ -24,6 +24,7 @@ class ReadingPage extends StatelessWidget {
               flex: 3,
               child: FittedBox(
                 child: InteractiveViewer(
+                  clipBehavior: Clip.none,
                   child: _spread,
                 ),
               ),

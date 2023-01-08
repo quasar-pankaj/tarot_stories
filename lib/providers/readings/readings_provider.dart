@@ -31,6 +31,14 @@ class ReadingsNotifier extends AutoDisposeFamilyAsyncNotifier<Reading, int> {
     state = AsyncValue.data(modifiedReading);
   }
 
+  Future<void> saveWith(String reading, int index) async {
+    final readings = state.value;
+    readings!.readings[index] = reading;
+    final modifiedReading = readings.copyWith(readings: readings.readings);
+    await ref.read(readingsRepositoryProvider).update(modifiedReading);
+    state = AsyncValue.data(modifiedReading);
+  }
+
   Future<void> delete() async {
     final reading = state.value;
     await ref.read(readingsRepositoryProvider).delete(reading!);

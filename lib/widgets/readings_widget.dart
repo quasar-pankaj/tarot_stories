@@ -27,7 +27,25 @@ class ReadingsWidget extends ConsumerWidget {
             selection: const TextSelection.collapsed(offset: 0),
           );
           return ExpansionTile(
-            title: Text(openJournal.shape.contexts[index]),
+            title: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    openJournal.shape.contexts[index],
+                  ),
+                ),
+                IconButton(
+                  onPressed: () async => await ref
+                      .read(readingsProvider(openJournal.id!).notifier)
+                      .saveWith(
+                          json.encode(
+                            controller.document.toDelta().toJson(),
+                          ),
+                          index),
+                  icon: const Icon(Icons.save),
+                ),
+              ],
+            ),
             children: [
               quill.QuillToolbar.basic(
                 controller: controller,

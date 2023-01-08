@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tarot_stories/widgets/spread_widget.dart';
 
 import '../database/entities/journal.dart';
 import '../pages/reading_page.dart';
@@ -62,8 +63,8 @@ class JournalWidget extends StatelessWidget {
                                   MaterialPageRoute(
                                     builder: (context) {
                                       return const ReadingPage(
-                                        journal: FlutterLogo(), // Change later
-                                        spread: FlutterLogo(), // Change later
+                                        journal: JournalWidget(),
+                                        spread: SpreadWidget(),
                                       );
                                     },
                                   ),

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tarot_stories/services/card_model.dart';
 
 import '../../database/entities/enum_spread_shape.dart';
 import '../../database/entities/journal.dart';
@@ -35,17 +36,32 @@ class JournalNotifier
       elementId: selectedElement!.id!,
     );
 
-    final j = await add(journal);
-    final List<String> cards = [];
-
     final cardsProvider = ref.read(cardServiceProvider).value;
+    final j = await add(journal);
 
-    for (int i = 0; i < layoutType.numCards; i++) {
-      cards.add(cardsProvider!.nextCard.name);
-    }
-    final spread = Spread(journalId: j.id!, cards: cards);
+    final List<CardModel> cards = List.generate(
+      journal.shape.numCards,
+      (index) => cardsProvider!.nextCard,
+      growable: false,
+    );
+
+    final List<String> cardNames = List.generate(
+      journal.shape.numCards,
+      (index) => cards[index].name,
+      growable: false,
+    );
+
+    final spread = Spread(journalId: j.id!, cards: cardNames);
     await ref.read(spreadRepositoryProvider).insert(spread);
-    final readings = Reading(journalId: j.id!, readings: []);
+    final readings = Reading(
+      journalId: j.id!,
+      readings: List.generate(
+        journal.shape.numCards,
+        (index) => cards[index].description,
+        growable: false,
+      ),
+    );
+    
     await ref.read(readingsRepositoryProvider).insert(readings);
     return j;
   }
