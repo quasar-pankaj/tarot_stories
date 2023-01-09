@@ -29,16 +29,14 @@ class ReadingsWidget extends ConsumerWidget {
               );
         if (controller.document.isEmpty()) {
           for (int i = 0; i < openJournal.shape.numCards; i++) {
-            controller.document.insert(i, openJournal.shape.contexts[i]);
+            controller.document
+                .insert(i, '$i) ${openJournal.shape.contexts[i]}');
           }
         }
         return Column(
           children: [
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: quill.QuillToolbar.basic(
-                controller: controller,
-              ),
+            quill.QuillToolbar.basic(
+              controller: controller,
             ),
             Expanded(
               flex: 1,

@@ -17,6 +17,12 @@ class ReadingPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Readings'),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.save),
+            ),
+          ],
         ),
         body: Row(
           children: [
