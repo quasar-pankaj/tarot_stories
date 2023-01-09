@@ -41,7 +41,7 @@ class JournalNotifier
 
     final List<CardModel> cards = List.generate(
       journal.shape.numCards,
-      (index) => cardsProvider!.nextCard,
+      (index) => cardsProvider.nextCard,
       growable: false,
     );
 
@@ -57,7 +57,8 @@ class JournalNotifier
       journalId: j.id!,
       readings: List.generate(
         journal.shape.numCards,
-        (index) => cards[index].description,
+        (index) => '',
+        // (index) => '{"ops": [{"insert": "${cards[index].description}"}]}',
         growable: false,
       ),
     );
