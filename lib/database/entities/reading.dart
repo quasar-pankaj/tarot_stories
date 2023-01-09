@@ -8,7 +8,7 @@ class Reading with _$Reading {
   factory Reading({
     int? id,
     required int journalId,
-    required List<String> readings,
+    required String readings,
   }) = $Reading;
 
   factory Reading.fromJson(Map<String, Object?> json) =>

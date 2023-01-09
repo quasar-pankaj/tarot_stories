@@ -55,12 +55,7 @@ class JournalNotifier
     await ref.read(spreadRepositoryProvider).insert(spread);
     final readings = Reading(
       journalId: j.id!,
-      readings: List.generate(
-        journal.shape.numCards,
-        (index) => '',
-        // (index) => '{"ops": [{"insert": "${cards[index].description}"}]}',
-        growable: false,
-      ),
+      readings: '',
     );
 
     await ref.read(readingsRepositoryProvider).insert(readings);

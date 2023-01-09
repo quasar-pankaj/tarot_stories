@@ -18,25 +18,15 @@ class ReadingsNotifier extends AutoDisposeFamilyAsyncNotifier<Reading, int> {
     if (readings.isNotEmpty) {
       return readings.first;
     } else {
-      final reading = Reading(journalId: arg, readings: []);
+      final reading = Reading(journalId: arg, readings: '');
       final r = await repo.insert(reading);
       return r;
     }
   }
 
-  Future<void> save(List<String> readings) async {
-    final reading = state.value;
-    final modifiedReading = reading!.copyWith(readings: readings);
-    await ref.read(readingsRepositoryProvider).update(modifiedReading);
-    state = AsyncValue.data(modifiedReading);
-  }
-
-  Future<void> saveWith(String reading, int index) async {
-    final readings = state.value;
-    readings!.readings[index] = reading;
-    final modifiedReading = readings.copyWith(readings: readings.readings);
-    await ref.read(readingsRepositoryProvider).update(modifiedReading);
-    state = AsyncValue.data(modifiedReading);
+  Future<void> save(Reading readings) async {
+    await ref.read(readingsRepositoryProvider).update(readings);
+    state = AsyncValue.data(readings);
   }
 
   Future<void> delete() async {

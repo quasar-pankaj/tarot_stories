@@ -22,7 +22,7 @@ Reading _$ReadingFromJson(Map<String, dynamic> json) {
 mixin _$Reading {
   int? get id => throw _privateConstructorUsedError;
   int get journalId => throw _privateConstructorUsedError;
-  List<String> get readings => throw _privateConstructorUsedError;
+  String get readings => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $ReadingCopyWith<$Res> {
   factory $ReadingCopyWith(Reading value, $Res Function(Reading) then) =
       _$ReadingCopyWithImpl<$Res, Reading>;
   @useResult
-  $Res call({int? id, int journalId, List<String> readings});
+  $Res call({int? id, int journalId, String readings});
 }
 
 /// @nodoc
@@ -66,7 +66,7 @@ class _$ReadingCopyWithImpl<$Res, $Val extends Reading>
       readings: null == readings
           ? _value.readings
           : readings // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as String,
     ) as $Val);
   }
 }
@@ -78,7 +78,7 @@ abstract class _$$$ReadingCopyWith<$Res> implements $ReadingCopyWith<$Res> {
       __$$$ReadingCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, int journalId, List<String> readings});
+  $Res call({int? id, int journalId, String readings});
 }
 
 /// @nodoc
@@ -105,9 +105,9 @@ class __$$$ReadingCopyWithImpl<$Res>
           : journalId // ignore: cast_nullable_to_non_nullable
               as int,
       readings: null == readings
-          ? _value._readings
+          ? _value.readings
           : readings // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as String,
     ));
   }
 }
@@ -115,9 +115,7 @@ class __$$$ReadingCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$$Reading implements $Reading {
-  _$$Reading(
-      {this.id, required this.journalId, required final List<String> readings})
-      : _readings = readings;
+  _$$Reading({this.id, required this.journalId, required this.readings});
 
   factory _$$Reading.fromJson(Map<String, dynamic> json) =>
       _$$$ReadingFromJson(json);
@@ -126,12 +124,8 @@ class _$$Reading implements $Reading {
   final int? id;
   @override
   final int journalId;
-  final List<String> _readings;
   @override
-  List<String> get readings {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_readings);
-  }
+  final String readings;
 
   @override
   String toString() {
@@ -146,13 +140,13 @@ class _$$Reading implements $Reading {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.journalId, journalId) ||
                 other.journalId == journalId) &&
-            const DeepCollectionEquality().equals(other._readings, _readings));
+            (identical(other.readings, readings) ||
+                other.readings == readings));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, journalId,
-      const DeepCollectionEquality().hash(_readings));
+  int get hashCode => Object.hash(runtimeType, id, journalId, readings);
 
   @JsonKey(ignore: true)
   @override
@@ -172,7 +166,7 @@ abstract class $Reading implements Reading {
   factory $Reading(
       {final int? id,
       required final int journalId,
-      required final List<String> readings}) = _$$Reading;
+      required final String readings}) = _$$Reading;
 
   factory $Reading.fromJson(Map<String, dynamic> json) = _$$Reading.fromJson;
 
@@ -181,7 +175,7 @@ abstract class $Reading implements Reading {
   @override
   int get journalId;
   @override
-  List<String> get readings;
+  String get readings;
   @override
   @JsonKey(ignore: true)
   _$$$ReadingCopyWith<_$$Reading> get copyWith =>

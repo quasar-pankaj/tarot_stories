@@ -16,57 +16,40 @@ class ReadingsWidget extends ConsumerWidget {
     final readings = ref.watch(readingsProvider(openJournal.id!));
 
     return readings.when(
-      data: (data) => Expanded(
-        child: ListView.separated(
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            final controller = data.readings[index] == ''
-                ? quill.QuillController.basic()
-                : quill.QuillController(
-                    document: quill.Document.fromJson(
-                      jsonDecode(
-                        data.readings[index],
-                      ),
-                    ),
-                    selection: const TextSelection.collapsed(offset: 0),
-                  );
-            return ExpansionTile(
-              title: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      openJournal.shape.contexts[index],
-                    ),
+      data: (data) {
+        final controller = data.readings == ''
+            ? quill.QuillController.basic()
+            : quill.QuillController(
+                document: quill.Document.fromJson(
+                  jsonDecode(
+                    data.readings,
                   ),
-                  IconButton(
-                    onPressed: () async => await ref
-                        .read(readingsProvider(openJournal.id!).notifier)
-                        .saveWith(
-                            json.encode(
-                              controller.document.toDelta().toJson(),
-                            ),
-                            index),
-                    icon: const Icon(Icons.save),
-                  ),
-                ],
+                ),
+                selection: const TextSelection.collapsed(offset: 0),
+              );
+        if (controller.document.isEmpty()) {
+          for (int i = 0; i < openJournal.shape.numCards; i++) {
+            controller.document.insert(i, openJournal.shape.contexts[i]);
+          }
+        }
+        return Column(
+          children: [
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: quill.QuillToolbar.basic(
+                controller: controller,
               ),
-              children: [
-                quill.QuillToolbar.basic(
-                  controller: controller,
-                ),
-                Expanded(
-                  child: quill.QuillEditor.basic(
-                    controller: controller,
-                    readOnly: false,
-                  ),
-                ),
-              ],
-            );
-          },
-          separatorBuilder: (context, index) => const Divider(),
-          itemCount: openJournal.shape.numCards,
-        ),
-      ),
+            ),
+            Expanded(
+              flex: 1,
+              child: quill.QuillEditor.basic(
+                controller: controller,
+                readOnly: false,
+              ),
+            ),
+          ],
+        );
+      },
       error: (error, stackTrace) => Text(
         error.toString(),
       ),

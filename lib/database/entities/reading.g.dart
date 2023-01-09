@@ -9,8 +9,7 @@ part of 'reading.dart';
 _$$Reading _$$$ReadingFromJson(Map<String, dynamic> json) => _$$Reading(
       id: json['id'] as int?,
       journalId: json['journalId'] as int,
-      readings:
-          (json['readings'] as List<dynamic>).map((e) => e as String).toList(),
+      readings: json['readings'] as String,
     );
 
 Map<String, dynamic> _$$$ReadingToJson(_$$Reading instance) =>
