@@ -32,6 +32,7 @@ class ReadingsWidget extends ConsumerWidget {
           for (int i = 0; i < openJournal.shape.numCards; i++) {
             text += '$i. ${openJournal.shape.contexts[i]}\n';
           }
+
           controller.document.insert(0, text);
         }
         return Stack(
