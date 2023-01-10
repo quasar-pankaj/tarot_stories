@@ -37,40 +37,37 @@ class ReadingsWidget extends ConsumerWidget {
           children: [
             Column(
               children: [
-                Column(
-                  children: [
-                    quill.QuillToolbar.basic(
-                      controller: controller,
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: quill.QuillEditor.basic(
-                        controller: controller,
-                        readOnly: false,
-                      ),
-                    ),
-                  ],
+                quill.QuillToolbar.basic(
+                  controller: controller,
+                ),
+                const Divider(
+                  height: 3,
+                  thickness: 3,
+                ),
+                Expanded(
+                  flex: 1,
+                  child: quill.QuillEditor.basic(
+                    controller: controller,
+                    readOnly: false,
+                  ),
                 ),
               ],
             ),
             Positioned(
-              bottom: 10,
               right: 10,
+              bottom: 10,
               child: FloatingActionButton(
-                tooltip: 'Save',
-                onPressed: () {
-                  final reading = data.copyWith(
-                    readings: jsonEncode(
-                      controller.document.toDelta().toJson(),
-                    ),
-                  );
-                  ref
-                      .read(readingsProvider(openJournal.id!).notifier)
-                      .save(reading);
-                },
                 child: const Icon(Icons.save),
+                onPressed: () =>
+                    ref.read(readingsProvider(openJournal.id!).notifier).save(
+                          data.copyWith(
+                            readings: jsonEncode(
+                              controller.document.toDelta().toJson(),
+                            ),
+                          ),
+                        ),
               ),
-            )
+            ),
           ],
         );
       },
