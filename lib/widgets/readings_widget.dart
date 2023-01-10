@@ -54,6 +54,8 @@ class ReadingsWidget extends ConsumerWidget {
               ],
             ),
             Positioned(
+              bottom: 10,
+              right: 10,
               child: FloatingActionButton(
                 tooltip: 'Save',
                 onPressed: () {
@@ -62,9 +64,9 @@ class ReadingsWidget extends ConsumerWidget {
                       controller.document.toDelta().toJson(),
                     ),
                   );
-                  ref.read(readingsProvider(openJournal.id!).notifier).save(
-                        reading,
-                      );
+                  ref
+                      .read(readingsProvider(openJournal.id!).notifier)
+                      .save(reading);
                 },
                 child: const Icon(Icons.save),
               ),
