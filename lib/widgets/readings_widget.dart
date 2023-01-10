@@ -28,10 +28,11 @@ class ReadingsWidget extends ConsumerWidget {
                 selection: const TextSelection.collapsed(offset: 0),
               );
         if (controller.document.isEmpty()) {
+          String text = '';
           for (int i = 0; i < openJournal.shape.numCards; i++) {
-            controller.document
-                .insert(i, '$i) ${openJournal.shape.contexts[i]}');
+            text += '$i. ${openJournal.shape.contexts[i]}\n';
           }
+          controller.document.insert(0, text);
         }
         return Stack(
           children: [
