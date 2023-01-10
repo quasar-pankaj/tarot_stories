@@ -33,18 +33,42 @@ class ReadingsWidget extends ConsumerWidget {
                 .insert(i, '$i) ${openJournal.shape.contexts[i]}');
           }
         }
-        return Column(
+        return Stack(
           children: [
-            quill.QuillToolbar.basic(
-              controller: controller,
+            Column(
+              children: [
+                Column(
+                  children: [
+                    quill.QuillToolbar.basic(
+                      controller: controller,
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: quill.QuillEditor.basic(
+                        controller: controller,
+                        readOnly: false,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-            Expanded(
-              flex: 1,
-              child: quill.QuillEditor.basic(
-                controller: controller,
-                readOnly: false,
+            Positioned(
+              child: FloatingActionButton(
+                tooltip: 'Save',
+                onPressed: () {
+                  final reading = data.copyWith(
+                    readings: jsonEncode(
+                      controller.document.toDelta().toJson(),
+                    ),
+                  );
+                  ref.read(readingsProvider(openJournal.id!).notifier).save(
+                        reading,
+                      );
+                },
+                child: const Icon(Icons.save),
               ),
-            ),
+            )
           ],
         );
       },

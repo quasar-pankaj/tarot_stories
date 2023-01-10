@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tarot_stories/widgets/spread_widget.dart';
 
 import '../database/entities/journal.dart';
 import '../pages/reading_page.dart';
@@ -14,6 +13,7 @@ import '../providers/journals/open_journal_provider.dart';
 import '../providers/journals/sorted_filtered_journal_list_provider.dart';
 import 'in_place_editor.dart';
 import 'readings_widget.dart';
+import 'spread_widget.dart';
 import 'toolbar.dart';
 
 class JournalWidget extends StatelessWidget {
