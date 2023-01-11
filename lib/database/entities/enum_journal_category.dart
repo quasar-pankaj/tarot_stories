@@ -6,25 +6,31 @@ enum JournalCategory {
     SpreadShape.goalMotivationConflict,
     SpreadShape.characterCross,
     SpreadShape.backstory,
+    SpreadShape.celticCross,
   ]),
   sceneSequel('Scene/Sequel', [
     SpreadShape.horiz1,
     SpreadShape.goalConflictDisaster,
     SpreadShape.reactionDilemmaDecision,
+    SpreadShape.backstory,
   ]),
   location('Location', [
     SpreadShape.horiz1,
     SpreadShape.backstory,
+    SpreadShape.celticCross,
   ]),
   prop('Prop', [
     SpreadShape.horiz1,
     SpreadShape.backstory,
+    SpreadShape.celticCross,
   ]),
   structure('Structure', [
     SpreadShape.herosJourney12Circular,
     SpreadShape.herosJourney16Circular,
     SpreadShape.herosJourney12MByN,
     SpreadShape.herosJourney16MByN,
+    SpreadShape.celticCross,
+    SpreadShape.threeDisasterFourAct,
   ]),
   relationship('Relationship', [
     SpreadShape.horiz1,
