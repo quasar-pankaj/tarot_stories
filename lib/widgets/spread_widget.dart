@@ -4,7 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../database/entities/enum_spread_shape.dart';
 import '../providers/journals/open_journal_provider.dart';
 import 'spreads/layouts/backstory_spread.dart';
+import 'spreads/layouts/celtic_cross_spread.dart';
 import 'spreads/layouts/character_cross.dart';
+import 'spreads/layouts/heros_journey12_circular_spread.dart';
+import 'spreads/layouts/heros_journey12_m_by_n_spread.dart';
+import 'spreads/layouts/heros_journey16_circular_spread.dart';
+import 'spreads/layouts/heros_journey16_m_by_n_spread.dart';
 import 'spreads/layouts/horizontal_spread.dart';
 import 'spreads/layouts/tarot_spread_widget.dart';
 import 'spreads/layouts/three_distaster_four_act_spread.dart';
@@ -47,19 +52,19 @@ class SpreadWidget extends ConsumerWidget {
         spread = const BackstorySpread();
         break;
       case SpreadShape.celticCross:
-        // TODO: Handle this case.
+        spread = const CelticCrossSpread();
         break;
       case SpreadShape.herosJourney12Circular:
-        // TODO: Handle this case.
+        spread = const HerosJourney12CircularSpread();
         break;
       case SpreadShape.herosJourney16Circular:
-        // TODO: Handle this case.
+        spread = const HerosJourney16CircularSpread();
         break;
       case SpreadShape.herosJourney12MByN:
-        // TODO: Handle this case.
+        spread = const HerosJourney12MByNSpread();
         break;
       case SpreadShape.herosJourney16MByN:
-        // TODO: Handle this case.
+        spread = const HerosJourney16MByNSpread();
         break;
       case SpreadShape.threeDisasterFourAct:
         spread = const ThreeDisasterFourActSpread();
