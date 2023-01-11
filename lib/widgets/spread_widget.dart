@@ -5,7 +5,7 @@ import '../database/entities/enum_spread_shape.dart';
 import '../providers/journals/open_journal_provider.dart';
 import 'spreads/layouts/backstory_spread.dart';
 import 'spreads/layouts/celtic_cross_spread.dart';
-import 'spreads/layouts/character_cross.dart';
+import 'spreads/layouts/character_cross_spread.dart';
 import 'spreads/layouts/heros_journey12_circular_spread.dart';
 import 'spreads/layouts/heros_journey12_m_by_n_spread.dart';
 import 'spreads/layouts/heros_journey16_circular_spread.dart';
