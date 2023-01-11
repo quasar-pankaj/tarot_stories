@@ -45,11 +45,7 @@ class JournalNotifier
       growable: false,
     );
 
-    final List<String> cardNames = List.generate(
-      journal.shape.numCards,
-      (index) => cards[index].name,
-      growable: false,
-    );
+    final List<String> cardNames = cards.map((e) => e.name).toList();
 
     final spread = Spread(journalId: j.id!, cards: cardNames);
     await ref.read(spreadRepositoryProvider).insert(spread);
