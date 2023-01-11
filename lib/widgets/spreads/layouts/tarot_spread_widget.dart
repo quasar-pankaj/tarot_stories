@@ -11,24 +11,25 @@ abstract class TarotSpreadWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final cp = ref.watch(cardProvider);
     int index = 0;
-    final Iterable<Widget> cards = cp.when(
-      data: (data) => data.map(
-        (card) => Padding(
-          padding: const EdgeInsets.all(2.5),
-          child: Tooltip(
-            message: card.description,
-            child: TarotCard(
-              name: card.name,
-              suit: card.suit,
-              index: '${index++}',
+    return layoutCards(
+      cp.when(
+        data: (data) => data.map(
+          (card) => Padding(
+            padding: const EdgeInsets.all(2.5),
+            child: Tooltip(
+              message: card.description,
+              child: TarotCard(
+                name: card.name,
+                suit: card.suit,
+                index: '${index++}',
+              ),
             ),
           ),
         ),
+        error: (error, stacktrace) => [Text(error.toString())],
+        loading: () => [const CircularProgressIndicator()],
       ),
-      error: (error, stacktrace) => [Text(error.toString())],
-      loading: () => [const CircularProgressIndicator()],
     );
-    return layoutCards(cards);
   }
 
   Widget layoutCards(Iterable<Widget> widgets);

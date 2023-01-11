@@ -26,8 +26,8 @@ final pictorialKeyProvider =
 });
 
 final cardProvider = FutureProvider.autoDispose<List<CardModel>>((ref) async {
-  final openJournal = ref.watch(openJournalProvider);
-  final spread = await ref.watch(spreadProvider(openJournal!.id!).future);
+  final openJournal = ref.watch(openJournalProvider)!;
+  final spread = await ref.watch(spreadProvider(openJournal.id!).future);
   final cardService = await ref.watch(cardServiceProvider.future);
 
   final List<CardModel> cards = [];
