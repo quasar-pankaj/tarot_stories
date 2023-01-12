@@ -11,9 +11,9 @@ abstract class TarotSpreadWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final cp = ref.watch(cardProvider);
     int index = 0;
-    return layoutCards(
-      cp.when(
-        data: (data) => data.map(
+    return cp.when(
+      data: (data) => layoutCards(
+        data.map(
           (card) => Padding(
             padding: const EdgeInsets.all(2.5),
             child: Tooltip(
@@ -26,9 +26,9 @@ abstract class TarotSpreadWidget extends ConsumerWidget {
             ),
           ),
         ),
-        error: (error, stacktrace) => [Text(error.toString())],
-        loading: () => [const CircularProgressIndicator()],
       ),
+      error: (error, stacktrace) => Text(error.toString()),
+      loading: () => const CircularProgressIndicator(),
     );
   }
 

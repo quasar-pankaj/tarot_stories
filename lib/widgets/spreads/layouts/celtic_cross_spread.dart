@@ -37,10 +37,10 @@ class CelticCrossSpread extends TarotSpreadWidget {
         cards[6],
         Column(
           children: [
-            cards[10],
             cards[9],
             cards[8],
             cards[7],
+            cards[6],
           ],
         ),
       ],
