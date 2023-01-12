@@ -13,6 +13,7 @@ class HerosJourney12CircularSpread extends TarotSpreadWidget {
       children: [
         cards[9],
         Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             const Spacer(
               flex: 1,
@@ -28,6 +29,7 @@ class HerosJourney12CircularSpread extends TarotSpreadWidget {
           ],
         ),
         Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             const Spacer(flex: 1),
             cards[11],
@@ -41,6 +43,7 @@ class HerosJourney12CircularSpread extends TarotSpreadWidget {
           ],
         ),
         Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             cards[0],
             const Spacer(),
@@ -48,6 +51,7 @@ class HerosJourney12CircularSpread extends TarotSpreadWidget {
           ],
         ),
         Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             const Spacer(flex: 1),
             cards[1],
@@ -61,6 +65,7 @@ class HerosJourney12CircularSpread extends TarotSpreadWidget {
           ],
         ),
         Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             const Spacer(
               flex: 1,
