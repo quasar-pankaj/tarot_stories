@@ -38,3 +38,5 @@ You can start by clicking the FAB at the bottom.
 ![Screenshot from 2023-01-12 16-48-20](https://user-images.githubusercontent.com/4270836/212057992-15e8ed72-c6d9-43b7-b618-54784b1fc0e6.png)
 ![Screenshot from 2023-01-12 16-48-13](https://user-images.githubusercontent.com/4270836/212057994-7c2f5aaf-ee0a-47f5-a54d-e4c886ee44d7.png)
 ![Screenshot from 2023-01-12 16-47-54](https://user-images.githubusercontent.com/4270836/212057997-cd72ed19-849c-4257-9e72-17f63b13d1e5.png)
+
+The images have gotten uploaded in reversed order so look at them from bottom to see the flow.
