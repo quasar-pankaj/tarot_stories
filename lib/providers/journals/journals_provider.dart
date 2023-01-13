@@ -68,7 +68,7 @@ class JournalNotifier
 
   Future<void> delete(Journal spread) async {
     await ref.read(journalsRepositoryProvider).delete(spread);
-    final spreads = state.value!.where((element) => element.id != spread.id);
+    final spreads = state.value!.where((journal) => journal.id != spread.id);
     state = AsyncValue.data(spreads);
 
     await ref.read(spreadProvider(spread.id!).notifier).delete();
