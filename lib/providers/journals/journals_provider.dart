@@ -67,7 +67,6 @@ class JournalNotifier
   }
 
   Future<void> delete(Journal spread) async {
-    state = const AsyncValue.loading();
     await ref.read(journalsRepositoryProvider).delete(spread);
     final spreads = state.value!.where((element) => element.id != spread.id);
     state = AsyncValue.data(spreads);
@@ -77,7 +76,6 @@ class JournalNotifier
   }
 
   Future<void> deleteAllForElement(int elementId) async {
-    state = const AsyncValue.loading();
     final journals = await ref
         .read(journalsRepositoryProvider)
         .getAllWhereFKFieldEquals('elementId', elementId);
@@ -93,7 +91,6 @@ class JournalNotifier
   }
 
   Future<void> save(Journal spread) async {
-    state = const AsyncValue.loading();
     await ref.read(journalsRepositoryProvider).update(spread);
     final spreads = [
       for (Journal item in state.value!)
