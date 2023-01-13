@@ -6,13 +6,20 @@ A Flutter project for Writers.
 
 Tarot cards lend themselves to storytelling brilliantly due to their rich imagery. This project hopes to help Writers break Writer's block. This is still WIP but I am showcasing what I have done so far. As of now it is not very usable as it tends to crash and some functions are not yet working properly. I will upload in releases page once I have fixed the problems.
 
+### Basic Operations:
+
+1. Rename an item - Long press on the name to invoke the in-place editor. Change the value and press enter.
+2. Delete an Item - Swipe the item either towards left or right.
+3. Search for a project or journal - type the search string in the textfield on top.
+4. Sorting Projects or Journals - Use the buttons on top. Red is for sorting Ascending or descending. Green to sort alphabetically, Date created, Date modified. The defaults are sort descending on date modified.
+
 #### The Initial screen - 
 ![Screenshot from 2023-01-12 16-47-25](https://user-images.githubusercontent.com/4270836/212056299-38f0c6a8-523d-461b-b332-5f3757c931b7.png)
 
 You can start by clicking the FAB at the bottom.
 ![Screenshot from 2023-01-12 16-47-44](https://user-images.githubusercontent.com/4270836/212056530-6f85bf44-48af-4856-8409-81ea81ca1063.png)
 
-#### Next few images showcases the workflow.
+#### Next few images showcase the workflow.
 
 ![Screenshot from 2023-01-12 16-47-54](https://user-images.githubusercontent.com/4270836/212057997-cd72ed19-849c-4257-9e72-17f63b13d1e5.png)
 ![Screenshot from 2023-01-12 16-48-13](https://user-images.githubusercontent.com/4270836/212057994-7c2f5aaf-ee0a-47f5-a54d-e4c886ee44d7.png)
