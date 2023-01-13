@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tarot_stories/database/entities/enum_journal_category.dart';
-import 'package:tarot_stories/providers/elements/selected_element_provider.dart';
-import 'package:tarot_stories/providers/journals/journals_provider.dart';
 
 import '../../database/entities/element.dart';
+import '../../database/entities/enum_journal_category.dart';
+import '../journals/journals_provider.dart';
 import '../project/open_project_provider.dart';
 import 'elements_repository_provider.dart';
+import 'selected_element_provider.dart';
 
 final elementsProvider =
     AsyncNotifierProvider.autoDispose<ElementsNotifier, Iterable<Element>>(

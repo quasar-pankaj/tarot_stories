@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tarot_stories/services/card_model.dart';
 
 import '../../database/entities/enum_spread_shape.dart';
 import '../../database/entities/journal.dart';
 import '../../database/entities/reading.dart';
 import '../../database/entities/spread.dart';
+import '../../services/card_model.dart';
 import '../cards_provider.dart';
 import '../elements/selected_element_provider.dart';
 import '../readings/readings_provider.dart';
