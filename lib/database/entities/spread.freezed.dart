@@ -22,7 +22,7 @@ Spread _$SpreadFromJson(Map<String, dynamic> json) {
 mixin _$Spread {
   int? get id => throw _privateConstructorUsedError;
   int get journalId => throw _privateConstructorUsedError;
-  List<String>? get cards => throw _privateConstructorUsedError;
+  List<String> get cards => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $SpreadCopyWith<$Res> {
   factory $SpreadCopyWith(Spread value, $Res Function(Spread) then) =
       _$SpreadCopyWithImpl<$Res, Spread>;
   @useResult
-  $Res call({int? id, int journalId, List<String>? cards});
+  $Res call({int? id, int journalId, List<String> cards});
 }
 
 /// @nodoc
@@ -52,7 +52,7 @@ class _$SpreadCopyWithImpl<$Res, $Val extends Spread>
   $Res call({
     Object? id = freezed,
     Object? journalId = null,
-    Object? cards = freezed,
+    Object? cards = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -63,10 +63,10 @@ class _$SpreadCopyWithImpl<$Res, $Val extends Spread>
           ? _value.journalId
           : journalId // ignore: cast_nullable_to_non_nullable
               as int,
-      cards: freezed == cards
+      cards: null == cards
           ? _value.cards
           : cards // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<String>,
     ) as $Val);
   }
 }
@@ -77,7 +77,7 @@ abstract class _$$$SpreadCopyWith<$Res> implements $SpreadCopyWith<$Res> {
       __$$$SpreadCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, int journalId, List<String>? cards});
+  $Res call({int? id, int journalId, List<String> cards});
 }
 
 /// @nodoc
@@ -92,7 +92,7 @@ class __$$$SpreadCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? journalId = null,
-    Object? cards = freezed,
+    Object? cards = null,
   }) {
     return _then(_$$Spread(
       id: freezed == id
@@ -103,10 +103,10 @@ class __$$$SpreadCopyWithImpl<$Res>
           ? _value.journalId
           : journalId // ignore: cast_nullable_to_non_nullable
               as int,
-      cards: freezed == cards
+      cards: null == cards
           ? _value._cards
           : cards // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<String>,
     ));
   }
 }
@@ -114,7 +114,8 @@ class __$$$SpreadCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$$Spread implements $Spread {
-  _$$Spread({this.id, required this.journalId, final List<String>? cards})
+  _$$Spread(
+      {this.id, required this.journalId, required final List<String> cards})
       : _cards = cards;
 
   factory _$$Spread.fromJson(Map<String, dynamic> json) =>
@@ -124,13 +125,11 @@ class _$$Spread implements $Spread {
   final int? id;
   @override
   final int journalId;
-  final List<String>? _cards;
+  final List<String> _cards;
   @override
-  List<String>? get cards {
-    final value = _cards;
-    if (value == null) return null;
+  List<String> get cards {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_cards);
   }
 
   @override
@@ -172,7 +171,7 @@ abstract class $Spread implements Spread {
   factory $Spread(
       {final int? id,
       required final int journalId,
-      final List<String>? cards}) = _$$Spread;
+      required final List<String> cards}) = _$$Spread;
 
   factory $Spread.fromJson(Map<String, dynamic> json) = _$$Spread.fromJson;
 
@@ -181,7 +180,7 @@ abstract class $Spread implements Spread {
   @override
   int get journalId;
   @override
-  List<String>? get cards;
+  List<String> get cards;
   @override
   @JsonKey(ignore: true)
   _$$$SpreadCopyWith<_$$Spread> get copyWith =>
