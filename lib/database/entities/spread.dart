@@ -8,7 +8,7 @@ class Spread with _$Spread {
   factory Spread({
     int? id,
     required int journalId,
-    List<String>? cards,
+    required List<String> cards,
   }) = $Spread;
 
   factory Spread.fromJson(Map<String, Object?> json) => _$SpreadFromJson(json);

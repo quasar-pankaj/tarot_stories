@@ -15,7 +15,7 @@ final sortedFilteredProjectListProvider =
 
   final filterPattern = ref.watch(projectFilterTextProvider);
 
-  final projects = (await ref.watch(projectsProvider.future)).toList();
+  final projects = (await ref.watch(projectsProvider(-1).future)).toList();
 
   Iterable<Project> sortedProjects;
   switch (condition) {

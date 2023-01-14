@@ -89,7 +89,7 @@ class HomePage extends ConsumerWidget {
                 final result = ref.watch(sortedFilteredProjectListProvider);
 
                 ref.listen(
-                  projectsProvider,
+                  projectsProvider(-1),
                   (previous, next) {
                     if (previous == null || previous.value == null) return;
                     if (next.value!.length < previous.value!.length) {
@@ -102,7 +102,7 @@ class HomePage extends ConsumerWidget {
                         action: SnackBarAction(
                           label: 'Undo',
                           onPressed: () async => await ref
-                              .read(projectsProvider.notifier)
+                              .read(projectsProvider(-1).notifier)
                               .add(deleted),
                         ),
                       );
@@ -150,7 +150,8 @@ class HomePage extends ConsumerWidget {
                                                 .millisecondsSinceEpoch,
                                           );
                                           ref
-                                              .read(projectsProvider.notifier)
+                                              .read(
+                                                  projectsProvider(-1).notifier)
                                               .save(renamedProject);
                                         },
                                       ),
@@ -165,7 +166,7 @@ class HomePage extends ConsumerWidget {
                               ),
                             ),
                             onDismissed: (direction) => ref
-                                .read(projectsProvider.notifier)
+                                .read(projectsProvider(-1).notifier)
                                 .delete(project),
                           ),
                         )
@@ -186,7 +187,7 @@ class HomePage extends ConsumerWidget {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async =>
-              await ref.read(projectsProvider.notifier).addNew(),
+              await ref.read(projectsProvider(-1).notifier).addNew(),
           tooltip: 'Press to add new project',
           child: const Icon(Icons.add),
         ),

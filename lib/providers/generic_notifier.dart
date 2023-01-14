@@ -4,10 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../database/repository.dart';
 
-abstract class GenericNotifier<P, C>
+abstract class GenericNotifier<P>
     extends AutoDisposeFamilyAsyncNotifier<Iterable<P>, int> {
   @override
   FutureOr<Iterable<P>> build(int arg) async {
+    // if foreign key is empty then it is the root node so load all
     if (fKField.isEmpty) {
       return await repository.getAllUnsorted();
     } else {
@@ -17,7 +18,7 @@ abstract class GenericNotifier<P, C>
 
   Repository<P> get repository;
   String get fKField;
-  Repository<C>? get child1Reposotory;
+  Future<void> deleteChildren(P item);
 
   Future<P> add(P item) async {
     state = const AsyncValue.loading();
@@ -27,13 +28,18 @@ abstract class GenericNotifier<P, C>
     return s;
   }
 
-  Future<void> delete(P item, bool Function(P item) test) async {
-    final spreads = state.value!.where(test);
-    state = AsyncValue.data(spreads);
+  Future<void> deleteBase(P item, bool Function(P item) test) async {
+    if (state.value != null) {
+      state = const AsyncValue.loading();
+      final spreads = state.value!.where(test);
+      state = AsyncValue.data(spreads);
+    }
+
+    await deleteChildren(item);
     await repository.delete(item);
   }
 
-  Future<void> save(P item, bool Function(P item) test) async {
+  Future<void> saveBase(P item, bool Function(P item) test) async {
     final spreads = [
       for (P entity in state.value!)
         if (test(entity)) item else entity

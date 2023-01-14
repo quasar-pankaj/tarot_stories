@@ -1,37 +1,56 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tarot_stories/database/repository.dart';
 
 import '../../database/entities/spread.dart';
+import '../generic_notifier.dart';
 import 'spread_repository_provider.dart';
 
 final spreadProvider = AsyncNotifierProvider.family
     .autoDispose<SpreadNotifier, Spread, int>(SpreadNotifier.new);
 
-class SpreadNotifier extends AutoDisposeFamilyAsyncNotifier<Spread, int> {
+class SpreadNotifier extends GenericNotifier<Spread> {
   @override
-  FutureOr<Spread> build(int arg) async {
-    final repo = ref.watch(spreadRepositoryProvider);
+  Future<void> deleteChildren(Spread item) async {}
 
-    final spreads = await repo.getAllWhereFKFieldEquals('journalId', arg);
+  @override
+  String get fKField => 'journalId';
 
-    return spreads.first;
-  }
+  @override
+  Repository<Spread> get repository => ref.read(spreadRepositoryProvider);
 
-  Future<void> save(List<String> cards) async {
-    final spread = state.value;
-    late final Spread modifiedReading;
-    if (spread == null) {
-      modifiedReading = Spread(journalId: arg, cards: []);
-    } else {
-      modifiedReading = spread.copyWith(cards: cards);
-    }
-    await ref.read(spreadRepositoryProvider).update(modifiedReading);
-    state = AsyncValue.data(modifiedReading);
-  }
+  Future<void> save(Spread spread) =>
+      saveBase(spread, (item) => spread.id == item.id);
 
-  Future<void> delete() async {
-    final spread = state.value;
-    await ref.read(spreadRepositoryProvider).delete(spread!);
-  }
+  Future<void> delete(Spread spread) =>
+      deleteBase(spread, (item) => spread.id != item.id);
 }
+
+// class SpreadNotifier extends AutoDisposeFamilyAsyncNotifier<Spread, int> {
+//   @override
+//   FutureOr<Spread> build(int arg) async {
+//     final repo = ref.watch(spreadRepositoryProvider);
+
+//     final spreads = await repo.getAllWhereFKFieldEquals('journalId', arg);
+
+//     return spreads.first;
+//   }
+
+//   Future<void> save(List<String> cards) async {
+//     final spread = state.value;
+//     late final Spread modifiedReading;
+//     if (spread == null) {
+//       modifiedReading = Spread(journalId: arg, cards: []);
+//     } else {
+//       modifiedReading = spread.copyWith(cards: cards);
+//     }
+//     await ref.read(spreadRepositoryProvider).update(modifiedReading);
+//     state = AsyncValue.data(modifiedReading);
+//   }
+
+//   Future<void> delete() async {
+//     final spread = state.value;
+//     await ref.read(spreadRepositoryProvider).delete(spread!);
+//   }
+// }
