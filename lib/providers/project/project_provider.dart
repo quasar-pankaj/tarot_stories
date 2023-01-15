@@ -15,9 +15,12 @@ final projectsProvider = AsyncNotifierProvider.autoDispose
 
 class ProjetcsNotifier extends GenericNotifier<Project> {
   @override
-  Future<void> deleteChildren(Project item) {
-    // TODO: implement deleteChildren
-    throw UnimplementedError();
+  Future<void> deleteChildren(Project item) async {
+    final elements = await ref.read(elementsProvider(item.id!).future);
+
+    for (var element in elements) {
+      ref.read(elementsProvider(item.id!).notifier).delete(element);
+    }
   }
 
   @override
