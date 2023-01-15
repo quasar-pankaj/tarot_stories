@@ -34,7 +34,7 @@ final cardProvider = FutureProvider.autoDispose<List<CardModel>>((ref) async {
   final List<CardModel> cards = [];
 
   for (int i = 0; i < spread.cards.length; i++) {
-    cards.add(cardService.fetchByName(spread.cards![i]));
+    cards.add(cardService.fetchByName(spread.cards[i]));
   }
 
   return cards;
