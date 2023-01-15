@@ -11,8 +11,8 @@ import '../project/open_project_provider.dart';
 import 'elements_repository_provider.dart';
 import 'selected_element_provider.dart';
 
-final elementsProvider =
-    AsyncNotifierProvider.autoDispose<ElementsNotifier, Iterable<Element>>(
+final elementsProvider = AsyncNotifierProvider.autoDispose
+    .family<ElementsNotifier, Iterable<Element>, int>(
   ElementsNotifier.new,
 );
 

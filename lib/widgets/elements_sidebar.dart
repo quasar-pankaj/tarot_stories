@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tarot_stories/providers/project/open_project_provider.dart';
 
 import '../database/entities/element.dart' as entities;
 import '../database/entities/enum_journal_category.dart';
@@ -28,9 +29,12 @@ class ElementsSidebar extends StatelessWidget {
                 Text(_items[index].text),
                 const Spacer(),
                 IconButton(
-                  onPressed: () => ref
-                      .read(elementsProvider.notifier)
-                      .addNew(_items[index].type),
+                  onPressed: () async {
+                    final openProject = ref.read(openProjectProvider)!;
+                    await ref
+                        .read(elementsProvider(openProject.id!).notifier)
+                        .addNew(_items[index].type);
+                  },
                   icon: const Icon(Icons.add),
                 ),
               ],
@@ -44,9 +48,12 @@ class ElementsSidebar extends StatelessWidget {
                           .read(selectedElementProvider.notifier)
                           .state = element,
                       child: Dismissible(
-                        onDismissed: (direction) async => await ref
-                            .read(elementsProvider.notifier)
-                            .delete(element),
+                        onDismissed: (direction) async {
+                          final openProject = ref.read(openProjectProvider)!;
+                          await ref
+                              .read(elementsProvider(openProject.id!).notifier)
+                              .delete(element);
+                        },
                         key: Key(element.toString()),
                         child: Card(
                           child: ListTile(
@@ -56,8 +63,11 @@ class ElementsSidebar extends StatelessWidget {
                             title: InPlaceEditor(
                               text: element.name,
                               onTextChanged: (newText) async {
+                                final openProject =
+                                    ref.read(openProjectProvider)!;
                                 await ref
-                                    .read(elementsProvider.notifier)
+                                    .read(elementsProvider(openProject.id!)
+                                        .notifier)
                                     .save(element.copyWith(name: newText));
                               },
                             ),

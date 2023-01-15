@@ -7,11 +7,12 @@ import 'elements_provider.dart';
 
 final charactersFilterProvider =
     FutureProvider.autoDispose<Iterable<Element>>((ref) async {
-  final project = ref.watch(openProjectProvider);
-  final Iterable<Element> all = await ref.watch(elementsProvider.future);
+  final project = ref.watch(openProjectProvider)!;
+  final Iterable<Element> all =
+      await ref.watch(elementsProvider(project.id!).future);
   return all.where((element) =>
       element.elementType == JournalCategory.character &&
-      element.projectId == project!.id);
+      element.projectId == project.id);
 });
 
 // final beatsFilterProvider = FutureProvider<Iterable<Element>>((ref) async {
@@ -24,20 +25,22 @@ final charactersFilterProvider =
 
 final placesFilterProvider =
     FutureProvider.autoDispose<Iterable<Element>>((ref) async {
-  final project = ref.watch(openProjectProvider);
-  final Iterable<Element> all = await ref.watch(elementsProvider.future);
+  final project = ref.watch(openProjectProvider)!;
+  final Iterable<Element> all =
+      await ref.watch(elementsProvider(project.id!).future);
   return all.where((element) =>
       element.elementType == JournalCategory.location &&
-      element.projectId == project!.id);
+      element.projectId == project.id);
 });
 
 final propsFilterProvider =
     FutureProvider.autoDispose<Iterable<Element>>((ref) async {
-  final project = ref.watch(openProjectProvider);
-  final Iterable<Element> all = await ref.watch(elementsProvider.future);
+  final project = ref.watch(openProjectProvider)!;
+  final Iterable<Element> all =
+      await ref.watch(elementsProvider(project.id!).future);
   return all.where((element) =>
       element.elementType == JournalCategory.prop &&
-      element.projectId == project!.id);
+      element.projectId == project.id);
 });
 
 // final recycledFilterProvider = FutureProvider<Iterable<Element>>((ref) async {
@@ -50,29 +53,32 @@ final propsFilterProvider =
 
 final relationshipsFilterProvider =
     FutureProvider.autoDispose<Iterable<Element>>((ref) async {
-  final project = ref.watch(openProjectProvider);
-  final Iterable<Element> all = await ref.watch(elementsProvider.future);
+  final project = ref.watch(openProjectProvider)!;
+  final Iterable<Element> all =
+      await ref.watch(elementsProvider(project.id!).future);
   return all.where((element) =>
       element.elementType == JournalCategory.relationship &&
-      element.projectId == project!.id);
+      element.projectId == project.id);
 });
 
 final scenesFilterProvider =
     FutureProvider.autoDispose<Iterable<Element>>((ref) async {
-  final project = ref.watch(openProjectProvider);
-  final Iterable<Element> all = await ref.watch(elementsProvider.future);
+  final project = ref.watch(openProjectProvider)!;
+  final Iterable<Element> all =
+      await ref.watch(elementsProvider(project.id!).future);
   return all.where((element) =>
       element.elementType == JournalCategory.sceneSequel &&
-      element.projectId == project!.id);
+      element.projectId == project.id);
 });
 
 final structuresFilterProvider =
     FutureProvider.autoDispose<Iterable<Element>>((ref) async {
-  final project = ref.watch(openProjectProvider);
-  final Iterable<Element> all = await ref.watch(elementsProvider.future);
+  final project = ref.watch(openProjectProvider)!;
+  final Iterable<Element> all =
+      await ref.watch(elementsProvider(project.id!).future);
   return all.where((element) =>
       element.elementType == JournalCategory.structure &&
-      element.projectId == project!.id);
+      element.projectId == project.id);
 });
 
 // final unassociatedFilterProvider =
