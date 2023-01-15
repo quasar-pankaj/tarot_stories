@@ -24,9 +24,21 @@ abstract class GenericNotifier<P>
   Future<void> deleteChildren(P item);
 
   Future<P> add(P item) async {
-    final s = await repository.insert(item);
-    final items = [...?state.value, s];
-    state = AsyncValue.data(items);
+    late final P s;
+    _changes.add(
+      Change(
+        state,
+        () async {
+          s = await repository.insert(item);
+          final items = [...?state.value, s];
+          state = AsyncValue.data(items);
+        },
+        (oldValue) async {
+          await repository.delete(item);
+          state = oldValue;
+        },
+      ),
+    );
     return s;
   }
 
@@ -38,6 +50,14 @@ abstract class GenericNotifier<P>
 
     await deleteChildren(item);
     await repository.delete(item);
+
+    _changes.add(
+      Change(
+        state,
+        () {},
+        (oldValue) {},
+      ),
+    );
   }
 
   Future<void> saveBase(P item, bool Function(P item) test) async {
@@ -47,5 +67,13 @@ abstract class GenericNotifier<P>
     ];
     state = AsyncValue.data(items);
     await repository.update(item);
+
+    _changes.add(
+      Change(
+        state,
+        () {},
+        (oldValue) {},
+      ),
+    );
   }
 }
