@@ -50,3 +50,4 @@ You can start by clicking the FAB at the bottom.
 ### ToDos
 1. Include reversed cards.
 2. Undo-Redo functionality.
+3. Make it display properly on mobiles (Android, iOS)
