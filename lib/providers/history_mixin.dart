@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-mixin HistoryMixin<T> on FamilyAsyncNotifier<T, int> {
-  List<T> _history = [];
+import 'generic_notifier.dart';
+
+mixin HistoryMixin<T> on GenericNotifier<T> {
+  List<Iterable<T>> _history = [];
 
   int _undoIndex = 0;
 
@@ -10,9 +12,9 @@ mixin HistoryMixin<T> on FamilyAsyncNotifier<T, int> {
   bool get _canRedo => _undoIndex > 0;
 
   @override
-  set state(AsyncValue<T> value) {
+  set state(AsyncValue<Iterable<T>> value) {
     _clearRedoHistory();
-    _history.insert(0, value.value as T);
+    _history.insert(0, value.value as Iterable<T>);
     super.state = value;
   }
 

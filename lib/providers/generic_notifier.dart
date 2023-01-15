@@ -21,7 +21,6 @@ abstract class GenericNotifier<P>
   Future<void> deleteChildren(P item);
 
   Future<P> add(P item) async {
-    // state = const AsyncValue.loading();
     final s = await repository.insert(item);
     final items = [...?state.value, s];
     state = AsyncValue.data(items);
@@ -30,7 +29,6 @@ abstract class GenericNotifier<P>
 
   Future<void> deleteBase(P item, bool Function(P item) test) async {
     if (state.value != null) {
-      // state = const AsyncValue.loading();
       final spreads = state.value!.where(test);
       state = AsyncValue.data(spreads);
     }
