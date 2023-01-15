@@ -1,11 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:undo/undo.dart';
 
 import '../database/repository.dart';
 
 abstract class GenericNotifier<P>
     extends AutoDisposeFamilyAsyncNotifier<Iterable<P>, int> {
+  final _changes = ChangeStack();
+
   @override
   FutureOr<Iterable<P>> build(int arg) async {
     // if foreign key is empty then it is the root node so load all
