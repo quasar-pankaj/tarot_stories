@@ -17,12 +17,12 @@ class ReadingsWidget extends ConsumerWidget {
 
     return readings.when(
       data: (data) {
-        final controller = data.readings == ''
+        final controller = data.first.readings == ''
             ? quill.QuillController.basic()
             : quill.QuillController(
                 document: quill.Document.fromJson(
                   jsonDecode(
-                    data.readings,
+                    data.first.readings,
                   ),
                 ),
                 selection: const TextSelection.collapsed(offset: 0),
@@ -62,7 +62,7 @@ class ReadingsWidget extends ConsumerWidget {
                 child: const Icon(Icons.save),
                 onPressed: () =>
                     ref.read(readingsProvider(openJournal.id!).notifier).save(
-                          data.copyWith(
+                          data.first.copyWith(
                             readings: jsonEncode(
                               controller.document.toDelta().toJson(),
                             ),

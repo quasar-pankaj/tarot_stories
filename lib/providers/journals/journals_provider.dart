@@ -23,11 +23,15 @@ final journalProvider = AsyncNotifierProvider.family
 class JournalNotifier extends GenericNotifier<Journal> {
   @override
   Future<void> deleteChildren(Journal item) async {
-    final spread = await ref.read(spreadProvider(item.id!).future);
-    ref.read(spreadProvider(item.id!).notifier).delete(spread);
+    final spreads = await ref.read(spreadProvider(item.id!).future);
+    for (var spread in spreads) {
+      ref.read(spreadProvider(item.id!).notifier).delete(spread);
+    }
 
-    final reading = await ref.read(readingsProvider(item.id!).future);
-    ref.read(readingsProvider(item.id!).notifier).delete(reading);
+    final readings = await ref.read(readingsProvider(item.id!).future);
+    for (var reading in readings) {
+      ref.read(readingsProvider(item.id!).notifier).delete(reading);
+    }
   }
 
   @override

@@ -8,7 +8,7 @@ import '../generic_notifier.dart';
 import 'spread_repository_provider.dart';
 
 final spreadProvider = AsyncNotifierProvider.family
-    .autoDispose<SpreadNotifier, Spread, int>(SpreadNotifier.new);
+    .autoDispose<SpreadNotifier, Iterable<Spread>, int>(SpreadNotifier.new);
 
 class SpreadNotifier extends GenericNotifier<Spread> {
   @override

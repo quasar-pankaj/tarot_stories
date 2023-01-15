@@ -8,7 +8,7 @@ import '../generic_notifier.dart';
 import 'readings_repository_provider.dart';
 
 final readingsProvider = AsyncNotifierProvider.family
-    .autoDispose<ReadingsNotifier, Reading, int>(ReadingsNotifier.new);
+    .autoDispose<ReadingsNotifier, Iterable<Reading>, int>(ReadingsNotifier.new);
 
 class ReadingsNotifier extends GenericNotifier<Reading> {
   @override
