@@ -45,3 +45,8 @@ You can start by clicking the FAB at the bottom.
 ![Screenshot from 2023-01-12 16-57-38](https://user-images.githubusercontent.com/4270836/212057929-fe4e4c83-54c9-400b-9245-ba495a242182.png)
 ![Screenshot from 2023-01-12 16-57-45](https://user-images.githubusercontent.com/4270836/212057926-1ebf6d72-2dae-4fd0-8574-2ebc80c6404c.png)
 ![Screenshot from 2023-01-12 16-58-11](https://user-images.githubusercontent.com/4270836/212057915-35a0b66b-f1fe-4036-a121-0a8e4a2d8ec1.png)
+
+
+### ToDos
+1. Include reversed cards.
+2. Undo-Redo functionality.
