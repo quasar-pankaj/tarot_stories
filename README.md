@@ -4,7 +4,7 @@ A Flutter project for Writers.
 
 ## About This Project
 
-Tarot cards lend themselves to storytelling brilliantly due to their rich imagery. This project hopes to help Writers break Writer's block. This is still WIP but I am showcasing what I have done so far. As of now it is not very usable as it tends to crash and some functions are not yet working properly. I will upload in releases page once I have fixed the problems.
+Tarot cards lend themselves to storytelling brilliantly due to their rich imagery. This project hopes to help Writers break Writer's block. This is still WIP but I am showcasing what I have done so far. 
 
 ### Basic Operations:
 
