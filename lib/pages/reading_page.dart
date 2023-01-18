@@ -18,28 +18,55 @@ class ReadingPage extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Readings'),
         ),
-        body: Row(
-          children: [
-            Expanded(
-              flex: 3,
-              child: FittedBox(
-                child: InteractiveViewer(
-                  minScale: 0.1,
-                  maxScale: 15.0,
-                  child: _spread,
+        body: LayoutBuilder(builder: (context, constraints) {
+          final size = MediaQuery.of(context).size;
+          if (size.height > size.width) {
+            return Column(
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: FittedBox(
+                    child: InteractiveViewer(
+                      minScale: 0.1,
+                      maxScale: 15.0,
+                      child: _spread,
+                    ),
+                  ),
+                ),
+                const VerticalDivider(
+                  width: 3,
+                  thickness: 3,
+                ),
+                Expanded(
+                  flex: 2,
+                  child: _journal,
+                ),
+              ],
+            );
+          }
+          return Row(
+            children: [
+              Expanded(
+                flex: 3,
+                child: FittedBox(
+                  child: InteractiveViewer(
+                    minScale: 0.1,
+                    maxScale: 15.0,
+                    child: _spread,
+                  ),
                 ),
               ),
-            ),
-            const VerticalDivider(
-              width: 3,
-              thickness: 3,
-            ),
-            Expanded(
-              flex: 2,
-              child: _journal,
-            ),
-          ],
-        ),
+              const VerticalDivider(
+                width: 3,
+                thickness: 3,
+              ),
+              Expanded(
+                flex: 2,
+                child: _journal,
+              ),
+            ],
+          );
+        }),
       ),
     );
   }

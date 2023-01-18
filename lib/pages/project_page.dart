@@ -17,22 +17,45 @@ class ProjectPage extends StatelessWidget {
               Text(ref.watch(openProjectProvider)!.name),
         ),
       ),
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Expanded(
-            flex: 1,
-            child: ElementsSidebar(),
-          ),
-          VerticalDivider(
-            width: 2,
-            thickness: 2,
-          ),
-          Expanded(
-            flex: 3,
-            child: JournalWidget(),
-          ),
-        ],
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          final size = MediaQuery.of(context).size;
+          if (size.height > size.width) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: const [
+                Expanded(
+                  child: ElementsSidebar(),
+                ),
+                VerticalDivider(
+                  width: 2,
+                  thickness: 2,
+                ),
+                Expanded(
+                  child: JournalWidget(),
+                ),
+              ],
+            );
+          } else {
+            return Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Expanded(
+                  flex: 1,
+                  child: ElementsSidebar(),
+                ),
+                VerticalDivider(
+                  width: 2,
+                  thickness: 2,
+                ),
+                Expanded(
+                  flex: 3,
+                  child: JournalWidget(),
+                ),
+              ],
+            );
+          }
+        },
       ),
     );
   }
