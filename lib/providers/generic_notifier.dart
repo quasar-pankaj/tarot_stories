@@ -95,19 +95,11 @@ abstract class GenericNotifier<P>
     );
   }
 
-  bool get canUndo {
-    return _changes.canUndo;
-  }
+  bool get canUndo => _changes.canUndo;
 
-  void undo() {
-    _changes.undo();
-  }
+  void undo() => _changes.undo();
 
-  bool get canRedo {
-    return _changes.canRedo;
-  }
+  bool get canRedo => _changes.canRedo;
 
-  void redo() {
-    _changes.redo();
-  }
+  void redo() => _changes.redo();
 }

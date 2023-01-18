@@ -26,31 +26,3 @@ class SpreadNotifier extends GenericNotifier<Spread> {
   Future<void> delete(Spread spread) =>
       deleteBase(spread, (item) => spread.id != item.id);
 }
-
-// class SpreadNotifier extends AutoDisposeFamilyAsyncNotifier<Spread, int> {
-//   @override
-//   FutureOr<Spread> build(int arg) async {
-//     final repo = ref.watch(spreadRepositoryProvider);
-
-//     final spreads = await repo.getAllWhereFKFieldEquals('journalId', arg);
-
-//     return spreads.first;
-//   }
-
-//   Future<void> save(List<String> cards) async {
-//     final spread = state.value;
-//     late final Spread modifiedReading;
-//     if (spread == null) {
-//       modifiedReading = Spread(journalId: arg, cards: []);
-//     } else {
-//       modifiedReading = spread.copyWith(cards: cards);
-//     }
-//     await ref.read(spreadRepositoryProvider).update(modifiedReading);
-//     state = AsyncValue.data(modifiedReading);
-//   }
-
-//   Future<void> delete() async {
-//     final spread = state.value;
-//     await ref.read(spreadRepositoryProvider).delete(spread!);
-//   }
-// }

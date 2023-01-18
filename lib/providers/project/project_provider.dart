@@ -46,60 +46,16 @@ class ProjetcsNotifier extends GenericNotifier<Project> {
 
   Future<void> delete(Project project) =>
       deleteBase(project, (item) => item.id != project.id);
+
+  @override
+  void undo() {
+    ref.read(elementsProvider(arg).notifier).undo();
+    super.undo();
+  }
+
+  @override
+  void redo() {
+    ref.read(elementsProvider(arg).notifier).redo();
+    super.redo();
+  }
 }
-
-// class ProjetcsNotifier extends AutoDisposeAsyncNotifier<Iterable<Project>> {
-//   @override
-//   FutureOr<Iterable<Project>> build() async {
-//     state = const AsyncLoading();
-//     final repo = ref.watch(projectRepositoryProvider);
-//     final projects = await repo.getAllUnsorted();
-//     return projects;
-//   }
-
-  // Future<Project> addNew() async {
-  //   final project = Project(
-  //     name: 'No Name',
-  //     synopsis: '',
-  //     createdTimestamp: DateTime.now().millisecondsSinceEpoch,
-  //     modifiedTimestamp: DateTime.now().millisecondsSinceEpoch,
-  //   );
-
-  //   final p = await add(project);
-  //   return p;
-  // }
-
-//   Future<Project> add(Project project) async {
-//     state = const AsyncValue.loading();
-
-//     final p = await ref.read(projectRepositoryProvider).insert(project);
-//     final projects = [...state.value!, p];
-
-//     state = AsyncValue.data(projects);
-
-//     return p;
-//   }
-
-//   Future<void> save(Project project) async {
-//     state = const AsyncValue.loading();
-
-//     await ref.read(projectRepositoryProvider).update(project);
-//     final projects = [
-//       for (Project item in state.value!)
-//         if (item.id == project.id) project else item
-//     ];
-
-//     state = AsyncValue.data(projects);
-//   }
-
-//   Future<void> delete(Project project) async {
-//     state = const AsyncValue.loading();
-
-//     ref.read(elementsProvider.notifier).deleteAllForProject(project.id!);
-
-//     await ref.read(projectRepositoryProvider).delete(project);
-//     final projects = state.value!.where((element) => element.id != project.id);
-
-//     state = AsyncData(projects);
-//   }
-// }
