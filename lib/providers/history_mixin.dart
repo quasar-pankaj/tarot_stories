@@ -7,17 +7,6 @@ mixin HistoryMixin<E> on GenericNotifier<E> {
   final ChangeStack _changeStack = ChangeStack();
 
   @override
-  set state(AsyncValue<Iterable<E>> newState) {
-    _changeStack.add(
-      Change(
-        super.state,
-        () => newState,
-        (oldValue) => oldValue,
-      ),
-    );
-  }
-
-  @override
   Future<E> add(item) {
     // TODO: implement add
     return super.add(item);
