@@ -49,16 +49,4 @@ class ElementsNotifier extends GenericNotifier<Element> {
 
   Future<void> delete(Element element) =>
       deleteBase(element, (item) => element.id != item.id);
-
-  @override
-  void undo() {
-    ref.read(journalProvider(arg).notifier).undo();
-    super.undo();
-  }
-
-  @override
-  void redo() {
-    ref.read(journalProvider(arg).notifier).redo();
-    super.redo();
-  }
 }

@@ -1,14 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:undo/undo.dart';
 
 import '../database/repository.dart';
 
 abstract class GenericNotifier<P>
     extends AutoDisposeFamilyAsyncNotifier<Iterable<P>, int> {
-  final _changes = ChangeStack();
-
   @override
   FutureOr<Iterable<P>> build(int arg) async {
     // if foreign key is empty then it is the root node so load all
@@ -24,82 +21,29 @@ abstract class GenericNotifier<P>
   Future<void> deleteChildren(P item);
 
   Future<P> add(P item) async {
-    late final P s;
-    _changes.add(
-      Change(
-        state,
-        () async {
-          s = await repository.insert(item);
-          final items = [...?state.value, s];
-          state = AsyncValue.data(items);
-        },
-        (oldValue) async {
-          await repository.delete(item);
-          state = oldValue;
-        },
-      ),
-    );
+    final P s = await repository.insert(item);
+    final items = [...?state.value, s];
+    state = AsyncValue.data(items);
+
     return s;
   }
 
   Future<void> deleteBase(P item, bool Function(P item) test) async {
-    P oldValue = state.value!.firstWhere((element) => !test(element));
+    if (state.value != null) {
+      final spreads = state.value!.where(test);
+      state = AsyncValue.data(spreads);
+    }
 
-    _changes.add(
-      Change(
-        oldValue,
-        () async {
-          if (state.value != null) {
-            final spreads = state.value!.where(test);
-            state = AsyncValue.data(spreads);
-          }
-
-          await deleteChildren(item);
-          await repository.delete(item);
-        },
-        (oldValue) async {
-          if (state.value != null) {
-            final spreads = [...?state.value, oldValue];
-            state = AsyncValue.data(spreads);
-          }
-
-          await repository.insert(oldValue);
-        },
-      ),
-    );
+    await deleteChildren(item);
+    await repository.delete(item);
   }
 
   Future<void> saveBase(P item, bool Function(P item) test) async {
-    P oldValue = state.value!.firstWhere((element) => !test(element));
-
-    _changes.add(
-      Change(
-        oldValue,
-        () async {
-          final items = [
-            for (P entity in state.value!)
-              if (test(entity)) item else entity
-          ];
-          state = AsyncValue.data(items);
-          await repository.update(item);
-        },
-        (oldValue) async {
-          final items = [
-            for (P entity in state.value!)
-              if (test(entity)) oldValue else entity
-          ];
-          state = AsyncValue.data(items);
-          await repository.update(oldValue);
-        },
-      ),
-    );
+    final items = [
+      for (P entity in state.value!)
+        if (test(entity)) item else entity
+    ];
+    state = AsyncValue.data(items);
+    await repository.update(item);
   }
-
-  bool get canUndo => _changes.canUndo;
-
-  void undo() => _changes.undo();
-
-  bool get canRedo => _changes.canRedo;
-
-  void redo() => _changes.redo();
 }

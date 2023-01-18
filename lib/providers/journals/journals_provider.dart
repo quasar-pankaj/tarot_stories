@@ -77,18 +77,4 @@ class JournalNotifier extends GenericNotifier<Journal> {
     await ref.read(readingsRepositoryProvider).insert(readings);
     return j;
   }
-
-  @override
-  void undo() {
-    ref.read(spreadProvider(arg).notifier).undo();
-    ref.read(readingsProvider(arg).notifier).undo();
-    super.undo();
-  }
-
-  @override
-  void redo() {
-    ref.read(spreadProvider(arg).notifier).redo();
-    ref.read(readingsProvider(arg).notifier).redo();
-    super.redo();
-  }
 }

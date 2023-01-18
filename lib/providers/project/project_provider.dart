@@ -46,16 +46,4 @@ class ProjetcsNotifier extends GenericNotifier<Project> {
 
   Future<void> delete(Project project) =>
       deleteBase(project, (item) => item.id != project.id);
-
-  @override
-  void undo() {
-    ref.read(elementsProvider(arg).notifier).undo();
-    super.undo();
-  }
-
-  @override
-  void redo() {
-    ref.read(elementsProvider(arg).notifier).redo();
-    super.redo();
-  }
 }
