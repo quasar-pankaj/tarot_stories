@@ -43,37 +43,71 @@ abstract class GenericNotifier<P>
   }
 
   Future<void> deleteBase(P item, bool Function(P item) test) async {
-    if (state.value != null) {
-      final spreads = state.value!.where(test);
-      state = AsyncValue.data(spreads);
-    }
-
-    await deleteChildren(item);
-    await repository.delete(item);
+    P oldValue = state.value!.firstWhere((element) => !test(element));
 
     _changes.add(
       Change(
-        state,
-        () {},
-        (oldValue) {},
+        oldValue,
+        () async {
+          if (state.value != null) {
+            final spreads = state.value!.where(test);
+            state = AsyncValue.data(spreads);
+          }
+
+          await deleteChildren(item);
+          await repository.delete(item);
+        },
+        (oldValue) async {
+          if (state.value != null) {
+            final spreads = [...?state.value, oldValue];
+            state = AsyncValue.data(spreads);
+          }
+
+          await repository.insert(oldValue);
+        },
       ),
     );
   }
 
   Future<void> saveBase(P item, bool Function(P item) test) async {
-    final items = [
-      for (P entity in state.value!)
-        if (test(entity)) item else entity
-    ];
-    state = AsyncValue.data(items);
-    await repository.update(item);
+    P oldValue = state.value!.firstWhere((element) => !test(element));
 
     _changes.add(
       Change(
-        state,
-        () {},
-        (oldValue) {},
+        oldValue,
+        () async {
+          final items = [
+            for (P entity in state.value!)
+              if (test(entity)) item else entity
+          ];
+          state = AsyncValue.data(items);
+          await repository.update(item);
+        },
+        (oldValue) async {
+          final items = [
+            for (P entity in state.value!)
+              if (test(entity)) oldValue else entity
+          ];
+          state = AsyncValue.data(items);
+          await repository.update(oldValue);
+        },
       ),
     );
+  }
+
+  bool get canUndo {
+    return _changes.canUndo;
+  }
+
+  void undo() {
+    _changes.undo();
+  }
+
+  bool get canRedo {
+    return _changes.canRedo;
+  }
+
+  void redo() {
+    _changes.redo();
   }
 }
