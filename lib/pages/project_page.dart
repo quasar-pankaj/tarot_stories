@@ -23,15 +23,16 @@ class ProjectPage extends StatelessWidget {
           if (size.height > size.width) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: const [
-                Expanded(
-                  child: ElementsSidebar(),
+              children: [
+                ConstrainedBox(
+                  constraints: const BoxConstraints.tightFor(height: 300.0),
+                  child: const ElementsSidebar(),
                 ),
-                VerticalDivider(
+                const VerticalDivider(
                   width: 2,
                   thickness: 2,
                 ),
-                Expanded(
+                const Expanded(
                   child: JournalWidget(),
                 ),
               ],
@@ -39,16 +40,16 @@ class ProjectPage extends StatelessWidget {
           } else {
             return Row(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Expanded(
-                  flex: 1,
-                  child: ElementsSidebar(),
+              children: [
+                ConstrainedBox(
+                  constraints: const BoxConstraints.tightFor(width: 300),
+                  child: const ElementsSidebar(),
                 ),
-                VerticalDivider(
+                const VerticalDivider(
                   width: 2,
                   thickness: 2,
                 ),
-                Expanded(
+                const Expanded(
                   flex: 3,
                   child: JournalWidget(),
                 ),
