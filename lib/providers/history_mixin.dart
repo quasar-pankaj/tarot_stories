@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:undo/undo.dart';
 
 import 'generic_notifier.dart';
