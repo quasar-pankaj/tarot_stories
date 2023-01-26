@@ -12,6 +12,7 @@ Tarot cards lend themselves to storytelling brilliantly due to their rich imager
 2. Delete an Item - Swipe the item either towards left or right.
 3. Search for a project or journal - type the search string in the textfield on top.
 4. Sorting Projects or Journals - Use the buttons on top. Red is for sorting Ascending or descending. Green to sort alphabetically, Date created, Date modified. The defaults are sort descending on date modified.
+5. Kindly refer to the Wiki for detailed tutorial on how to use this app.
 
 #### The Initial screen - 
 ![Screenshot from 2023-01-12 16-47-25](https://user-images.githubusercontent.com/4270836/212056299-38f0c6a8-523d-461b-b332-5f3757c931b7.png)
