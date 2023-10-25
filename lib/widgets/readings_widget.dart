@@ -37,23 +37,30 @@ class ReadingsWidget extends ConsumerWidget {
         }
         return Stack(
           children: [
-            Column(
-              children: [
-                quill.QuillToolbar.basic(
-                  controller: controller,
+            quill.QuillProvider(
+              configurations: quill.QuillConfigurations(
+                controller: controller,
+                sharedConfigurations: const quill.QuillSharedConfigurations(
+                  locale: Locale('en', 'US'),
                 ),
-                const Divider(
-                  height: 3,
-                  thickness: 3,
-                ),
-                Expanded(
-                  flex: 1,
-                  child: quill.QuillEditor.basic(
-                    controller: controller,
-                    readOnly: false,
+              ),
+              child: Column(
+                children: [
+                  const quill.QuillToolbar(),
+                  const Divider(
+                    height: 3,
+                    thickness: 3,
                   ),
-                ),
-              ],
+                  Expanded(
+                    flex: 1,
+                    child: quill.QuillEditor.basic(
+                      configurations: const quill.QuillEditorConfigurations(
+                        readOnly: false,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             Positioned(
               right: 10,

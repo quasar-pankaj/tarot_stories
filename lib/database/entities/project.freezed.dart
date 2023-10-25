@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'project.dart';
 
@@ -89,10 +89,10 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
 }
 
 /// @nodoc
-abstract class _$$$ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
-  factory _$$$ProjectCopyWith(
-          _$$Project value, $Res Function(_$$Project) then) =
-      __$$$ProjectCopyWithImpl<$Res>;
+abstract class _$$$ProjectImplCopyWith<$Res> implements $ProjectCopyWith<$Res> {
+  factory _$$$ProjectImplCopyWith(
+          _$$ProjectImpl value, $Res Function(_$$ProjectImpl) then) =
+      __$$$ProjectImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -104,10 +104,11 @@ abstract class _$$$ProjectCopyWith<$Res> implements $ProjectCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$$ProjectCopyWithImpl<$Res>
-    extends _$ProjectCopyWithImpl<$Res, _$$Project>
-    implements _$$$ProjectCopyWith<$Res> {
-  __$$$ProjectCopyWithImpl(_$$Project _value, $Res Function(_$$Project) _then)
+class __$$$ProjectImplCopyWithImpl<$Res>
+    extends _$ProjectCopyWithImpl<$Res, _$$ProjectImpl>
+    implements _$$$ProjectImplCopyWith<$Res> {
+  __$$$ProjectImplCopyWithImpl(
+      _$$ProjectImpl _value, $Res Function(_$$ProjectImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -119,7 +120,7 @@ class __$$$ProjectCopyWithImpl<$Res>
     Object? createdTimestamp = null,
     Object? modifiedTimestamp = null,
   }) {
-    return _then(_$$Project(
+    return _then(_$$ProjectImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -146,16 +147,16 @@ class __$$$ProjectCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$$Project implements $Project {
-  _$$Project(
+class _$$ProjectImpl implements $Project {
+  _$$ProjectImpl(
       {this.id,
       required this.name,
       required this.synopsis,
       required this.createdTimestamp,
       required this.modifiedTimestamp});
 
-  factory _$$Project.fromJson(Map<String, dynamic> json) =>
-      _$$$ProjectFromJson(json);
+  factory _$$ProjectImpl.fromJson(Map<String, dynamic> json) =>
+      _$$$ProjectImplFromJson(json);
 
   @override
   final int? id;
@@ -177,7 +178,7 @@ class _$$Project implements $Project {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$$Project &&
+            other is _$$ProjectImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.synopsis, synopsis) ||
@@ -196,12 +197,12 @@ class _$$Project implements $Project {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$$ProjectCopyWith<_$$Project> get copyWith =>
-      __$$$ProjectCopyWithImpl<_$$Project>(this, _$identity);
+  _$$$ProjectImplCopyWith<_$$ProjectImpl> get copyWith =>
+      __$$$ProjectImplCopyWithImpl<_$$ProjectImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$$ProjectToJson(
+    return _$$$ProjectImplToJson(
       this,
     );
   }
@@ -213,9 +214,10 @@ abstract class $Project implements Project {
       required final String name,
       required final String synopsis,
       required final int createdTimestamp,
-      required final int modifiedTimestamp}) = _$$Project;
+      required final int modifiedTimestamp}) = _$$ProjectImpl;
 
-  factory $Project.fromJson(Map<String, dynamic> json) = _$$Project.fromJson;
+  factory $Project.fromJson(Map<String, dynamic> json) =
+      _$$ProjectImpl.fromJson;
 
   @override
   int? get id;
@@ -229,6 +231,6 @@ abstract class $Project implements Project {
   int get modifiedTimestamp;
   @override
   @JsonKey(ignore: true)
-  _$$$ProjectCopyWith<_$$Project> get copyWith =>
+  _$$$ProjectImplCopyWith<_$$ProjectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

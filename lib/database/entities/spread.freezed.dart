@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'spread.dart';
 
@@ -72,19 +72,21 @@ class _$SpreadCopyWithImpl<$Res, $Val extends Spread>
 }
 
 /// @nodoc
-abstract class _$$$SpreadCopyWith<$Res> implements $SpreadCopyWith<$Res> {
-  factory _$$$SpreadCopyWith(_$$Spread value, $Res Function(_$$Spread) then) =
-      __$$$SpreadCopyWithImpl<$Res>;
+abstract class _$$$SpreadImplCopyWith<$Res> implements $SpreadCopyWith<$Res> {
+  factory _$$$SpreadImplCopyWith(
+          _$$SpreadImpl value, $Res Function(_$$SpreadImpl) then) =
+      __$$$SpreadImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int? id, int journalId, List<String> cards});
 }
 
 /// @nodoc
-class __$$$SpreadCopyWithImpl<$Res>
-    extends _$SpreadCopyWithImpl<$Res, _$$Spread>
-    implements _$$$SpreadCopyWith<$Res> {
-  __$$$SpreadCopyWithImpl(_$$Spread _value, $Res Function(_$$Spread) _then)
+class __$$$SpreadImplCopyWithImpl<$Res>
+    extends _$SpreadCopyWithImpl<$Res, _$$SpreadImpl>
+    implements _$$$SpreadImplCopyWith<$Res> {
+  __$$$SpreadImplCopyWithImpl(
+      _$$SpreadImpl _value, $Res Function(_$$SpreadImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -94,7 +96,7 @@ class __$$$SpreadCopyWithImpl<$Res>
     Object? journalId = null,
     Object? cards = null,
   }) {
-    return _then(_$$Spread(
+    return _then(_$$SpreadImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -113,13 +115,13 @@ class __$$$SpreadCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$$Spread implements $Spread {
-  _$$Spread(
+class _$$SpreadImpl implements $Spread {
+  _$$SpreadImpl(
       {this.id, required this.journalId, required final List<String> cards})
       : _cards = cards;
 
-  factory _$$Spread.fromJson(Map<String, dynamic> json) =>
-      _$$$SpreadFromJson(json);
+  factory _$$SpreadImpl.fromJson(Map<String, dynamic> json) =>
+      _$$$SpreadImplFromJson(json);
 
   @override
   final int? id;
@@ -128,6 +130,7 @@ class _$$Spread implements $Spread {
   final List<String> _cards;
   @override
   List<String> get cards {
+    if (_cards is EqualUnmodifiableListView) return _cards;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_cards);
   }
@@ -141,7 +144,7 @@ class _$$Spread implements $Spread {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$$Spread &&
+            other is _$$SpreadImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.journalId, journalId) ||
                 other.journalId == journalId) &&
@@ -156,12 +159,12 @@ class _$$Spread implements $Spread {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$$SpreadCopyWith<_$$Spread> get copyWith =>
-      __$$$SpreadCopyWithImpl<_$$Spread>(this, _$identity);
+  _$$$SpreadImplCopyWith<_$$SpreadImpl> get copyWith =>
+      __$$$SpreadImplCopyWithImpl<_$$SpreadImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$$SpreadToJson(
+    return _$$$SpreadImplToJson(
       this,
     );
   }
@@ -171,9 +174,9 @@ abstract class $Spread implements Spread {
   factory $Spread(
       {final int? id,
       required final int journalId,
-      required final List<String> cards}) = _$$Spread;
+      required final List<String> cards}) = _$$SpreadImpl;
 
-  factory $Spread.fromJson(Map<String, dynamic> json) = _$$Spread.fromJson;
+  factory $Spread.fromJson(Map<String, dynamic> json) = _$$SpreadImpl.fromJson;
 
   @override
   int? get id;
@@ -183,6 +186,6 @@ abstract class $Spread implements Spread {
   List<String> get cards;
   @override
   @JsonKey(ignore: true)
-  _$$$SpreadCopyWith<_$$Spread> get copyWith =>
+  _$$$SpreadImplCopyWith<_$$SpreadImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

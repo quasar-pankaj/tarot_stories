@@ -6,7 +6,8 @@ part of 'journal.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$$Journal _$$$JournalFromJson(Map<String, dynamic> json) => _$$Journal(
+_$$JournalImpl _$$$JournalImplFromJson(Map<String, dynamic> json) =>
+    _$$JournalImpl(
       id: json['id'] as int?,
       name: json['name'] as String,
       query: json['query'] as String?,
@@ -16,7 +17,7 @@ _$$Journal _$$$JournalFromJson(Map<String, dynamic> json) => _$$Journal(
       shape: $enumDecode(_$SpreadShapeEnumMap, json['shape']),
     );
 
-Map<String, dynamic> _$$$JournalToJson(_$$Journal instance) =>
+Map<String, dynamic> _$$$JournalImplToJson(_$$JournalImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

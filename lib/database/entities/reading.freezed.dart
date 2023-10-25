@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'reading.dart';
 
@@ -72,20 +72,21 @@ class _$ReadingCopyWithImpl<$Res, $Val extends Reading>
 }
 
 /// @nodoc
-abstract class _$$$ReadingCopyWith<$Res> implements $ReadingCopyWith<$Res> {
-  factory _$$$ReadingCopyWith(
-          _$$Reading value, $Res Function(_$$Reading) then) =
-      __$$$ReadingCopyWithImpl<$Res>;
+abstract class _$$$ReadingImplCopyWith<$Res> implements $ReadingCopyWith<$Res> {
+  factory _$$$ReadingImplCopyWith(
+          _$$ReadingImpl value, $Res Function(_$$ReadingImpl) then) =
+      __$$$ReadingImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int? id, int journalId, String readings});
 }
 
 /// @nodoc
-class __$$$ReadingCopyWithImpl<$Res>
-    extends _$ReadingCopyWithImpl<$Res, _$$Reading>
-    implements _$$$ReadingCopyWith<$Res> {
-  __$$$ReadingCopyWithImpl(_$$Reading _value, $Res Function(_$$Reading) _then)
+class __$$$ReadingImplCopyWithImpl<$Res>
+    extends _$ReadingCopyWithImpl<$Res, _$$ReadingImpl>
+    implements _$$$ReadingImplCopyWith<$Res> {
+  __$$$ReadingImplCopyWithImpl(
+      _$$ReadingImpl _value, $Res Function(_$$ReadingImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -95,7 +96,7 @@ class __$$$ReadingCopyWithImpl<$Res>
     Object? journalId = null,
     Object? readings = null,
   }) {
-    return _then(_$$Reading(
+    return _then(_$$ReadingImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -114,11 +115,11 @@ class __$$$ReadingCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$$Reading implements $Reading {
-  _$$Reading({this.id, required this.journalId, required this.readings});
+class _$$ReadingImpl implements $Reading {
+  _$$ReadingImpl({this.id, required this.journalId, required this.readings});
 
-  factory _$$Reading.fromJson(Map<String, dynamic> json) =>
-      _$$$ReadingFromJson(json);
+  factory _$$ReadingImpl.fromJson(Map<String, dynamic> json) =>
+      _$$$ReadingImplFromJson(json);
 
   @override
   final int? id;
@@ -136,7 +137,7 @@ class _$$Reading implements $Reading {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$$Reading &&
+            other is _$$ReadingImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.journalId, journalId) ||
                 other.journalId == journalId) &&
@@ -151,12 +152,12 @@ class _$$Reading implements $Reading {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$$ReadingCopyWith<_$$Reading> get copyWith =>
-      __$$$ReadingCopyWithImpl<_$$Reading>(this, _$identity);
+  _$$$ReadingImplCopyWith<_$$ReadingImpl> get copyWith =>
+      __$$$ReadingImplCopyWithImpl<_$$ReadingImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$$ReadingToJson(
+    return _$$$ReadingImplToJson(
       this,
     );
   }
@@ -166,9 +167,10 @@ abstract class $Reading implements Reading {
   factory $Reading(
       {final int? id,
       required final int journalId,
-      required final String readings}) = _$$Reading;
+      required final String readings}) = _$$ReadingImpl;
 
-  factory $Reading.fromJson(Map<String, dynamic> json) = _$$Reading.fromJson;
+  factory $Reading.fromJson(Map<String, dynamic> json) =
+      _$$ReadingImpl.fromJson;
 
   @override
   int? get id;
@@ -178,6 +180,6 @@ abstract class $Reading implements Reading {
   String get readings;
   @override
   @JsonKey(ignore: true)
-  _$$$ReadingCopyWith<_$$Reading> get copyWith =>
+  _$$$ReadingImplCopyWith<_$$ReadingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -6,7 +6,8 @@ part of 'element.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$$Element _$$$ElementFromJson(Map<String, dynamic> json) => _$$Element(
+_$$ElementImpl _$$$ElementImplFromJson(Map<String, dynamic> json) =>
+    _$$ElementImpl(
       id: json['id'] as int?,
       projectId: json['projectId'] as int,
       name: json['name'] as String,
@@ -14,7 +15,7 @@ _$$Element _$$$ElementFromJson(Map<String, dynamic> json) => _$$Element(
       elementType: $enumDecode(_$JournalCategoryEnumMap, json['elementType']),
     );
 
-Map<String, dynamic> _$$$ElementToJson(_$$Element instance) =>
+Map<String, dynamic> _$$$ElementImplToJson(_$$ElementImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'projectId': instance.projectId,

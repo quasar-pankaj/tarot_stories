@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'element.dart';
 
@@ -89,10 +89,10 @@ class _$ElementCopyWithImpl<$Res, $Val extends Element>
 }
 
 /// @nodoc
-abstract class _$$$ElementCopyWith<$Res> implements $ElementCopyWith<$Res> {
-  factory _$$$ElementCopyWith(
-          _$$Element value, $Res Function(_$$Element) then) =
-      __$$$ElementCopyWithImpl<$Res>;
+abstract class _$$$ElementImplCopyWith<$Res> implements $ElementCopyWith<$Res> {
+  factory _$$$ElementImplCopyWith(
+          _$$ElementImpl value, $Res Function(_$$ElementImpl) then) =
+      __$$$ElementImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -104,10 +104,11 @@ abstract class _$$$ElementCopyWith<$Res> implements $ElementCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$$ElementCopyWithImpl<$Res>
-    extends _$ElementCopyWithImpl<$Res, _$$Element>
-    implements _$$$ElementCopyWith<$Res> {
-  __$$$ElementCopyWithImpl(_$$Element _value, $Res Function(_$$Element) _then)
+class __$$$ElementImplCopyWithImpl<$Res>
+    extends _$ElementCopyWithImpl<$Res, _$$ElementImpl>
+    implements _$$$ElementImplCopyWith<$Res> {
+  __$$$ElementImplCopyWithImpl(
+      _$$ElementImpl _value, $Res Function(_$$ElementImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -119,7 +120,7 @@ class __$$$ElementCopyWithImpl<$Res>
     Object? synopsis = freezed,
     Object? elementType = null,
   }) {
-    return _then(_$$Element(
+    return _then(_$$ElementImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -146,16 +147,16 @@ class __$$$ElementCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$$Element implements $Element {
-  _$$Element(
+class _$$ElementImpl implements $Element {
+  _$$ElementImpl(
       {this.id,
       required this.projectId,
       required this.name,
       this.synopsis,
       required this.elementType});
 
-  factory _$$Element.fromJson(Map<String, dynamic> json) =>
-      _$$$ElementFromJson(json);
+  factory _$$ElementImpl.fromJson(Map<String, dynamic> json) =>
+      _$$$ElementImplFromJson(json);
 
   @override
   final int? id;
@@ -177,7 +178,7 @@ class _$$Element implements $Element {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$$Element &&
+            other is _$$ElementImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.projectId, projectId) ||
                 other.projectId == projectId) &&
@@ -196,12 +197,12 @@ class _$$Element implements $Element {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$$ElementCopyWith<_$$Element> get copyWith =>
-      __$$$ElementCopyWithImpl<_$$Element>(this, _$identity);
+  _$$$ElementImplCopyWith<_$$ElementImpl> get copyWith =>
+      __$$$ElementImplCopyWithImpl<_$$ElementImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$$ElementToJson(
+    return _$$$ElementImplToJson(
       this,
     );
   }
@@ -213,9 +214,10 @@ abstract class $Element implements Element {
       required final int projectId,
       required final String name,
       final String? synopsis,
-      required final JournalCategory elementType}) = _$$Element;
+      required final JournalCategory elementType}) = _$$ElementImpl;
 
-  factory $Element.fromJson(Map<String, dynamic> json) = _$$Element.fromJson;
+  factory $Element.fromJson(Map<String, dynamic> json) =
+      _$$ElementImpl.fromJson;
 
   @override
   int? get id;
@@ -229,6 +231,6 @@ abstract class $Element implements Element {
   JournalCategory get elementType;
   @override
   @JsonKey(ignore: true)
-  _$$$ElementCopyWith<_$$Element> get copyWith =>
+  _$$$ElementImplCopyWith<_$$ElementImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

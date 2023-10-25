@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'journal.dart';
 
@@ -103,10 +103,10 @@ class _$JournalCopyWithImpl<$Res, $Val extends Journal>
 }
 
 /// @nodoc
-abstract class _$$$JournalCopyWith<$Res> implements $JournalCopyWith<$Res> {
-  factory _$$$JournalCopyWith(
-          _$$Journal value, $Res Function(_$$Journal) then) =
-      __$$$JournalCopyWithImpl<$Res>;
+abstract class _$$$JournalImplCopyWith<$Res> implements $JournalCopyWith<$Res> {
+  factory _$$$JournalImplCopyWith(
+          _$$JournalImpl value, $Res Function(_$$JournalImpl) then) =
+      __$$$JournalImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -120,10 +120,11 @@ abstract class _$$$JournalCopyWith<$Res> implements $JournalCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$$JournalCopyWithImpl<$Res>
-    extends _$JournalCopyWithImpl<$Res, _$$Journal>
-    implements _$$$JournalCopyWith<$Res> {
-  __$$$JournalCopyWithImpl(_$$Journal _value, $Res Function(_$$Journal) _then)
+class __$$$JournalImplCopyWithImpl<$Res>
+    extends _$JournalCopyWithImpl<$Res, _$$JournalImpl>
+    implements _$$$JournalImplCopyWith<$Res> {
+  __$$$JournalImplCopyWithImpl(
+      _$$JournalImpl _value, $Res Function(_$$JournalImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -137,7 +138,7 @@ class __$$$JournalCopyWithImpl<$Res>
     Object? elementId = null,
     Object? shape = null,
   }) {
-    return _then(_$$Journal(
+    return _then(_$$JournalImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -172,8 +173,8 @@ class __$$$JournalCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$$Journal implements $Journal {
-  _$$Journal(
+class _$$JournalImpl implements $Journal {
+  _$$JournalImpl(
       {this.id,
       required this.name,
       this.query,
@@ -182,8 +183,8 @@ class _$$Journal implements $Journal {
       required this.elementId,
       required this.shape});
 
-  factory _$$Journal.fromJson(Map<String, dynamic> json) =>
-      _$$$JournalFromJson(json);
+  factory _$$JournalImpl.fromJson(Map<String, dynamic> json) =>
+      _$$$JournalImplFromJson(json);
 
   @override
   final int? id;
@@ -209,7 +210,7 @@ class _$$Journal implements $Journal {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$$Journal &&
+            other is _$$JournalImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.query, query) || other.query == query) &&
@@ -230,12 +231,12 @@ class _$$Journal implements $Journal {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$$JournalCopyWith<_$$Journal> get copyWith =>
-      __$$$JournalCopyWithImpl<_$$Journal>(this, _$identity);
+  _$$$JournalImplCopyWith<_$$JournalImpl> get copyWith =>
+      __$$$JournalImplCopyWithImpl<_$$JournalImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$$JournalToJson(
+    return _$$$JournalImplToJson(
       this,
     );
   }
@@ -249,9 +250,10 @@ abstract class $Journal implements Journal {
       required final int createdTimestamp,
       required final int modifiedTimestamp,
       required final int elementId,
-      required final SpreadShape shape}) = _$$Journal;
+      required final SpreadShape shape}) = _$$JournalImpl;
 
-  factory $Journal.fromJson(Map<String, dynamic> json) = _$$Journal.fromJson;
+  factory $Journal.fromJson(Map<String, dynamic> json) =
+      _$$JournalImpl.fromJson;
 
   @override
   int? get id;
@@ -269,6 +271,6 @@ abstract class $Journal implements Journal {
   SpreadShape get shape;
   @override
   @JsonKey(ignore: true)
-  _$$$JournalCopyWith<_$$Journal> get copyWith =>
+  _$$$JournalImplCopyWith<_$$JournalImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

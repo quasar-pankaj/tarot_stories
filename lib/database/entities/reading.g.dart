@@ -6,13 +6,14 @@ part of 'reading.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$$Reading _$$$ReadingFromJson(Map<String, dynamic> json) => _$$Reading(
+_$$ReadingImpl _$$$ReadingImplFromJson(Map<String, dynamic> json) =>
+    _$$ReadingImpl(
       id: json['id'] as int?,
       journalId: json['journalId'] as int,
       readings: json['readings'] as String,
     );
 
-Map<String, dynamic> _$$$ReadingToJson(_$$Reading instance) =>
+Map<String, dynamic> _$$$ReadingImplToJson(_$$ReadingImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'journalId': instance.journalId,

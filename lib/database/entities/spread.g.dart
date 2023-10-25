@@ -6,13 +6,15 @@ part of 'spread.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$$Spread _$$$SpreadFromJson(Map<String, dynamic> json) => _$$Spread(
+_$$SpreadImpl _$$$SpreadImplFromJson(Map<String, dynamic> json) =>
+    _$$SpreadImpl(
       id: json['id'] as int?,
       journalId: json['journalId'] as int,
       cards: (json['cards'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
-Map<String, dynamic> _$$$SpreadToJson(_$$Spread instance) => <String, dynamic>{
+Map<String, dynamic> _$$$SpreadImplToJson(_$$SpreadImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'journalId': instance.journalId,
       'cards': instance.cards,
