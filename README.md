@@ -8,7 +8,7 @@ Tarot cards lend themselves to storytelling brilliantly due to their rich imager
 
 ### Demo Video:
 
-https://github.com/quasar-pankaj/tarot_stories/assets/4270836/d9992e77-4fd9-4807-892c-2e16d6fd7df7
+https://github.com/quasar-pankaj/tarot_stories/assets/4270836/c091d72e-d1d0-4648-9b1b-517c676446b9
 
 ### Basic Operations:
 
