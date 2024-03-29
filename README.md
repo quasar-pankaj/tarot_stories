@@ -6,6 +6,10 @@ A Flutter project for Writers.
 
 Tarot cards lend themselves to storytelling brilliantly due to their rich imagery. This project hopes to help Writers break Writer's block. This is still WIP but I am showcasing what I have done so far. 
 
+### Demo Video:
+
+https://github.com/quasar-pankaj/tarot_stories/assets/4270836/d9992e77-4fd9-4807-892c-2e16d6fd7df7
+
 ### Basic Operations:
 
 1. Rename an item - Long press on the name to invoke the in-place editor. Change the value and press enter.
