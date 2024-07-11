@@ -58,6 +58,3 @@ You can start by clicking the FAB at the bottom.
 2. Undo-Redo functionality.
 3. Make it display properly on mobiles (Android, iOS)
 
-<a href="https://www.buymeacoffee.com/quasarpankx"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=quasarpankx&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
-
-![bmc_qr](https://user-images.githubusercontent.com/4270836/218442947-582ee8fa-391c-4b70-8ca0-94ff5ccdfef8.png)
