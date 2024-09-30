@@ -58,3 +58,4 @@ You can start by clicking the FAB at the bottom.
 2. Undo-Redo functionality.
 3. Make it display properly on mobiles (Android, iOS)
 
+If you have any suggestions do let me know.
