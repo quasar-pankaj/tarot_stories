@@ -52,11 +52,22 @@ add_subdirectory(${FLUTTER_MANAGED_DIR})
 
 # System-level dependencies.
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(GTK REQUIRED IMPORTED_TARGET gtk+-3.0)
+pkg_check_modules(GTK3 REQUIRED IMPORTED_TARGET gtk+-3.0)
+find_package(OpenGL REQUIRED)
+find_package(GLESv2 REQUIRED)
+find_package(EGL REQUIRED)
+
+pkg_check_modules(X11 REQUIRED x11 xi)
+pkg_check_modules(Xext REQUIRED xext)
+pkg_check_modules(Xrandr REQUIRED xrandr)
+pkg_check_modules(Xinerama REQUIRED xinerama)
+pkg_check_modules(Xcursor REQUIRED xcursor)
+pkg_check_modules(Xfixes REQUIRED xfixes)
 
 add_definitions(-DAPPLICATION_ID="${APPLICATION_ID}")
 
 # Define the application target. To change its name, change BINARY_NAME above,
+# not the value here, or `flutter run` will no longer work.
 # not the value here, or `flutter run` will no longer work.
 #
 # Any new source files that you add to the application should be added here.
@@ -71,13 +82,25 @@ add_executable(${BINARY_NAME}
 apply_standard_settings(${BINARY_NAME})
 
 # Add dependency libraries. Add any application-specific dependencies here.
-target_link_libraries(${BINARY_NAME} PRIVATE flutter)
-target_link_libraries(${BINARY_NAME} PRIVATE PkgConfig::GTK)
+target_link_libraries(${BINARY_NAME} PRIVATE
+  flutter
+  PkgConfig::GTK3
+  PkgConfig::X11
+  PkgConfig::Xext
+  PkgConfig::Xrandr
+  PkgConfig::Xinerama
+  PkgConfig::Xcursor
+  PkgConfig::Xfixes
+  OpenGL::GL
+  GLESv2::GLESv2
+  EGL::EGL
+)
 
 # Run the Flutter tool portions of the build. This must not be removed.
 add_dependencies(${BINARY_NAME} flutter_assemble)
 
 # Only the install-generated bundle's copy of the executable will launch
+# correctly, since the resources must in the right relative locations. To avoid
 # correctly, since the resources must in the right relative locations. To avoid
 # people trying to run the unbundled copy, put it in a subdirectory instead of
 # the default top-level location.
