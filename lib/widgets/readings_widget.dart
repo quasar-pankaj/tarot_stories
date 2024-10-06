@@ -37,17 +37,13 @@ class ReadingsWidget extends ConsumerWidget {
         }
         return Column(
           children: [
-            quill.QuillToolbar.simple(
-              configurations: quill.QuillSimpleToolbarConfigurations(
-                controller: controller,
-              ),
+            quill.QuillToolbar.basic(
+              controller: controller,
             ),
             Expanded(
               child: quill.QuillEditor.basic(
-                configurations: quill.QuillEditorConfigurations(
-                  controller: controller,
-                  padding: const EdgeInsets.all(16),
-                ),
+                controller: controller,
+                readOnly: false,
               ),
             ),
           ],
