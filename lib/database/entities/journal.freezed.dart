@@ -28,8 +28,12 @@ mixin _$Journal {
   int get elementId => throw _privateConstructorUsedError;
   SpreadShape get shape => throw _privateConstructorUsedError;
 
+  /// Serializes this Journal to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Journal
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $JournalCopyWith<Journal> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -58,6 +62,8 @@ class _$JournalCopyWithImpl<$Res, $Val extends Journal>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Journal
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -127,6 +133,8 @@ class __$$$JournalImplCopyWithImpl<$Res>
       _$$JournalImpl _value, $Res Function(_$$JournalImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Journal
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -223,12 +231,14 @@ class _$$JournalImpl implements $Journal {
             (identical(other.shape, shape) || other.shape == shape));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, query,
       createdTimestamp, modifiedTimestamp, elementId, shape);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Journal
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$$JournalImplCopyWith<_$$JournalImpl> get copyWith =>
@@ -269,8 +279,11 @@ abstract class $Journal implements Journal {
   int get elementId;
   @override
   SpreadShape get shape;
+
+  /// Create a copy of Journal
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$$JournalImplCopyWith<_$$JournalImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

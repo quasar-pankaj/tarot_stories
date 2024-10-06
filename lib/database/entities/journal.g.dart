@@ -8,12 +8,12 @@ part of 'journal.dart';
 
 _$$JournalImpl _$$$JournalImplFromJson(Map<String, dynamic> json) =>
     _$$JournalImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String,
       query: json['query'] as String?,
-      createdTimestamp: json['createdTimestamp'] as int,
-      modifiedTimestamp: json['modifiedTimestamp'] as int,
-      elementId: json['elementId'] as int,
+      createdTimestamp: (json['createdTimestamp'] as num).toInt(),
+      modifiedTimestamp: (json['modifiedTimestamp'] as num).toInt(),
+      elementId: (json['elementId'] as num).toInt(),
       shape: $enumDecode(_$SpreadShapeEnumMap, json['shape']),
     );
 

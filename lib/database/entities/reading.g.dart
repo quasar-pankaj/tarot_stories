@@ -8,8 +8,8 @@ part of 'reading.dart';
 
 _$$ReadingImpl _$$$ReadingImplFromJson(Map<String, dynamic> json) =>
     _$$ReadingImpl(
-      id: json['id'] as int?,
-      journalId: json['journalId'] as int,
+      id: (json['id'] as num?)?.toInt(),
+      journalId: (json['journalId'] as num).toInt(),
       readings: json['readings'] as String,
     );
 

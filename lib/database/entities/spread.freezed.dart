@@ -24,8 +24,12 @@ mixin _$Spread {
   int get journalId => throw _privateConstructorUsedError;
   List<String> get cards => throw _privateConstructorUsedError;
 
+  /// Serializes this Spread to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Spread
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SpreadCopyWith<Spread> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -47,6 +51,8 @@ class _$SpreadCopyWithImpl<$Res, $Val extends Spread>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Spread
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -89,6 +95,8 @@ class __$$$SpreadImplCopyWithImpl<$Res>
       _$$SpreadImpl _value, $Res Function(_$$SpreadImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Spread
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -151,12 +159,14 @@ class _$$SpreadImpl implements $Spread {
             const DeepCollectionEquality().equals(other._cards, _cards));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, journalId, const DeepCollectionEquality().hash(_cards));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Spread
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$$SpreadImplCopyWith<_$$SpreadImpl> get copyWith =>
@@ -184,8 +194,11 @@ abstract class $Spread implements Spread {
   int get journalId;
   @override
   List<String> get cards;
+
+  /// Create a copy of Spread
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$$SpreadImplCopyWith<_$$SpreadImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

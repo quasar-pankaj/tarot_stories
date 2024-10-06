@@ -8,8 +8,8 @@ part of 'element.dart';
 
 _$$ElementImpl _$$$ElementImplFromJson(Map<String, dynamic> json) =>
     _$$ElementImpl(
-      id: json['id'] as int?,
-      projectId: json['projectId'] as int,
+      id: (json['id'] as num?)?.toInt(),
+      projectId: (json['projectId'] as num).toInt(),
       name: json['name'] as String,
       synopsis: json['synopsis'] as String?,
       elementType: $enumDecode(_$JournalCategoryEnumMap, json['elementType']),

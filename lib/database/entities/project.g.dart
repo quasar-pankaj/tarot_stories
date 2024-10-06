@@ -8,11 +8,11 @@ part of 'project.dart';
 
 _$$ProjectImpl _$$$ProjectImplFromJson(Map<String, dynamic> json) =>
     _$$ProjectImpl(
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String,
       synopsis: json['synopsis'] as String,
-      createdTimestamp: json['createdTimestamp'] as int,
-      modifiedTimestamp: json['modifiedTimestamp'] as int,
+      createdTimestamp: (json['createdTimestamp'] as num).toInt(),
+      modifiedTimestamp: (json['modifiedTimestamp'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$$ProjectImplToJson(_$$ProjectImpl instance) =>

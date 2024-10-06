@@ -26,8 +26,12 @@ mixin _$Project {
   int get createdTimestamp => throw _privateConstructorUsedError;
   int get modifiedTimestamp => throw _privateConstructorUsedError;
 
+  /// Serializes this Project to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Project
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProjectCopyWith<Project> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -54,6 +58,8 @@ class _$ProjectCopyWithImpl<$Res, $Val extends Project>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Project
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -111,6 +117,8 @@ class __$$$ProjectImplCopyWithImpl<$Res>
       _$$ProjectImpl _value, $Res Function(_$$ProjectImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Project
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -189,12 +197,14 @@ class _$$ProjectImpl implements $Project {
                 other.modifiedTimestamp == modifiedTimestamp));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, name, synopsis, createdTimestamp, modifiedTimestamp);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Project
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$$ProjectImplCopyWith<_$$ProjectImpl> get copyWith =>
@@ -229,8 +239,11 @@ abstract class $Project implements Project {
   int get createdTimestamp;
   @override
   int get modifiedTimestamp;
+
+  /// Create a copy of Project
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$$ProjectImplCopyWith<_$$ProjectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

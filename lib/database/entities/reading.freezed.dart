@@ -24,8 +24,12 @@ mixin _$Reading {
   int get journalId => throw _privateConstructorUsedError;
   String get readings => throw _privateConstructorUsedError;
 
+  /// Serializes this Reading to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Reading
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ReadingCopyWith<Reading> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -47,6 +51,8 @@ class _$ReadingCopyWithImpl<$Res, $Val extends Reading>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Reading
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -89,6 +95,8 @@ class __$$$ReadingImplCopyWithImpl<$Res>
       _$$ReadingImpl _value, $Res Function(_$$ReadingImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Reading
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -145,11 +153,13 @@ class _$$ReadingImpl implements $Reading {
                 other.readings == readings));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, journalId, readings);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Reading
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$$ReadingImplCopyWith<_$$ReadingImpl> get copyWith =>
@@ -178,8 +188,11 @@ abstract class $Reading implements Reading {
   int get journalId;
   @override
   String get readings;
+
+  /// Create a copy of Reading
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$$ReadingImplCopyWith<_$$ReadingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

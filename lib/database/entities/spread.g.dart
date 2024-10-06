@@ -8,8 +8,8 @@ part of 'spread.dart';
 
 _$$SpreadImpl _$$$SpreadImplFromJson(Map<String, dynamic> json) =>
     _$$SpreadImpl(
-      id: json['id'] as int?,
-      journalId: json['journalId'] as int,
+      id: (json['id'] as num?)?.toInt(),
+      journalId: (json['journalId'] as num).toInt(),
       cards: (json['cards'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
