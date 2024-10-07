@@ -41,7 +41,8 @@ class ReadingsWidget extends ConsumerWidget {
               children: [
                 quill.QuillSimpleToolbar(
                   controller: controller,
-                  configurations: const quill.QuillSimpleToolbarConfigurations(),
+                  configurations:
+                      const quill.QuillSimpleToolbarConfigurations(),
                 ),
                 Expanded(
                   child: quill.QuillEditor.basic(
@@ -58,9 +59,11 @@ class ReadingsWidget extends ConsumerWidget {
                 child: FloatingActionButton(
                   onPressed: () {
                     final text = controller.document.toDelta().toJson();
-                    ref
-                        .read(readingsProvider(openJournal.id!).notifier)
-                        .save(data.first.copyWith(readings:jsonEncode(text)));
+                    ref.read(readingsProvider(openJournal.id!).notifier).save(
+                          data.first.copyWith(
+                            readings: jsonEncode(text),
+                          ),
+                        );
                   },
                   child: const Icon(Icons.save),
                 ),
