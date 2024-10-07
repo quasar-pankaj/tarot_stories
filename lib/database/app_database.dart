@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:path/path.dart' as path show join;
 import 'package:path_provider/path_provider.dart';
-import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
 
 class AppDatabase {
