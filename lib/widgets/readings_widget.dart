@@ -35,15 +35,38 @@ class ReadingsWidget extends ConsumerWidget {
 
           controller.document.insert(0, text);
         }
-        return Column(
+        return Stack(
           children: [
-            quill.QuillToolbar.basic(
-              controller: controller,
+            Column(
+              children: [
+                quill.QuillSimpleToolbar(
+                  controller: controller,
+                  configurations:
+                      const quill.QuillSimpleToolbarConfigurations(),
+                ),
+                Expanded(
+                  child: quill.QuillEditor.basic(
+                    controller: controller,
+                    configurations: const quill.QuillEditorConfigurations(),
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              child: quill.QuillEditor.basic(
-                controller: controller,
-                readOnly: false,
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: FloatingActionButton(
+                  onPressed: () {
+                    final text = controller.document.toDelta().toJson();
+                    ref.read(readingsProvider(openJournal.id!).notifier).save(
+                          data.first.copyWith(
+                            readings: jsonEncode(text),
+                          ),
+                        );
+                  },
+                  child: const Icon(Icons.save),
+                ),
               ),
             ),
           ],

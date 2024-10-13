@@ -6,12 +6,11 @@ class InPlaceEditor extends StatefulWidget {
   String _text;
   final void Function(String newText)? _onTextChanged;
   InPlaceEditor({
-    Key? key,
+    super.key,
     required String text,
     void Function(String newText)? onTextChanged,
   })  : _text = text,
-        _onTextChanged = onTextChanged,
-        super(key: key);
+        _onTextChanged = onTextChanged;
 
   @override
   State<InPlaceEditor> createState() => _InPlaceEditorState();
